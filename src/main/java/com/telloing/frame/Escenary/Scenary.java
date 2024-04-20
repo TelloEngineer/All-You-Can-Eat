@@ -4,6 +4,8 @@
  */
 package com.telloing.frame.Escenary;
 
+import com.telloing.frame.Chracters.ChracterBuilder.ComidaDirector;
+import com.telloing.frame.Chracters.Comida;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -32,24 +34,14 @@ public class Scenary extends JPanel implements Runnable {
     Animations anim;
     final int fps;
     final long drawInterval;
+    Comida sushi1;
 
     public Scenary() {
         fps = 24;
-        drawInterval = 1000/fps;
+        drawInterval = 1000 / fps;
+
+        sushi1 = ComidaDirector.getInstancia().crearSushi1();
         
-        
-        
-        Toolkit h = Toolkit.getDefaultToolkit();
-        BufferedImage image;
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream("banda_transportadora.jpg"));
-            
-            anim = new Animations(Animations.separateFrames(image, 32, 64, 3, 4));
-            anim.rescaleFrames(9);
-        } catch (IOException ex) {
-            Logger.getLogger(Scenary.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        colorG = Color.red;
     }
 
     public void startGame() {
@@ -62,19 +54,13 @@ public class Scenary extends JPanel implements Runnable {
         super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         Graphics2D g2 = (Graphics2D) g;
 
-        /*this.colorG = this.colorG == Color.red ? Color.white : Color.red;
-        
-        g2.setColor(this.colorG);
-        
-        g2.fill3DRect(5, 5, 15, 15, true);*/
-        g2.drawImage(anim.getNextFrame(), 0, 0, this);
-
+        sushi1.draw(g2);
     }
 
     @Override
     public void run() {
         while (gameTh != null) {
-            
+
             update();
 
             repaint();

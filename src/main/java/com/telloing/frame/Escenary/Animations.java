@@ -31,6 +31,7 @@ public class Animations {
     }
 
     private BufferedImage Rescale(BufferedImage original, int newHeight, int newWidth) {
+        
         return Scalr.resize(original, newHeight,newWidth);
     }
 
@@ -73,7 +74,9 @@ public class Animations {
         this.frames.clear();
         this.frames.addAll(frames);
     }
-
+    
+    
+    
     public BufferedImage getNextFrame() {
         if (numFrame >= frames.size()) {
             numFrame = 0;
