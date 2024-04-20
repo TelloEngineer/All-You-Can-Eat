@@ -43,7 +43,9 @@ public class Scenary extends JPanel implements Runnable {
         BufferedImage image;
         try {
             image = ImageIO.read(getClass().getResourceAsStream("banda_transportadora.jpg"));
+            
             anim = new Animations(Animations.separateFrames(image, 32, 64, 3, 4));
+            anim.rescaleFrames(9);
         } catch (IOException ex) {
             Logger.getLogger(Scenary.class.getName()).log(Level.SEVERE, null, ex);
         }

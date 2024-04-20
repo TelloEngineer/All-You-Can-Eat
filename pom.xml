@@ -11,4 +11,14 @@
         <maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>com.telloing.frame.MainDrawing</exec.mainClass>
     </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.imgscalr</groupId>
+            <artifactId>imgscalr-lib</artifactId>
+            <version>4.2</version>
+        </dependency>
+    </dependencies>
+    
 </project>

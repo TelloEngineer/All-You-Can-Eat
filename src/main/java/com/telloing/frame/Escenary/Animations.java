@@ -9,9 +9,12 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.TimerTask;
+import org.imgscalr.Scalr;
 
 /**
  *
@@ -27,21 +30,22 @@ public class Animations {
         this.numFrame = 0;
     }
 
-    private BufferedImage Rescale(BufferedImage original, int newWidth, int newHeight) {
-        BufferedImage resized = new BufferedImage(newWidth, newHeight, original.getType());
-        Graphics2D g = resized.createGraphics();
-        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-                RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g.drawImage(original, 0, 0, newWidth, newHeight, 0, 0, original.getWidth(),
-                original.getHeight(), null);
-        g.dispose();
-        return resized;
+    private BufferedImage Rescale(BufferedImage original, int newHeight, int newWidth) {
+        return Scalr.resize(original, newHeight,newWidth);
     }
 
-    public void rescaleFrames (int porcentage){
-        
+    public void rescaleFrames(int porcentage) {
+        ListIterator<BufferedImage> iterador = this.frames.listIterator();
+        BufferedImage image;
+        int index = 0;
+        while (iterador.hasNext()) {
+            image = iterador.next();
+            iterador.remove();
+            iterador.add(this.Rescale(image, image.getHeight() * porcentage,
+                    image.getWidth() * porcentage));  
+        }
     }
-    
+
     public static List<BufferedImage> separateFrames(BufferedImage image,
             final int height, final int width,
             final int rows, final int cols) {
