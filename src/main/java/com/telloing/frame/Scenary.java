@@ -6,6 +6,7 @@ package com.telloing.frame;
 
 import com.telloing.frame.Chracters.ChracterBuilder.FoodBeltDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.FoodDirector;
+import com.telloing.frame.Frames.BackGroundDirector;
 import com.telloing.frame.Chracters.Food;
 import com.telloing.frame.Chracters.FoodBelt;
 import com.telloing.frame.Chracters.MovCharact;
@@ -49,8 +50,11 @@ public class Scenary extends JPanel implements Runnable {
         super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         Graphics2D g2 = (Graphics2D) g;
 
+        g2.drawImage(BackGroundDirector.getInstance().createBackGround(), 0,0, this);
+        g2.drawImage(BackGroundDirector.getInstance().createBackGround(), 0,0, this);
         belt.draw(g2);
         sushi1.draw(g2);
+        
         
     }
 
