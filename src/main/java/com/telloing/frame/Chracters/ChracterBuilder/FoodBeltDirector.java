@@ -65,7 +65,7 @@ public class FoodBeltDirector {
     }
 
     public FoodBelt createBelt(Container container){
-        this.buildFrames("sushi1.jpg");
+        this.buildFrames("banda_transportadora.jpg");
         this.buildContainer(container);
         return this.getFoodBelt();
     }
