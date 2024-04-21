@@ -49,8 +49,9 @@ public class Scenary extends JPanel implements Runnable {
         super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         Graphics2D g2 = (Graphics2D) g;
 
-        sushi1.draw(g2);
         belt.draw(g2);
+        sushi1.draw(g2);
+        
     }
 
     @Override
@@ -71,8 +72,9 @@ public class Scenary extends JPanel implements Runnable {
     }
 
     public void update() {
-        sushi1.update();
         belt.update();
+        sushi1.update();
+        
     }
 
 }
