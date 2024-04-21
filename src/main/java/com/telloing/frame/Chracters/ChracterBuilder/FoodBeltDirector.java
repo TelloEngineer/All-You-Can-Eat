@@ -59,7 +59,7 @@ public class FoodBeltDirector {
         
         Animations anim;
 
-        anim = new Animations(Animations.separateFrames(setFrames, 29, 231, 5, 1));
+        anim = new Animations(Animations.separateFrames(setFrames, 21, 462, 11, 1));
         listAnimations.clear();
         listAnimations.put("Avanzar", anim);
     }
