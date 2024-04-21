@@ -22,11 +22,6 @@ public class ChracterAttri {
         return listAnimations;
     }
 
-    public void setListAnimations(Hashtable<String, Animations> listAnimations) {
-        this.listAnimations.clear();
-        this.listAnimations.putAll(listAnimations);
-    }
-
     public ChracterAttri(int x, int y, int speed) {
         this.x = x;
         this.y = y;
@@ -38,7 +33,8 @@ public class ChracterAttri {
         this.speed = attri.getSpeed();
         this.x = attri.getX();
         this.y = attri.getY();
-        this.setListAnimations(attri.getListAnimations());
+        this.listAnimations.clear();
+        this.listAnimations.putAll(attri.getListAnimations());
     }
     
     public int getX() {

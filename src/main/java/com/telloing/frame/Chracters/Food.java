@@ -9,6 +9,7 @@ import com.telloing.frame.Frames.Animations;
 import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -16,6 +17,7 @@ import java.awt.event.KeyEvent;
  */
 public class Food implements ActCharac{
     private Animations animation;
+    private BufferedImage image;
     private ChracterAttri attributes; //que quede claro, no cambiar.
     private MovCharact listener;
     private Container container;
@@ -41,6 +43,7 @@ public class Food implements ActCharac{
 
     public void setAnimation(Animations animation) {
         this.animation = animation;
+        this.image = this.animation.getFrames().get(0);
     }
     
     
@@ -51,27 +54,18 @@ public class Food implements ActCharac{
     
     @Override
     public void draw(Graphics2D g) {
-        g.drawImage(animation.getNextFrame(), this.attributes.getX(), this.attributes.getY(),this.container);
+        g.drawImage(image, this.attributes.getX(), this.attributes.getY(),this.container);
     }
 
     @Override
     public void update() {
         switch(this.listener.getKeyCode()){
-            case KeyEvent.VK_S:
-                attributes.setY(attributes.getY() + attributes.getSpeed());
-                break;
-            case KeyEvent.VK_W:
-                attributes.setY(attributes.getY() - attributes.getSpeed());
-                break;
-            case KeyEvent.VK_A:
-                attributes.setX(attributes.getX() - attributes.getSpeed());
-                break;
-            case KeyEvent.VK_D:
-                attributes.setX(attributes.getX() + attributes.getSpeed());
+            case KeyEvent.VK_E:
+                image = this.animation.getNextFrame();
                 break;
             default:
-                
         }
+        this.listener.setKeyCode(-1);
     }
     
 }

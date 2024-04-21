@@ -33,8 +33,6 @@ import javax.swing.JPanel;
 public class Scenary extends JPanel implements Runnable {
 
     transient Thread gameTh;
-    private Color colorG;
-    private Animations anim;
     private final int fps;
     private final long drawInterval;
     private Food sushi1;
