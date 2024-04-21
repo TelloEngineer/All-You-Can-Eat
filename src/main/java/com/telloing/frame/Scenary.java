@@ -2,10 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.telloing.frame.Escenary;
+package com.telloing.frame;
 
+import com.telloing.frame.Chracters.ChracterAttri;
 import com.telloing.frame.Chracters.ChracterBuilder.ComidaDirector;
 import com.telloing.frame.Chracters.Comida;
+import com.telloing.frame.Chracters.MovCharact;
+import com.telloing.frame.Frames.Animations;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -30,11 +33,11 @@ import javax.swing.JPanel;
 public class Scenary extends JPanel implements Runnable {
 
     transient Thread gameTh;
-    Color colorG;
-    Animations anim;
-    final int fps;
-    final long drawInterval;
-    Comida sushi1;
+    private Color colorG;
+    private Animations anim;
+    private final int fps;
+    private final long drawInterval;
+    private Comida sushi1;
 
     public Scenary() {
         fps = 24;
@@ -42,6 +45,7 @@ public class Scenary extends JPanel implements Runnable {
 
         sushi1 = ComidaDirector.getInstancia().crearSushi1();
         
+        this.setFocusable(true);
     }
 
     public void startGame() {

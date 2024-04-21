@@ -1,9 +1,11 @@
 com\telloing\frame\Chracters\ChracterAttri.class
 com\telloing\frame\Chracters\Comida.class
-com\telloing\frame\Escenary\Animations.class
+com\telloing\frame\Chracters\MovCharact.class
 com\telloing\frame\Chracters\ChracterBuilder\ComidaDirector.class
 com\telloing\frame\MainDrawing$1.class
 com\telloing\frame\MainDrawing.class
 com\telloing\frame\Chracters\ActCharac.class
-com\telloing\frame\Escenary\Scenary.class
+com\telloing\frame\Frames\Motion.class
+com\telloing\frame\Scenary.class
 com\telloing\frame\Chracters\ChracterBuilder\ComidaBuilder.class
+com\telloing\frame\Frames\Animations.class

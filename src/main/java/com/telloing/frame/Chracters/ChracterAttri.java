@@ -4,6 +4,10 @@
  */
 package com.telloing.frame.Chracters;
 
+import java.util.Hashtable;
+
+import com.telloing.frame.Frames.Animations;
+
 /**
  *
  * @author josue
@@ -12,13 +16,31 @@ public class ChracterAttri {
     private int x;
     private int y;
     private int speed;
+    private Hashtable<String, Animations> listAnimations;
+
+    public Hashtable<String, Animations> getListAnimations() {
+        return listAnimations;
+    }
+
+    public void setListAnimations(Hashtable<String, Animations> listAnimations) {
+        this.listAnimations.clear();
+        this.listAnimations.putAll(listAnimations);
+    }
 
     public ChracterAttri(int x, int y, int speed) {
         this.x = x;
         this.y = y;
         this.speed = speed;
+        this.listAnimations = new Hashtable<String, Animations>();
     }
 
+    public void setChracterAttri(ChracterAttri attri){
+        this.speed = attri.getSpeed();
+        this.x = attri.getX();
+        this.y = attri.getY();
+        this.setListAnimations(attri.getListAnimations());
+    }
+    
     public int getX() {
         return x;
     }

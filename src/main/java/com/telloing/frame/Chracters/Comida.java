@@ -4,10 +4,8 @@
  */
 package com.telloing.frame.Chracters;
 
-import com.telloing.frame.Escenary.Animations;
+import com.telloing.frame.Frames.Animations;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.util.List;
 
 /**
  *
@@ -15,15 +13,27 @@ import java.util.List;
  */
 public class Comida implements ActCharac{
     private Animations animation;
-    private ChracterAttri atributos;
-
-    public ChracterAttri getAtributos() {
-        return atributos;
+    private ChracterAttri atributos; //que quede claro, no cambiar.
+    
+    
+    
+    public Comida(Animations animation) {
+        atributos = new ChracterAttri(0, 0, 0);
+        this.animation = animation;
     }
+
+    
 
     public void setAtributos(ChracterAttri atributos) {
         this.atributos = atributos;
     }
+
+    
+    
+    public ChracterAttri getAtributos() {
+        return atributos;
+    }
+
 
     public void setAnimation(Animations animation) {
         this.animation = animation;
@@ -34,9 +44,6 @@ public class Comida implements ActCharac{
         return animation;
     }
 
-    public Comida(Animations animation) {
-        this.animation = animation;
-    }
     
     @Override
     public void draw(Graphics2D g) {

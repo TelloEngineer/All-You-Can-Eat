@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.telloing.frame.Escenary;
+package com.telloing.frame.Frames;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -29,10 +29,10 @@ public class Animations {
         this.frames = frames;
         this.numFrame = 0;
     }
-
+    
     private BufferedImage Rescale(BufferedImage original, int newHeight, int newWidth) {
-        
-        return Scalr.resize(original, newHeight,newWidth);
+
+        return Scalr.resize(original, newHeight, newWidth);
     }
 
     public void rescaleFrames(int porcentage) {
@@ -43,7 +43,7 @@ public class Animations {
             image = iterador.next();
             iterador.remove();
             iterador.add(this.Rescale(image, image.getHeight() * porcentage,
-                    image.getWidth() * porcentage));  
+                    image.getWidth() * porcentage));
         }
     }
 
@@ -74,9 +74,7 @@ public class Animations {
         this.frames.clear();
         this.frames.addAll(frames);
     }
-    
-    
-    
+
     public BufferedImage getNextFrame() {
         if (numFrame >= frames.size()) {
             numFrame = 0;

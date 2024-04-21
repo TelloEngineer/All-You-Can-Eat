@@ -6,8 +6,8 @@ package com.telloing.frame.Chracters.ChracterBuilder;
 
 import com.telloing.frame.Chracters.ChracterAttri;
 import com.telloing.frame.Chracters.Comida;
-import com.telloing.frame.Escenary.Animations;
-import com.telloing.frame.Escenary.Scenary;
+import com.telloing.frame.Frames.Animations;
+import com.telloing.frame.Scenary;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -31,6 +31,7 @@ public class ComidaBuilder {
     }
     
     public static ComidaBuilder getInstacia(){
+        
         if(comiBuilder == null){
             comiBuilder = new ComidaBuilder();
         } 
@@ -38,11 +39,11 @@ public class ComidaBuilder {
     }
     
     public void buildAtrri(){
-        comida.setAtributos(new ChracterAttri(0, 0, 4));
+        comida.setAtributos(new ChracterAttri(0,0,5));
     }
     
     public void crearInstancia(){
-        comida = new Comida(null);
+        comida = new Comida(anim);
     }
     
     public Comida getComida(){
