@@ -18,7 +18,7 @@ public class BackGroundDirector {
         } 
         return backGroundDirector;
     }
-    private void buildFrames(String nameFile){
+    private void buildFrame(String nameFile){
         
         
         try {
@@ -31,11 +31,11 @@ public class BackGroundDirector {
 
     }
     public BufferedImage createBackGround(){
-        this.buildFrames("Back sprite.png");
+        this.buildFrame("Back sprite.png");
         return setFrames;
     }
     public BufferedImage createBackGroundFront(){
-        this.buildFrames("Back sprite.png");
+        this.buildFrame("Front sprite.png");
         return setFrames;
     }
 }

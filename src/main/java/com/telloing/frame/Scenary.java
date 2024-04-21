@@ -51,7 +51,7 @@ public class Scenary extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
 
         g2.drawImage(BackGroundDirector.getInstance().createBackGround(), 0,0, this);
-        g2.drawImage(BackGroundDirector.getInstance().createBackGround(), 0,0, this);
+        g2.drawImage(BackGroundDirector.getInstance().createBackGroundFront(), 0,0, this);
         belt.draw(g2);
         sushi1.draw(g2);
         
