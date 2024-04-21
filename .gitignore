@@ -1,4 +1,6 @@
 # Target directory
+*/.vscode/*
+
 target/
 */target/*
 */target/**
