@@ -22,11 +22,11 @@ public class ChracterAttri {
         return listAnimations;
     }
 
-    public ChracterAttri(int x, int y, int speed) {
+    public ChracterAttri(int x, int y, int speed, Hashtable<String, Animations> listAnimations) {
         this.x = x;
         this.y = y;
         this.speed = speed;
-        this.listAnimations = new Hashtable<String, Animations>();
+        this.listAnimations = listAnimations;
     }
 
     public void setChracterAttri(ChracterAttri attri){

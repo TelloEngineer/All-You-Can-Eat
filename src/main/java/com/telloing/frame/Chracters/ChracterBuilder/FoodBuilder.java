@@ -11,9 +11,11 @@ import com.telloing.frame.Frames.Animations;
 import com.telloing.frame.Scenary;
 
 import java.awt.Container;
+import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -26,16 +28,15 @@ import javax.swing.text.AttributeSet.CharacterAttribute;
 public class FoodBuilder {
     Toolkit tool;
     Food food;
-    ChracterAttri atributos;
-    Animations anim;
-    BufferedImage setFrames;
     private static FoodBuilder foodBuilder;
     Container container; 
     MovCharact motion;
+    Hashtable<String, Animations> listAnimations;
     
 
     private FoodBuilder(){
        tool = Toolkit.getDefaultToolkit();
+       listAnimations = new Hashtable<String, Animations>();
     }
     
     public static FoodBuilder getInstance(){
@@ -55,22 +56,15 @@ public class FoodBuilder {
         this.container = container;
     }
 
-    public void buildAtrri(){
-       this.atributos =  new ChracterAttri(0,0,5);
-    }
-    
-    
     public Food getFood(){
-        this.food = new Food(anim, motion, container);
-        food.setAttributes(this.atributos);
-        food.setAnimation(this.anim);
+        this.food = new Food(new ChracterAttri(0,0,5, listAnimations), motion, container);
         return this.food;
     }
     
 
     public void buildFrames(String nameFile){
         
-        
+        BufferedImage setFrames;
         try {
             setFrames = ImageIO.read(getClass().getResourceAsStream(nameFile));
 
@@ -79,7 +73,11 @@ public class FoodBuilder {
             return;
         }
 
-        this.anim = new Animations(Animations.separateFrames(setFrames, 32, 32, 2, 2));
         
+        Animations anim;
+
+        anim = new Animations(Animations.separateFrames(setFrames, 32, 32, 2, 2));
+        listAnimations.clear();
+        listAnimations.put("comer", anim);
     }
 }

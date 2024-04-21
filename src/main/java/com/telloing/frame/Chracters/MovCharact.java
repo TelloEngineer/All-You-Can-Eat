@@ -13,7 +13,6 @@ import java.awt.image.BufferedImage;
  * @author josue
  */
 public class MovCharact implements KeyListener{
-    private BufferedImage actualMov;
     private int keyCode;
 
     

@@ -10,24 +10,24 @@ import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.Hashtable;
 
 /**
  *
  * @author josue
  */
 public class Food implements ActCharac{
-    private Animations animation;
     private BufferedImage image;
     private ChracterAttri attributes; //que quede claro, no cambiar.
     private MovCharact listener;
     private Container container;
     
     
-    public Food(Animations animation, MovCharact listener, Container container) {
-        attributes = new ChracterAttri(0, 0, 0);
-        this.animation = animation;
+    public Food(ChracterAttri attri, MovCharact listener, Container container) {
+        this.attributes = attri;
         this.listener = listener;
         this.container = container;
+        this.image = this.attributes.getListAnimations().get("comer").getFrames().get(0);
     }
 
     public void setAttributes(ChracterAttri atributos) {
@@ -40,18 +40,6 @@ public class Food implements ActCharac{
         return attributes;
     }
 
-
-    public void setAnimation(Animations animation) {
-        this.animation = animation;
-        this.image = this.animation.getFrames().get(0);
-    }
-    
-    
-    public Animations getAnimation() {
-        return animation;
-    }
-
-    
     @Override
     public void draw(Graphics2D g) {
         g.drawImage(image, this.attributes.getX(), this.attributes.getY(),this.container);
@@ -61,7 +49,7 @@ public class Food implements ActCharac{
     public void update() {
         switch(this.listener.getKeyCode()){
             case KeyEvent.VK_E:
-                image = this.animation.getNextFrame();
+                image = this.attributes.getListAnimations().get("comer").getNextFrame();
                 break;
             default:
         }
