@@ -41,7 +41,7 @@ public class FoodBeltDirector {
 
     // diferencia entre bara y comida 32
     private FoodBelt getFoodBelt(){
-        this.belt = new FoodBelt(new ChracterAttri(40,62,5, listAnimations), container);
+        this.belt = new FoodBelt(new ChracterAttri(71,235,5, listAnimations), container);
         return this.belt;
     }
     

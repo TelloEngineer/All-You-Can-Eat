@@ -53,7 +53,7 @@ public class FoodBuilder {
 
     // diferencia entre bara y comida 32
     public Food getFood(){
-        this.food = new Food(new ChracterAttri(40,30,3, listAnimations), motion, container);
+        this.food = new Food(new ChracterAttri(71,203,3, listAnimations), motion, container);
         return this.food;
     }
     

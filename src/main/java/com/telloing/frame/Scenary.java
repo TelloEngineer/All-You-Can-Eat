@@ -38,6 +38,7 @@ public class Scenary extends JPanel implements Runnable {
 
         this.addKeyListener(listener);
         this.setFocusable(true);
+        
     }
 
     public void startGame() {
