@@ -11,31 +11,26 @@ import com.telloing.frame.Frames.Animations;
 import com.telloing.frame.Scenary;
 
 import java.awt.Container;
-import java.awt.Frame;
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.text.AttributeSet.CharacterAttribute;
 
 /**
  *
  * @author josue
  */
 public class FoodBuilder {
-    Toolkit tool;
     Food food;
-    private static FoodBuilder foodBuilder;
     Container container; 
     MovCharact motion;
+    private static FoodBuilder foodBuilder;
     Hashtable<String, Animations> listAnimations;
     
 
     private FoodBuilder(){
-       tool = Toolkit.getDefaultToolkit();
        listAnimations = new Hashtable<String, Animations>();
     }
     

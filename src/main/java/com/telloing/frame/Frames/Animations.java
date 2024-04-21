@@ -4,16 +4,10 @@
  */
 package com.telloing.frame.Frames;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.TimerTask;
 import org.imgscalr.Scalr;
 
 /**
@@ -38,7 +32,6 @@ public class Animations {
     public void rescaleFrames(int porcentage) {
         ListIterator<BufferedImage> iterador = this.frames.listIterator();
         BufferedImage image;
-        int index = 0;
         while (iterador.hasNext()) {
             image = iterador.next();
             iterador.remove();
