@@ -11,6 +11,7 @@ import java.awt.event.KeyListener;
  *
  * @author josue
  */
+
 public class MovCharact implements KeyListener{
     private int keyCode;
 
