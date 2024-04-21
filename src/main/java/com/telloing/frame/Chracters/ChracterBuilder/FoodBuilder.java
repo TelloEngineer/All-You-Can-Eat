@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.text.AttributeSet.CharacterAttribute;
 
 /**
  *
@@ -25,10 +26,14 @@ import javax.imageio.ImageIO;
 public class FoodBuilder {
     Toolkit tool;
     Food food;
+    ChracterAttri atributos;
     Animations anim;
     BufferedImage setFrames;
     private static FoodBuilder foodBuilder;
+    Container container; 
+    MovCharact motion;
     
+
     private FoodBuilder(){
        tool = Toolkit.getDefaultToolkit();
     }
@@ -41,19 +46,28 @@ public class FoodBuilder {
         return foodBuilder;
     }
     
-   
+    
+    public void buildMotion(MovCharact motion) {
+        this.motion = motion;
+    }
+
+    public void buildContainer(Container container) {
+        this.container = container;
+    }
+
     public void buildAtrri(){
-        food.setAttributes(new ChracterAttri(0,0,5));
+       this.atributos =  new ChracterAttri(0,0,5);
     }
     
-    public void createInstance(Container container, MovCharact motion){
-        food = new Food(anim, motion, container);
-    }
     
     public Food getFood(){
-        return food;
+        this.food = new Food(anim, motion, container);
+        food.setAttributes(this.atributos);
+        food.setAnimation(this.anim);
+        return this.food;
     }
     
+
     public void buildFrames(String nameFile){
         
         
@@ -65,7 +79,7 @@ public class FoodBuilder {
             return;
         }
 
-        anim = new Animations(Animations.separateFrames(setFrames, 32, 32, 2, 2));
-        food.setAnimation(anim);
+        this.anim = new Animations(Animations.separateFrames(setFrames, 32, 32, 2, 2));
+        
     }
 }
