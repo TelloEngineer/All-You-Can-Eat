@@ -4,7 +4,10 @@
  */
 package com.telloing.frame.Chracters.ChracterBuilder;
 
+import java.awt.Container;
+
 import com.telloing.frame.Chracters.Comida;
+import com.telloing.frame.Chracters.MovCharact;
 
 /**
  *
@@ -25,8 +28,8 @@ public class ComidaDirector {
         return comiDirector;
     }
     
-     public Comida crearSushi1(){
-         builder.crearInstancia();
+     public Comida crearSushi1(Container container, MovCharact listener){
+         builder.crearInstancia(container, listener);
          builder.buildAtrri();
          builder.buildFrames("sushi1.jpg");
          return builder.getComida();

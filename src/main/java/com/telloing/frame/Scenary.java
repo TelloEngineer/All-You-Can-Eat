@@ -43,7 +43,7 @@ public class Scenary extends JPanel implements Runnable {
         fps = 24;
         drawInterval = 1000 / fps;
 
-        sushi1 = ComidaDirector.getInstancia().crearSushi1();
+        sushi1 = ComidaDirector.getInstancia().crearSushi1(this, new MovCharact());
         
         this.setFocusable(true);
     }

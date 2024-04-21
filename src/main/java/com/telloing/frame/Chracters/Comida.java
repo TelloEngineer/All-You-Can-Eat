@@ -5,7 +5,10 @@
 package com.telloing.frame.Chracters;
 
 import com.telloing.frame.Frames.Animations;
+
+import java.awt.Container;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -14,15 +17,16 @@ import java.awt.Graphics2D;
 public class Comida implements ActCharac{
     private Animations animation;
     private ChracterAttri atributos; //que quede claro, no cambiar.
+    private MovCharact listener;
+    private Container container;
     
     
-    
-    public Comida(Animations animation) {
+    public Comida(Animations animation, MovCharact listener, Container container) {
         atributos = new ChracterAttri(0, 0, 0);
         this.animation = animation;
+        this.listener = listener;
+        this.container = container;
     }
-
-    
 
     public void setAtributos(ChracterAttri atributos) {
         this.atributos = atributos;
@@ -47,12 +51,27 @@ public class Comida implements ActCharac{
     
     @Override
     public void draw(Graphics2D g) {
-        g.drawImage(animation.getNextFrame(), this.atributos.getX(), this.atributos.getY(), null);
+        g.drawImage(animation.getNextFrame(), this.atributos.getX(), this.atributos.getY(),this.container);
     }
 
     @Override
     public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        switch(this.listener.getKeyCode()){
+            case KeyEvent.VK_S:
+                atributos.setY(atributos.getY() + atributos.getSpeed());
+                break;
+            case KeyEvent.VK_W:
+                atributos.setY(atributos.getY() - atributos.getSpeed());
+                break;
+            case KeyEvent.VK_A:
+                atributos.setX(atributos.getX() - atributos.getSpeed());
+                break;
+            case KeyEvent.VK_D:
+                atributos.setX(atributos.getX() + atributos.getSpeed());
+                break;
+            default:
+                
+        }
     }
     
 }
