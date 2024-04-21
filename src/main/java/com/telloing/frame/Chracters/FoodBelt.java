@@ -4,25 +4,24 @@
  */
 package com.telloing.frame.Chracters;
 
-import com.telloing.frame.Frames.Animations;
 import java.awt.Container;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 /**
  *
  * @author aleck
  */
 public class FoodBelt implements ActCharac {
-    private Animations animation;
+    private BufferedImage image;
     private ChracterAttri attributes; //que quede claro, no cambiar.
-    private MovCharact listener;
     private Container container;
 
     
-    public FoodBelt(Animations animation, MovCharact listener, Container container) {
-        this.animation = animation;
-        this.listener = listener;
+    public FoodBelt(ChracterAttri attri, Container container) {
+        this.attributes = attri;
         this.container = container;
+        this.image = this.attributes.getListAnimations().get("Avanzar").getFrames().get(0);
     }
     
     public void setAttributes(ChracterAttri atributos) {
@@ -36,22 +35,14 @@ public class FoodBelt implements ActCharac {
     }
 
 
-    public void setAnimation(Animations animation) {
-        this.animation = animation;
-    }
-    
-    
-    public Animations getAnimation() {
-        return animation;
-    }
     
     @Override
     public void draw(Graphics2D g) {
-        // Moves to the next frame 
+        g.drawImage(image, this.attributes.getX(), this.attributes.getY(),this.container);
     }
     
     @Override
     public void update() {
-        // Updates the information
+        image = this.attributes.getListAnimations().get("Avanzar").getNextFrame();
     }
 }

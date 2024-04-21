@@ -31,8 +31,6 @@ public class Food implements ActCharac{
         this.attributes = atributos;
     }
 
-    
-    
     public ChracterAttri getAttributes() {
         return attributes;
     }
