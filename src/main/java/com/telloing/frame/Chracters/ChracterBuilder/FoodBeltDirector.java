@@ -59,13 +59,13 @@ public class FoodBeltDirector {
         
         Animations anim;
 
-        anim = new Animations(Animations.separateFrames(setFrames, 32, 64, 3, 4));
+        anim = new Animations(Animations.separateFrames(setFrames, 29, 231, 5, 1));
         listAnimations.clear();
         listAnimations.put("Avanzar", anim);
     }
 
     public FoodBelt createBelt(Container container){
-        this.buildFrames("banda_transportadora.jpg");
+        this.buildFrames("FoodBelt.png");
         this.buildContainer(container);
         return this.getFoodBelt();
     }

@@ -29,7 +29,7 @@ public class FoodDirector {
     }
     
      public Food createSushi1(Container container, MovCharact listener){
-         builder.buildFrames("sushi1.jpg");
+         builder.buildFrames("sushi1.png");
          builder.buildContainer(container);
          builder.buildMotion(listener);
          return builder.getFood();
