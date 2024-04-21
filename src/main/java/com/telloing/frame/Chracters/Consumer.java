@@ -4,51 +4,57 @@
  */
 package com.telloing.frame.Chracters;
 
+
+import com.telloing.frame.Frames.Animations;
 import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
+
 
 /**
  *
- * @author josue
+ * @author aleck
  */
-public class Food implements ActCharac{
-    private BufferedImage image;
+public class Consumer implements ActCharac {
+    private Animations animation;
     private ChracterAttri attributes; //que quede claro, no cambiar.
     private MovCharact listener;
     private Container container;
+
     
-    
-    public Food(ChracterAttri attri, MovCharact listener, Container container) {
-        this.attributes = attri;
+    public Consumer(Animations animation, MovCharact listener, Container container) {
+        this.animation = animation;
         this.listener = listener;
         this.container = container;
-        this.image = this.attributes.getListAnimations().get("comer").getFrames().get(0);
     }
-
+    
     public void setAttributes(ChracterAttri atributos) {
         this.attributes = atributos;
     }
 
+    
+    
     public ChracterAttri getAttributes() {
         return attributes;
     }
 
-    @Override
-    public void draw(Graphics2D g) {
-        g.drawImage(image, this.attributes.getX(), this.attributes.getY(),this.container);
-    }
 
-    @Override
-    public void update() {
-        switch(this.listener.getKeyCode()){
-            case KeyEvent.VK_E:
-                image = this.attributes.getListAnimations().get("comer").getNextFrame();
-                break;
-            default:
-        }
-        this.listener.setKeyCode(-1);
+    public void setAnimation(Animations animation) {
+        this.animation = animation;
     }
     
+    
+    public Animations getAnimation() {
+        return animation;
+    }
+    
+    @Override
+    public void draw(Graphics2D g) {
+        // Moves to the next frame 
+    }
+    
+    @Override
+    public void update() {
+        // Updates the information
+    }
 }

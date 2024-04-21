@@ -4,8 +4,10 @@
  */
 package com.telloing.frame;
 
+import com.telloing.frame.Chracters.ChracterBuilder.FoodBeltDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.FoodDirector;
 import com.telloing.frame.Chracters.Food;
+import com.telloing.frame.Chracters.FoodBelt;
 import com.telloing.frame.Chracters.MovCharact;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -23,6 +25,7 @@ public class Scenary extends JPanel implements Runnable {
     private final int fps;
     private final long drawInterval;
     private Food sushi1;
+    private FoodBelt belt;
 
     public Scenary() {
         fps = 24;
@@ -30,7 +33,8 @@ public class Scenary extends JPanel implements Runnable {
 
         MovCharact listener = new MovCharact();
         sushi1 = FoodDirector.getInstancia().createSushi1(this, listener);
-        
+        belt = FoodBeltDirector.getInstance().createBelt(this);
+
         this.addKeyListener(listener);
         this.setFocusable(true);
     }
@@ -46,6 +50,7 @@ public class Scenary extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
 
         sushi1.draw(g2);
+        belt.draw(g2);
     }
 
     @Override
@@ -67,6 +72,7 @@ public class Scenary extends JPanel implements Runnable {
 
     public void update() {
         sushi1.update();
+        belt.update();
     }
 
 }

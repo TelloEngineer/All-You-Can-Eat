@@ -95,5 +95,4 @@ public class ChracterAttri {
         }
         return this.speed == other.speed;
     }
-    
 }
