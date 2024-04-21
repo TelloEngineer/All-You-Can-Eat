@@ -14,28 +14,28 @@ import java.awt.event.KeyEvent;
  *
  * @author josue
  */
-public class Comida implements ActCharac{
+public class Food implements ActCharac{
     private Animations animation;
-    private ChracterAttri atributos; //que quede claro, no cambiar.
+    private ChracterAttri attributes; //que quede claro, no cambiar.
     private MovCharact listener;
     private Container container;
     
     
-    public Comida(Animations animation, MovCharact listener, Container container) {
-        atributos = new ChracterAttri(0, 0, 0);
+    public Food(Animations animation, MovCharact listener, Container container) {
+        attributes = new ChracterAttri(0, 0, 0);
         this.animation = animation;
         this.listener = listener;
         this.container = container;
     }
 
-    public void setAtributos(ChracterAttri atributos) {
-        this.atributos = atributos;
+    public void setAttributes(ChracterAttri atributos) {
+        this.attributes = atributos;
     }
 
     
     
-    public ChracterAttri getAtributos() {
-        return atributos;
+    public ChracterAttri getAttributes() {
+        return attributes;
     }
 
 
@@ -51,23 +51,23 @@ public class Comida implements ActCharac{
     
     @Override
     public void draw(Graphics2D g) {
-        g.drawImage(animation.getNextFrame(), this.atributos.getX(), this.atributos.getY(),this.container);
+        g.drawImage(animation.getNextFrame(), this.attributes.getX(), this.attributes.getY(),this.container);
     }
 
     @Override
     public void update() {
         switch(this.listener.getKeyCode()){
             case KeyEvent.VK_S:
-                atributos.setY(atributos.getY() + atributos.getSpeed());
+                attributes.setY(attributes.getY() + attributes.getSpeed());
                 break;
             case KeyEvent.VK_W:
-                atributos.setY(atributos.getY() - atributos.getSpeed());
+                attributes.setY(attributes.getY() - attributes.getSpeed());
                 break;
             case KeyEvent.VK_A:
-                atributos.setX(atributos.getX() - atributos.getSpeed());
+                attributes.setX(attributes.getX() - attributes.getSpeed());
                 break;
             case KeyEvent.VK_D:
-                atributos.setX(atributos.getX() + atributos.getSpeed());
+                attributes.setX(attributes.getX() + attributes.getSpeed());
                 break;
             default:
                 

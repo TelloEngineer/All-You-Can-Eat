@@ -5,7 +5,7 @@
 package com.telloing.frame.Chracters.ChracterBuilder;
 
 import com.telloing.frame.Chracters.ChracterAttri;
-import com.telloing.frame.Chracters.Comida;
+import com.telloing.frame.Chracters.Food;
 import com.telloing.frame.Chracters.MovCharact;
 import com.telloing.frame.Frames.Animations;
 import com.telloing.frame.Scenary;
@@ -22,36 +22,36 @@ import javax.imageio.ImageIO;
  *
  * @author josue
  */
-public class ComidaBuilder {
+public class FoodBuilder {
     Toolkit tool;
-    Comida comida;
+    Food food;
     Animations anim;
     BufferedImage setFrames;
-    private static ComidaBuilder comiBuilder;
+    private static FoodBuilder foodBuilder;
     
-    private ComidaBuilder(){
+    private FoodBuilder(){
        tool = Toolkit.getDefaultToolkit();
     }
     
-    public static ComidaBuilder getInstacia(){
+    public static FoodBuilder getInstance(){
         
-        if(comiBuilder == null){
-            comiBuilder = new ComidaBuilder();
+        if(foodBuilder == null){
+            foodBuilder = new FoodBuilder();
         } 
-        return comiBuilder;
+        return foodBuilder;
     }
     
    
     public void buildAtrri(){
-        comida.setAtributos(new ChracterAttri(0,0,5));
+        food.setAttributes(new ChracterAttri(0,0,5));
     }
     
-    public void crearInstancia(Container container, MovCharact motion){
-        comida = new Comida(anim, motion, container);
+    public void createInstance(Container container, MovCharact motion){
+        food = new Food(anim, motion, container);
     }
     
-    public Comida getComida(){
-        return comida;
+    public Food getFood(){
+        return food;
     }
     
     public void buildFrames(String nameFile){
@@ -66,6 +66,6 @@ public class ComidaBuilder {
         }
 
         anim = new Animations(Animations.separateFrames(setFrames, 32, 32, 2, 2));
-        comida.setAnimation(anim);
+        food.setAnimation(anim);
     }
 }

@@ -5,8 +5,8 @@
 package com.telloing.frame;
 
 import com.telloing.frame.Chracters.ChracterAttri;
-import com.telloing.frame.Chracters.ChracterBuilder.ComidaDirector;
-import com.telloing.frame.Chracters.Comida;
+import com.telloing.frame.Chracters.ChracterBuilder.FoodDirector;
+import com.telloing.frame.Chracters.Food;
 import com.telloing.frame.Chracters.MovCharact;
 import com.telloing.frame.Frames.Animations;
 import java.awt.Color;
@@ -37,13 +37,13 @@ public class Scenary extends JPanel implements Runnable {
     private Animations anim;
     private final int fps;
     private final long drawInterval;
-    private Comida sushi1;
+    private Food sushi1;
 
     public Scenary() {
         fps = 24;
         drawInterval = 1000 / fps;
 
-        sushi1 = ComidaDirector.getInstancia().crearSushi1(this, new MovCharact());
+        sushi1 = FoodDirector.getInstancia().createSushi1(this, new MovCharact());
         
         this.setFocusable(true);
     }
