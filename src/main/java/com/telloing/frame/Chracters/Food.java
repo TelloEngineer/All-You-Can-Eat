@@ -49,6 +49,7 @@ public class Food implements ActCharac{
             default:
         }
         this.listener.setKeyCode(-1);
+        this.attributes.setX(this.attributes.getX() + this.attributes.getSpeed());
     }
     
 }
