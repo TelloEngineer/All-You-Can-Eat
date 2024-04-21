@@ -52,7 +52,7 @@ public class FoodBuilder {
     }
 
     public Food getFood(){
-        this.food = new Food(new ChracterAttri(0,0,5, listAnimations), motion, container);
+        this.food = new Food(new ChracterAttri(40,30,5, listAnimations), motion, container);
         return this.food;
     }
     

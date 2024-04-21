@@ -40,7 +40,7 @@ public class FoodBeltDirector {
     }
 
     private FoodBelt getFoodBelt(){
-        this.belt = new FoodBelt(new ChracterAttri(0,0,5, listAnimations), container);
+        this.belt = new FoodBelt(new ChracterAttri(40,62,5, listAnimations), container);
         return this.belt;
     }
     
