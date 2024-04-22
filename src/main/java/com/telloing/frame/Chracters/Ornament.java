@@ -4,7 +4,6 @@
  */
 package com.telloing.frame.Chracters;
 
-import com.telloing.frame.Frames.Animations;
 import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
