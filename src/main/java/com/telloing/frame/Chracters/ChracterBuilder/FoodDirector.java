@@ -97,7 +97,7 @@ public class FoodDirector {
     }
     
     public Food createSushi1(Container container, MovCharact listener){
-        builder.buildFrames("Sushi 1.png");
+        builder.buildFrames("./Sushi/Sushi 1.png");
         builder.buildContainer(container);
         builder.buildMotion(listener);
         return builder.getFood();
