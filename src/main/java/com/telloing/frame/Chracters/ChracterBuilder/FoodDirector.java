@@ -71,10 +71,11 @@ class FoodBuilder {
         }
         
         Animations anim;
+        Hashtable<String, Animations> list = new Hashtable<String, Animations>();
 
         anim = new Animations(Animations.separateFrames(setFrames, 32, 32, 2, 2));
-        listAnimations.clear();
-        listAnimations.put("comer", anim);
+        list.put("comer", anim);
+        listAnimations = list;
     }
 }
 /**
@@ -103,43 +104,43 @@ public class FoodDirector {
         return builder.getFood();
     }
     public Food createSushi2(Container container, MovCharact listener){
-        builder.buildFrames("Sushi 2.png");
+        builder.buildFrames("./Sushi/Sushi 2.png");
         builder.buildContainer(container);
         builder.buildMotion(listener);
         return builder.getFood();
     }
     public Food createSushi3(Container container, MovCharact listener){
-        builder.buildFrames("Sushi 3.png");
+        builder.buildFrames("./Sushi/Sushi 3.png");
         builder.buildContainer(container);
         builder.buildMotion(listener);
         return builder.getFood();
     }
     public Food createSushi4(Container container, MovCharact listener){
-        builder.buildFrames("Sushi 4.png");
+        builder.buildFrames("./Sushi/Sushi 4.png");
         builder.buildContainer(container);
         builder.buildMotion(listener);
         return builder.getFood();
     }
     public Food createSushi5(Container container, MovCharact listener){
-        builder.buildFrames("Sushi 5.png");
+        builder.buildFrames("./Sushi/Sushi 5.png");
         builder.buildContainer(container);
         builder.buildMotion(listener);
         return builder.getFood();
     }
     public Food createSushi6(Container container, MovCharact listener){
-        builder.buildFrames("Sushi 6.png");
+        builder.buildFrames("./Sushi/Sushi 6.png");
         builder.buildContainer(container);
         builder.buildMotion(listener);
         return builder.getFood();
     }
     public Food createSushi7(Container container, MovCharact listener){
-        builder.buildFrames("Sushi 7.png");
+        builder.buildFrames("./Sushi/Sushi 7.png");
         builder.buildContainer(container);
         builder.buildMotion(listener);
         return builder.getFood();
     }
     public Food createSushi8(Container container, MovCharact listener){
-        builder.buildFrames("Sushi 8.png");
+        builder.buildFrames("./Sushi/Sushi 8.png");
         builder.buildContainer(container);
         builder.buildMotion(listener);
         return builder.getFood();

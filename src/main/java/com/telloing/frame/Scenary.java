@@ -30,6 +30,7 @@ public class Scenary extends JPanel implements Runnable {
     private Food sushi1;
     private FoodBelt belt;
     private Ornament ornament1;
+    private Ornament ornament2;
 
     public Scenary() {
         fps = 24;
@@ -39,7 +40,9 @@ public class Scenary extends JPanel implements Runnable {
         sushi1 = FoodDirector.getInstancia().createSushi1(this, listener);
         belt = FoodBeltDirector.getInstance().createBelt(this);
         ornament1 = OrnamentDirector.getInstance().createRibbon(this, 60, 80);
-        
+        ornament2 = OrnamentDirector.getInstance().createPaper(this, 90, 80);
+        System.out.println(ornament1.getAttributes().getListAnimations() == ornament2.getAttributes().getListAnimations());
+
         this.addKeyListener(listener);
         this.setFocusable(true);
         
@@ -60,6 +63,7 @@ public class Scenary extends JPanel implements Runnable {
         belt.draw(g2);
         sushi1.draw(g2);
         ornament1.draw(g2);
+        ornament2.draw(g2);
         
         
     }
@@ -85,6 +89,7 @@ public class Scenary extends JPanel implements Runnable {
         belt.update();
         sushi1.update();
         ornament1.update();
+        ornament2.update();
     }
 
 }

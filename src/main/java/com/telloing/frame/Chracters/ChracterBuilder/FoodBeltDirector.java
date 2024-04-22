@@ -59,10 +59,11 @@ public class FoodBeltDirector {
 
         
         Animations anim;
+        Hashtable<String, Animations> list = new Hashtable<String, Animations>();
 
         anim = new Animations(Animations.separateFrames(setFrames, 21, 462, 12, 1));
-        listAnimations.clear();
-        listAnimations.put("Avanzar", anim);
+        list.put("Avanzar", anim);
+        listAnimations = list;
     }
 
     public FoodBelt createBelt(Container container){
