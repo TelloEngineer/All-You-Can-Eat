@@ -1,15 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package com.telloing.frame.Chracters.ChracterBuilder;
 
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+
 import com.telloing.frame.Chracters.ChracterAttri;
-import com.telloing.frame.Chracters.Food;
 import com.telloing.frame.Chracters.MovCharact;
+import com.telloing.frame.Chracters.Ornament;
 import com.telloing.frame.Frames.Animations;
 import com.telloing.frame.Scenary;
-
 import java.awt.Container;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -20,57 +21,47 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author josue
+ * @author aleck
  */
-public class FoodBuilder {
-    Food food;
-    Container container; 
-    MovCharact motion;
-    private static FoodBuilder foodBuilder;
+public class OrnamentBuilder {
+    Ornament ornament;
+    Container container;
+    private static OrnamentBuilder ornamentBuilder;
     Hashtable<String, Animations> listAnimations;
     
-
-    private FoodBuilder(){
-       listAnimations = new Hashtable<String, Animations>();
+    private OrnamentBuilder() {
+        listAnimations = new Hashtable<String, Animations>();
     }
     
-    public static FoodBuilder getInstance(){
-        
-        if(foodBuilder == null){
-            foodBuilder = new FoodBuilder();
-        } 
-        return foodBuilder;
-    }
-    
-    
-    public void buildMotion(MovCharact motion) {
-        this.motion = motion;
+    public static OrnamentBuilder getInstance() {
+        if (ornamentBuilder == null)
+            ornamentBuilder = new OrnamentBuilder();
+        return ornamentBuilder;
     }
 
     public void buildContainer(Container container) {
         this.container = container;
     }
-
-    // diferencia entre bara y comida 32
-    public Food getFood(){
-        this.food = new Food(new ChracterAttri(72,203,3, listAnimations), motion, container);
-        return this.food;
+    
+    public Ornament getOrnament(final int x, final int y) {
+        // Define here the position of the ornament
+        this.ornament = new Ornament(new ChracterAttri(x, y, 0, this.listAnimations), this.container);
+        return this.ornament;
     }
     
-
-    public void buildFrames(String nameFile){
-        
+    public void buildFrames(String nameFile) {
         BufferedImage setFrames;
+        
         try {
             setFrames = ImageIO.read(getClass().getResourceAsStream(nameFile));
-
         } catch (IOException ex) {
             Logger.getLogger(Scenary.class.getName()).log(Level.SEVERE, null, ex);
             return;
         }
         
         Animations anim;
-
+        
+        // Need to defien an image
         anim = new Animations(Animations.separateFrames(setFrames, 32, 32, 2, 2));
         listAnimations.clear();
         listAnimations.put("comer", anim);
