@@ -30,7 +30,7 @@ public class Scenary extends JPanel implements Runnable {
     transient Thread gameTh;
     private final int fps;
     private final long drawInterval;
-    private Food sushi1;
+    private Food sushi1, sushi2;
     private FoodBelt belt;
     private Ornament ornament1, ornament2, punpun;
 
@@ -41,7 +41,11 @@ public class Scenary extends JPanel implements Runnable {
         drawInterval = 1000 / fps;
 
         MovCharact listener = new MovCharact();
-        sushi1 = FoodDirector.getInstancia().createSushi1(this, listener);
+        this.tileManager = new TileManager(this);
+        this.tileManager.putTile(521, 203);
+        
+        sushi1 = FoodDirector.getInstancia().createSushi1(this, listener, this.tileManager);
+        // sushi2 = FoodDirector.getInstancia().createSushi2(this, listener, this.tileManager);
         belt = FoodBeltDirector.getInstance().createBelt(this);
         ornament1 = OrnamentDirector.getInstance().createRibbon(this, 60, 80);
         ornament2 = OrnamentDirector.getInstance().createPaper(this, 90, 80);
@@ -51,7 +55,7 @@ public class Scenary extends JPanel implements Runnable {
         this.addKeyListener(listener);
         this.setFocusable(true);
         
-        tileManager = new TileManager(this);
+        
     }
 
     public void startGame() {
@@ -68,6 +72,7 @@ public class Scenary extends JPanel implements Runnable {
         g2.drawImage(BackGroundDirector.getInstance().createBackGroundFront(), 0,0, this);
         belt.draw(g2);
         sushi1.draw(g2);
+        // sushi2.draw(g2);
         ornament1.draw(g2);
         ornament2.draw(g2);
         punpun.draw(g2);

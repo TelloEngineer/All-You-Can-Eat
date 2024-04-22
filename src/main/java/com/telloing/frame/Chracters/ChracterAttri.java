@@ -34,6 +34,7 @@ public class ChracterAttri {
         this.speed = speed;
         this.listAnimations = listAnimations;
         this.collision = false;
+        this.solidArea = new Rectangle(0, 0, 32, 32);
     }
 
     public void setChracterAttri(ChracterAttri attri){

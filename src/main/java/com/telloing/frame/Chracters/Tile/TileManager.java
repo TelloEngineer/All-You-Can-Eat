@@ -37,12 +37,15 @@ public class TileManager {
         int entityTopWorldY = attributes.getY() + attributes.getSolidArea().y;
         int entityBottonWorldY = attributes.getY() + attributes.getSolidArea().y + attributes.getSolidArea().height;
         
+        
         // Checks if it is collisioning with something
         for (int i = 0; i < tiles.size(); i++) {
+            
             if (tiles.get(i).getX() == entityRightWorldX) {
+                
                 attributes.setCollision(true);
                 break;
-            }   
+            }
         }
         
     }

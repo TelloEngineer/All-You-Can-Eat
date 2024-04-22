@@ -27,6 +27,7 @@ public class Food implements ActCharac{
         this.attributes = attri;
         this.listener = listener;
         this.container = container;
+        this.tileManager = tileManager;
         this.image = this.attributes.getListAnimations().get("comer").getFrames().get(0);
     }
 
@@ -56,10 +57,13 @@ public class Food implements ActCharac{
         
         // Here check the collision
         this.attributes.setCollision(false);
-        TileManager.checkCollisionTile(this);
+        tileManager.checkCollisionTile(this);
         
         if (this.attributes.getCollision()) {
             // Reset position
+            
+            this.attributes.setX(72);
+            this.attributes.setY(203);
         }
     }
     
