@@ -26,6 +26,7 @@ import javax.imageio.ImageIO;
 public class OrnamentBuilder {
     Ornament ornament;
     Container container;
+    ChracterAttri attributos;
     private static OrnamentBuilder ornamentBuilder;
     Hashtable<String, Animations> listAnimations;
     
@@ -43,9 +44,13 @@ public class OrnamentBuilder {
         this.container = container;
     }
     
-    public Ornament getOrnament(final int x, final int y) {
+    public void buildAttri(final int x, final int y){
+        this.attributos = new ChracterAttri(x, y, 2, this.listAnimations);
+    }
+
+    public Ornament getOrnament() {
         // Define here the position of the ornament
-        this.ornament = new Ornament(new ChracterAttri(x, y, 0, this.listAnimations), this.container);
+        this.ornament = new Ornament(this.attributos, this.container);
         return this.ornament;
     }
     

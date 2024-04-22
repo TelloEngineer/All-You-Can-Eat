@@ -84,7 +84,7 @@ public class Scenary extends JPanel implements Runnable {
     public void update() {
         belt.update();
         sushi1.update();
-        
+        ornament1.update();
     }
 
 }

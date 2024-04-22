@@ -33,7 +33,8 @@ public class OrnamentDirector {
         // Need to set the image
         builder.buildFrames("Listonn.png");
         builder.buildContainer(container);
-        return builder.getOrnament(x, y);
+        builder.buildAttri(x, y);
+        return builder.getOrnament();
     }
     
 }

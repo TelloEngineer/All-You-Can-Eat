@@ -22,7 +22,7 @@ public class Ornament implements ActCharac {
     public Ornament(ChracterAttri attri, Container container) {
         this.attributes = attri;
         this.container = container;
-        
+        this.image = this.attributes.getListAnimations().get("Ondulamiento").getFrames().get(0);
         // needs an image 
         
     }
