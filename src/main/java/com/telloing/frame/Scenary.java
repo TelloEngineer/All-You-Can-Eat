@@ -18,6 +18,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 
+import com.telloing.frame.Chracters.Tile.TileManager;
+import com.telloing.frame.Chracters.Tile.Tile;
+
 /**
  *
  * @author josue
@@ -31,6 +34,8 @@ public class Scenary extends JPanel implements Runnable {
     private FoodBelt belt;
     private Ornament ornament1;
     private Ornament ornament2;
+
+    private TileManager tileManager;
 
     public Scenary() {
         fps = 24;
@@ -46,6 +51,7 @@ public class Scenary extends JPanel implements Runnable {
         this.addKeyListener(listener);
         this.setFocusable(true);
         
+        tileManager = new TileManager(this);
     }
 
     public void startGame() {

@@ -8,6 +8,8 @@ import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import com.telloing.frame.Chracters.Tile.TileManager;
+
 
 /**
  *
@@ -18,9 +20,10 @@ public class Food implements ActCharac{
     private ChracterAttri attributes; //que quede claro, no cambiar.
     private MovCharact listener;
     private Container container;
+    private TileManager tileManager;
     
     
-    public Food(ChracterAttri attri, MovCharact listener, Container container) {
+    public Food(ChracterAttri attri, MovCharact listener, Container container, TileManager tileManager) {
         this.attributes = attri;
         this.listener = listener;
         this.container = container;
@@ -50,6 +53,14 @@ public class Food implements ActCharac{
         }
         this.listener.setKeyCode(-1);
         this.attributes.setX(this.attributes.getX() + this.attributes.getSpeed());
+        
+        // Here check the collision
+        this.attributes.setCollision(false);
+        TileManager.checkCollisionTile(this);
+        
+        if (this.attributes.getCollision()) {
+            // Reset position
+        }
     }
     
 }

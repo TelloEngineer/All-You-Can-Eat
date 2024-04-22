@@ -7,6 +7,7 @@ package com.telloing.frame.Chracters;
 import java.util.Hashtable;
 
 import com.telloing.frame.Frames.Animations;
+import java.awt.Rectangle;
 
 /**
  *
@@ -16,7 +17,12 @@ public class ChracterAttri {
     private int x;
     private int y;
     private int speed;
+    
+    private boolean collision;
+    private Rectangle solidArea; // rectangle = x, y, width, height
+    
     private Hashtable<String, Animations> listAnimations;
+    
 
     public Hashtable<String, Animations> getListAnimations() {
         return listAnimations;
@@ -27,6 +33,7 @@ public class ChracterAttri {
         this.y = y;
         this.speed = speed;
         this.listAnimations = listAnimations;
+        this.collision = false;
     }
 
     public void setChracterAttri(ChracterAttri attri){
@@ -59,6 +66,22 @@ public class ChracterAttri {
 
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+    
+    public void setCollision(boolean collision) {
+        this.collision = collision;
+    }
+    
+    public boolean getCollision() {
+        return this.collision;
+    }
+    
+    public void setSolidArea(Rectangle solidArea) {
+        this.solidArea = solidArea;
+    }
+    
+    public Rectangle getSolidArea() {
+        return this.solidArea;
     }
 
     @Override
