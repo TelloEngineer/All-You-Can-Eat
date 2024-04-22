@@ -32,7 +32,6 @@ class FoodBuilder {
     
 
     private FoodBuilder(){
-       listAnimations = new Hashtable<String, Animations>();
     }
     
     public static FoodBuilder getInstance(){

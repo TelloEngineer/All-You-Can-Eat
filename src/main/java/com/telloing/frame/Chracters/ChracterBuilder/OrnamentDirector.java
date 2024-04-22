@@ -74,7 +74,6 @@ class OrnamentBuilder {
     private Hashtable<String, Animations> listAnimations;
     
     private OrnamentBuilder() {
-        listAnimations = new Hashtable<String, Animations>();
     }
     
     public static OrnamentBuilder getInstance() {

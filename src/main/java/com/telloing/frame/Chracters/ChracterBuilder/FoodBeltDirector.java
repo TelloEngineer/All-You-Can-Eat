@@ -22,7 +22,6 @@ public class FoodBeltDirector {
     
 
     private FoodBeltDirector(){
-       listAnimations = new Hashtable<String, Animations>();
     }
     
     public static FoodBeltDirector getInstance(){
