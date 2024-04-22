@@ -37,11 +37,13 @@ public class Ornament implements ActCharac {
     
     @Override
     public void draw(Graphics2D g) {
-        // Moves to the next frame 
+        // Moves to the next frame
+        g.drawImage(image, this.attributes.getX(), this.attributes.getY(),this.container);
     }
     
     @Override
     public void update() {
         // Updates the information
+        image = this.attributes.getListAnimations().get("Ondulamiento").getNextFrame();
     }
 }

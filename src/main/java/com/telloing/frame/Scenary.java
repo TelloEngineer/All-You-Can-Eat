@@ -59,6 +59,7 @@ public class Scenary extends JPanel implements Runnable {
         g2.drawImage(BackGroundDirector.getInstance().createBackGroundFront(), 0,0, this);
         belt.draw(g2);
         sushi1.draw(g2);
+        ornament1.draw(g2);
         
         
     }

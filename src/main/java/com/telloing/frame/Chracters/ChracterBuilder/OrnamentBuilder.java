@@ -64,6 +64,6 @@ public class OrnamentBuilder {
         // Need to defien an image
         anim = new Animations(Animations.separateFrames(setFrames, 32, 32, 2, 2));
         listAnimations.clear();
-        listAnimations.put("comer", anim);
+        listAnimations.put("Ondulamiento", anim);
     }
 }

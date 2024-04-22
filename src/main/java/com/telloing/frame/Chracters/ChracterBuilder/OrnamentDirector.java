@@ -31,7 +31,7 @@ public class OrnamentDirector {
     
     public Ornament createOrnament(Container container, final int x, final int y) {
         // Need to set the image
-        builder.buildFrames("nosexd.png");
+        builder.buildFrames("Listonn.png");
         builder.buildContainer(container);
         return builder.getOrnament(x, y);
     }
