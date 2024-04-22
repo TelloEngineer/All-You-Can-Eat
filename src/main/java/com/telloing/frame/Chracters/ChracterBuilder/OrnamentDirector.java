@@ -146,4 +146,12 @@ public class OrnamentDirector {
         builder.buildAttri(x, y);
         return builder.getOrnament();
     }
+
+    public Ornament createPunpun(Container container, final int x, final int y) {
+        // Need to set the image
+        builder.buildFrames("Punpun.png", new CoordenatesCuter(66,48,1,42));
+        builder.buildContainer(container);
+        builder.buildAttri(x, y);
+        return builder.getOrnament();
+    }
 }
