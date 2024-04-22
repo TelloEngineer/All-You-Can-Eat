@@ -141,7 +141,7 @@ public class OrnamentDirector {
     
     public Ornament createPaper(Container container, final int x, final int y) {
         // Need to set the image
-        builder.buildFrames("Paper.png", new CoordenatesCuter(30,48,1,42));
+        builder.buildFrames("Paper.png", new CoordenatesCuter(66,48,1,42));
         builder.buildContainer(container);
         builder.buildAttri(x, y);
         return builder.getOrnament();
