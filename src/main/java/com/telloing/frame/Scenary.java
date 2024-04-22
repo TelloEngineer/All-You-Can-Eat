@@ -6,10 +6,12 @@ package com.telloing.frame;
 
 import com.telloing.frame.Chracters.ChracterBuilder.FoodBeltDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.FoodDirector;
+import com.telloing.frame.Chracters.ChracterBuilder.OrnamentDirector;
 import com.telloing.frame.Frames.BackGroundDirector;
 import com.telloing.frame.Chracters.Food;
 import com.telloing.frame.Chracters.FoodBelt;
 import com.telloing.frame.Chracters.MovCharact;
+import com.telloing.frame.Chracters.Ornament;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.logging.Level;
@@ -27,6 +29,7 @@ public class Scenary extends JPanel implements Runnable {
     private final long drawInterval;
     private Food sushi1;
     private FoodBelt belt;
+    private Ornament ornament1;
 
     public Scenary() {
         fps = 24;
@@ -35,7 +38,8 @@ public class Scenary extends JPanel implements Runnable {
         MovCharact listener = new MovCharact();
         sushi1 = FoodDirector.getInstancia().createSushi1(this, listener);
         belt = FoodBeltDirector.getInstance().createBelt(this);
-
+        ornament1 = OrnamentDirector.getInstance().createOrnament(this, 0, 0);
+        
         this.addKeyListener(listener);
         this.setFocusable(true);
         

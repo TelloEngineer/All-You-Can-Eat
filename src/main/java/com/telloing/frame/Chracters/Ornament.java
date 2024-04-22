@@ -7,22 +7,24 @@ package com.telloing.frame.Chracters;
 import com.telloing.frame.Frames.Animations;
 import java.awt.Container;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 /**
  *
  * @author aleck
  */
 public class Ornament implements ActCharac {
-    private Animations animation;
+    private BufferedImage image;
     private ChracterAttri attributes; //que quede claro, no cambiar.
-    private MovCharact listener;
     private Container container;
 
     
-    public Ornament(Animations animation, MovCharact listener, Container container) {
-        this.animation = animation;
-        this.listener = listener;
+    public Ornament(ChracterAttri attri, Container container) {
+        this.attributes = attri;
         this.container = container;
+        
+        // needs an image 
+        
     }
     
     public void setAttributes(ChracterAttri atributos) {
@@ -31,15 +33,6 @@ public class Ornament implements ActCharac {
 
     public ChracterAttri getAttributes() {
         return attributes;
-    }
-
-
-    public void setAnimation(Animations animation) {
-        this.animation = animation;
-    }
-    
-    public Animations getAnimation() {
-        return animation;
     }
     
     @Override

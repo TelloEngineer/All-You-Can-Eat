@@ -24,15 +24,14 @@ public class FoodDirector {
     public static FoodDirector getInstancia(){
         if(foodDirector == null){
             foodDirector = new FoodDirector();
-        } 
+        }
         return foodDirector;
     }
     
-     public Food createSushi1(Container container, MovCharact listener){
-         builder.buildFrames("sushi1.png");
-         builder.buildContainer(container);
-         builder.buildMotion(listener);
-         return builder.getFood();
-     }
-     
+    public Food createSushi1(Container container, MovCharact listener){
+        builder.buildFrames("Sushi1.png");
+        builder.buildContainer(container);
+        builder.buildMotion(listener);
+        return builder.getFood();
+    }
 }
