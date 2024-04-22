@@ -38,7 +38,7 @@ public class Scenary extends JPanel implements Runnable {
         MovCharact listener = new MovCharact();
         sushi1 = FoodDirector.getInstancia().createSushi1(this, listener);
         belt = FoodBeltDirector.getInstance().createBelt(this);
-        ornament1 = OrnamentDirector.getInstance().createOrnament(this, 60, 80);
+        ornament1 = OrnamentDirector.getInstance().createRibbon(this, 60, 80);
         
         this.addKeyListener(listener);
         this.setFocusable(true);
