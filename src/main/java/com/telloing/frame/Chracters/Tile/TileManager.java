@@ -8,6 +8,7 @@ import com.telloing.frame.Chracters.ChracterAttri;
 import com.telloing.frame.Chracters.Food;
 import java.awt.Container;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 import com.telloing.frame.Chracters.Tile.Tile;
 import java.util.LinkedList;
@@ -36,7 +37,6 @@ public class TileManager {
         int entityRightWorldX = attributes.getX() + attributes.getSolidArea().x + attributes.getSolidArea().width;
         int entityTopWorldY = attributes.getY() + attributes.getSolidArea().y;
         int entityBottonWorldY = attributes.getY() + attributes.getSolidArea().y + attributes.getSolidArea().height;
-        
         
         // Checks if it is collisioning with something
         for (int i = 0; i < tiles.size(); i++) {

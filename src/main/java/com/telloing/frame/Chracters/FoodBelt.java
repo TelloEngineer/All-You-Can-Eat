@@ -13,7 +13,6 @@ import java.awt.image.BufferedImage;
  * @author aleck
  */
 public class FoodBelt implements ActCharac {
-    private BufferedImage image;
     private ChracterAttri attributes; //que quede claro, no cambiar.
     private Container container;
 
@@ -21,7 +20,7 @@ public class FoodBelt implements ActCharac {
     public FoodBelt(ChracterAttri attri, Container container) {
         this.attributes = attri;
         this.container = container;
-        this.image = this.attributes.getListAnimations().get("Avanzar").getFrames().get(0);
+        this.attributes.setImage(this.attributes.getListAnimations().get("Avanzar").getFrames().get(0));
     }
     
     public void setAttributes(ChracterAttri atributos) {
@@ -38,11 +37,11 @@ public class FoodBelt implements ActCharac {
     
     @Override
     public void draw(Graphics2D g) {
-        g.drawImage(image, this.attributes.getX(), this.attributes.getY(),this.container);
+        g.drawImage(this.attributes.getImage(), this.attributes.getX(), this.attributes.getY(),this.container);
     }
     
     @Override
     public void update() {
-        image = this.attributes.getListAnimations().get("Avanzar").getNextFrame();
+        this.attributes.setImage(this.attributes.getListAnimations().get("Avanzar").getNextFrame());
     }
 }

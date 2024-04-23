@@ -8,6 +8,7 @@ import java.util.Hashtable;
 
 import com.telloing.frame.Frames.Animations;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -18,6 +19,7 @@ public class ChracterAttri {
     private int y;
     private int speed;
     
+    private BufferedImage image;
     private boolean collision;
     private Rectangle solidArea; // rectangle = x, y, width, height
     
@@ -85,6 +87,16 @@ public class ChracterAttri {
         return this.solidArea;
     }
 
+    public BufferedImage getImage() {
+        return image;
+    }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "ChracterAttri{" + "x=" + x + ", y=" + y + ", speed=" + speed + '}';

@@ -10,25 +10,24 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import com.telloing.frame.Chracters.Tile.TileManager;
 
-
 /**
  *
  * @author josue
  */
-public class Food implements ActCharac{
-    private BufferedImage image;
-    private ChracterAttri attributes; //que quede claro, no cambiar.
+public class Food implements ActCharac {
+    private ChracterAttri attributes; // que quede claro, no cambiar.
     private MovCharact listener;
     private Container container;
+    
     private TileManager tileManager;
-    
-    
+
     public Food(ChracterAttri attri, MovCharact listener, Container container, TileManager tileManager) {
         this.attributes = attri;
         this.listener = listener;
         this.container = container;
         this.tileManager = tileManager;
-        this.image = this.attributes.getListAnimations().get("comer").getFrames().get(0);
+        this.attributes.setImage( this.attributes.getListAnimations().get("comer").getFrames().get(0) );
+       
     }
 
     public void setAttributes(ChracterAttri atributos) {
@@ -41,30 +40,30 @@ public class Food implements ActCharac{
 
     @Override
     public void draw(Graphics2D g) {
-        g.drawImage(image, this.attributes.getX(), this.attributes.getY(),this.container);
+        g.drawImage(this.attributes.getImage(), this.attributes.getX(), this.attributes.getY(), this.container);
     }
 
     @Override
     public void update() {
-        switch(this.listener.getKeyCode()){
+
+        switch (this.listener.getKeyCode()) {
             case KeyEvent.VK_E:
-                image = this.attributes.getListAnimations().get("comer").getNextFrame();
+                this.attributes.setImage(this.attributes.getListAnimations().get("comer").getNextFrame());
                 break;
             default:
         }
         this.listener.setKeyCode(-1);
         this.attributes.setX(this.attributes.getX() + this.attributes.getSpeed());
-        
+
         // Here check the collision
         this.attributes.setCollision(false);
         tileManager.checkCollisionTile(this);
-        
+
         if (this.attributes.getCollision()) {
-            // Reset position
-            
             this.attributes.setX(72);
             this.attributes.setY(203);
+ 
         }
     }
-    
+
 }

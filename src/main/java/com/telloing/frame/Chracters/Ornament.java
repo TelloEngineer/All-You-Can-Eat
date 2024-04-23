@@ -13,7 +13,6 @@ import java.awt.image.BufferedImage;
  * @author aleck
  */
 public class Ornament implements ActCharac {
-    private BufferedImage image;
     private ChracterAttri attributes; //que quede claro, no cambiar.
     private Container container;
 
@@ -21,7 +20,7 @@ public class Ornament implements ActCharac {
     public Ornament(ChracterAttri attri, Container container) {
         this.attributes = attri;
         this.container = container;
-        this.image = this.attributes.getListAnimations().get("Ondulamiento").getFrames().get(0);
+        this.attributes.setImage(this.attributes.getListAnimations().get("Ondulamiento").getFrames().get(0));
         // needs an image 
         
     }
@@ -37,12 +36,12 @@ public class Ornament implements ActCharac {
     @Override
     public void draw(Graphics2D g) {
         // Moves to the next frame
-        g.drawImage(image, this.attributes.getX(), this.attributes.getY(),this.container);
+        g.drawImage(this.attributes.getImage(), this.attributes.getX(), this.attributes.getY(),this.container);
     }
     
     @Override
     public void update() {
         // Updates the information
-        image = this.attributes.getListAnimations().get("Ondulamiento").getNextFrame();
+        this.attributes.setImage(this.attributes.getListAnimations().get("Ondulamiento").getNextFrame());
     }
 }
