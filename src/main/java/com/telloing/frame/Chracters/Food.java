@@ -27,18 +27,7 @@ public class Food implements ActCharac {
         this.container = container;
         this.attributes.setImage(this.attributes.getListAnimations().get("comer").getFrames().get(0));
         collisionChecker = new CollisionerPlaneArea(462, 1);
-        addCollisions(0);
-    }
-
-    private void addCollisions(int event) {
-        this.collisionChecker.setNewCollisionerArea(430, 5, 2);
-        switch (event) {
-            case KeyEvent.VK_E:
-                this.collisionChecker.setNewCollisionerArea(420, 5, 3);
-                break;
-            default:
-                this.collisionChecker.setNewCollisionerArea(420, 5, 0);
-        }
+        this.addCollisions(0);
     }
 
     public void setAttributes(ChracterAttri atributos) {
@@ -65,8 +54,23 @@ public class Food implements ActCharac {
             default:
         }
         this.listener.setKeyCode(-1);
+        this.checkCollision(this.collisionChecker.updateCollision(this.attributes.getSpeed()));
 
-        switch (this.collisionChecker.updateCollision(this.attributes.getSpeed())) {
+    }
+
+    private void addCollisions(int event) {
+        this.collisionChecker.setNewCollisionerArea(430, 5, 2);
+        switch (event) {
+            case KeyEvent.VK_E:
+                this.collisionChecker.setNewCollisionerArea(420, 5, 3);
+                break;
+            default:
+                this.collisionChecker.setNewCollisionerArea(420, 5, 0);
+        }
+    }
+
+    private void checkCollision(int idObj){
+        switch (idObj) {
             case 2:
                 this.attributes.setX(72);
                 this.collisionChecker.getCollisionZone()[this.collisionChecker.getActualPosition()] = 0;
@@ -79,8 +83,6 @@ public class Food implements ActCharac {
             default:
                 this.attributes.setX(this.attributes.getX() + this.attributes.getSpeed());
         }
-
-        
     }
 
 }
