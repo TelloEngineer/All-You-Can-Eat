@@ -9,7 +9,6 @@ import java.awt.Container;
 import com.telloing.frame.Chracters.Food;
 import com.telloing.frame.Chracters.MovCharact;
 import com.telloing.frame.Chracters.ChracterAttri;
-import com.telloing.frame.Chracters.Tile.TileManager;
 import com.telloing.frame.Frames.Animations;
 import com.telloing.frame.Scenary;
 
@@ -28,7 +27,6 @@ class FoodBuilder {
     Food food;
     Container container; 
     MovCharact motion;
-    TileManager tileManager;
     private static FoodBuilder foodBuilder;
     Hashtable<String, Animations> listAnimations;
     
@@ -53,13 +51,10 @@ class FoodBuilder {
         this.container = container;
     }
     
-    public void buildTileManager(TileManager tileManager) {
-        this.tileManager = tileManager;
-    }
 
     // diferencia entre bara y comida 32
     public Food getFood(){
-        this.food = new Food(new ChracterAttri(72,203,3, listAnimations), motion, container, tileManager);
+        this.food = new Food(new ChracterAttri(72,203,3, listAnimations), motion, container);
         return this.food;
     }
     
@@ -102,50 +97,49 @@ public class FoodDirector {
         return foodDirector;
     }
     
-    public Food createSushi1(Container container, MovCharact listener, TileManager tileManager){
+    public Food createSushi1(Container container, MovCharact listener ){
         builder.buildFrames("./Sushi/Sushi 1.png");
         builder.buildContainer(container);
         builder.buildMotion(listener);
-        builder.buildTileManager(tileManager);
         return builder.getFood();
     }
-    public Food createSushi2(Container container, MovCharact listener, TileManager tileManager){
+    public Food createSushi2(Container container, MovCharact listener ){
         builder.buildFrames("./Sushi/Sushi 2.png");
         builder.buildContainer(container);
         builder.buildMotion(listener);
         return builder.getFood();
     }
-    public Food createSushi3(Container container, MovCharact listener, TileManager tileManager){
+    public Food createSushi3(Container container, MovCharact listener ){
         builder.buildFrames("./Sushi/Sushi 3.png");
         builder.buildContainer(container);
         builder.buildMotion(listener);
         return builder.getFood();
     }
-    public Food createSushi4(Container container, MovCharact listener, TileManager tileManager){
+    public Food createSushi4(Container container, MovCharact listener ){
         builder.buildFrames("./Sushi/Sushi 4.png");
         builder.buildContainer(container);
         builder.buildMotion(listener);
         return builder.getFood();
     }
-    public Food createSushi5(Container container, MovCharact listener, TileManager tileManager){
+    public Food createSushi5(Container container, MovCharact listener ){
         builder.buildFrames("./Sushi/Sushi 5.png");
         builder.buildContainer(container);
         builder.buildMotion(listener);
         return builder.getFood();
     }
-    public Food createSushi6(Container container, MovCharact listener, TileManager tileManager){
+    public Food createSushi6(Container container, MovCharact listener ){
         builder.buildFrames("./Sushi/Sushi 6.png");
         builder.buildContainer(container);
         builder.buildMotion(listener);
         return builder.getFood();
     }
-    public Food createSushi7(Container container, MovCharact listener, TileManager tileManager){
+    public Food createSushi7(Container container, MovCharact listener ){
         builder.buildFrames("./Sushi/Sushi 7.png");
         builder.buildContainer(container);
         builder.buildMotion(listener);
         return builder.getFood();
     }
-    public Food createSushi8(Container container, MovCharact listener, TileManager tileManager){
+    public Food createSushi8(Container container, MovCharact listener ){
         builder.buildFrames("./Sushi/Sushi 8.png");
         builder.buildContainer(container);
         builder.buildMotion(listener);

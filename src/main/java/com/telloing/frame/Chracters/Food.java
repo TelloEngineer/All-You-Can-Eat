@@ -8,7 +8,8 @@ import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import com.telloing.frame.Chracters.Tile.TileManager;
+
+import com.telloing.frame.Chracters.Collision.CollisionerPlaneArea;
 
 /**
  *
@@ -18,16 +19,26 @@ public class Food implements ActCharac {
     private ChracterAttri attributes; // que quede claro, no cambiar.
     private MovCharact listener;
     private Container container;
-    
-    private TileManager tileManager;
+    private CollisionerPlaneArea collisionChecker;
 
-    public Food(ChracterAttri attri, MovCharact listener, Container container, TileManager tileManager) {
+    public Food(ChracterAttri attri, MovCharact listener, Container container) {
         this.attributes = attri;
         this.listener = listener;
         this.container = container;
-        this.tileManager = tileManager;
-        this.attributes.setImage( this.attributes.getListAnimations().get("comer").getFrames().get(0) );
-       
+        this.attributes.setImage(this.attributes.getListAnimations().get("comer").getFrames().get(0));
+        collisionChecker = new CollisionerPlaneArea(462, 1);
+        addCollisions(0);
+    }
+
+    private void addCollisions(int event) {
+        this.collisionChecker.setNewCollisionerArea(430, 5, 2);
+        switch (event) {
+            case KeyEvent.VK_E:
+                this.collisionChecker.setNewCollisionerArea(420, 5, 3);
+                break;
+            default:
+                this.collisionChecker.setNewCollisionerArea(420, 5, 0);
+        }
     }
 
     public void setAttributes(ChracterAttri atributos) {
@@ -49,21 +60,27 @@ public class Food implements ActCharac {
         switch (this.listener.getKeyCode()) {
             case KeyEvent.VK_E:
                 this.attributes.setImage(this.attributes.getListAnimations().get("comer").getNextFrame());
+                this.addCollisions(KeyEvent.VK_E);
                 break;
             default:
         }
         this.listener.setKeyCode(-1);
-        this.attributes.setX(this.attributes.getX() + this.attributes.getSpeed());
 
-        // Here check the collision
-        this.attributes.setCollision(false);
-        tileManager.checkCollisionTile(this);
-
-        if (this.attributes.getCollision()) {
-            this.attributes.setX(72);
-            this.attributes.setY(203);
- 
+        switch (this.collisionChecker.updateCollision(this.attributes.getSpeed())) {
+            case 2:
+                this.attributes.setX(72);
+                this.collisionChecker.getCollisionZone()[this.collisionChecker.getActualPosition()] = 0;
+                this.collisionChecker.setActualPosition(0);
+                break;
+            case 3:
+                this.attributes.setX(109);
+                this.attributes.setY(256);
+                break;
+            default:
+                this.attributes.setX(this.attributes.getX() + this.attributes.getSpeed());
         }
+
+        
     }
 
 }

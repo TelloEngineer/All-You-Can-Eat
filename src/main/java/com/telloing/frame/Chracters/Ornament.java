@@ -37,6 +37,7 @@ public class Ornament implements ActCharac {
     public void draw(Graphics2D g) {
         // Moves to the next frame
         g.drawImage(this.attributes.getImage(), this.attributes.getX(), this.attributes.getY(),this.container);
+        
     }
     
     @Override
