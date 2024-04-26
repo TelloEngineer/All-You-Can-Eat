@@ -10,13 +10,7 @@ import com.telloing.frame.Chracters.ChracterBuilder.OrnamentDirector;
 import com.telloing.frame.Chracters.Compostion.EscenaryElements;
 import com.telloing.frame.Chracters.Compostion.SushiLine;
 import com.telloing.frame.Frames.BackGroundDirector;
-import com.telloing.frame.Chracters.Food;
-import com.telloing.frame.Chracters.FoodBelt;
 import com.telloing.frame.Chracters.MovCharact;
-import com.telloing.frame.Chracters.Ornament;
-
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.logging.Level;
@@ -33,8 +27,8 @@ public class Scenary extends JPanel implements Runnable {
     private final int fps;
     private final long drawInterval;
     
-    private final EscenaryElements elements;
-    private final SushiLine sushis;
+    private static final EscenaryElements elements = new EscenaryElements();;
+    private static final SushiLine sushis = new SushiLine();
     private static MovCharact listener;
 
 
@@ -44,17 +38,15 @@ public class Scenary extends JPanel implements Runnable {
         drawInterval = 1000 / fps;
 
         listener = new MovCharact();
-        this.elements = new EscenaryElements();
-        this.sushis = new SushiLine();
         for(int i = 0; i<4; i++){
             System.out.println(i);
-            System.out.println(this.sushis.add(FoodDirector.getInstancia().createSushi1(this, listener)));
+            System.out.println(Scenary.sushis.add(FoodDirector.getInstancia().createSushi1(this, listener)));
         }
-        this.elements.add(this.sushis);
-        this.elements.add(FoodBeltDirector.getInstance().createBelt(this));
-        this.elements.add(OrnamentDirector.getInstance().createRibbon(this, 60, 80));
-        this.elements.add(OrnamentDirector.getInstance().createPaper(this, 90, 80));
-        this.elements.add(OrnamentDirector.getInstance().createPunpun(this, 115,80));
+        Scenary.elements.add(Scenary.sushis);
+        Scenary.elements.add(FoodBeltDirector.getInstance().createBelt(this));
+        Scenary.elements.add(OrnamentDirector.getInstance().createRibbon(this, 60, 80));
+        Scenary.elements.add(OrnamentDirector.getInstance().createPaper(this, 90, 80));
+        Scenary.elements.add(OrnamentDirector.getInstance().createPunpun(this, 115,80));
 
         this.addKeyListener(listener);
         this.setFocusable(true);
@@ -76,7 +68,7 @@ public class Scenary extends JPanel implements Runnable {
 
         g2.drawImage(BackGroundDirector.getInstance().createBackGround(), 0,0, this);
         g2.drawImage(BackGroundDirector.getInstance().createBackGroundFront(), 0,0, this);
-        this.elements.draw(g2);
+        Scenary.elements.draw(g2);
         
     }
 
@@ -98,7 +90,7 @@ public class Scenary extends JPanel implements Runnable {
     }
 
     public void update() {
-        this.elements.update();
+        Scenary.elements.update();
         
     }
 

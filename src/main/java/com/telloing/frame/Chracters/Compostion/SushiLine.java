@@ -46,7 +46,6 @@ public class SushiLine implements ActCharac{
     public void draw(Graphics2D g) {
       for(ActCharac element : sushis){
             element.draw(g);
-            
       }
     }
 
