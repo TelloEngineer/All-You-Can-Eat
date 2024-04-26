@@ -15,9 +15,11 @@ import java.util.List;
  */
 public class SushiLine implements ActCharac{
     private List<ActCharac> sushis;
+    private int index;
 
     public SushiLine() {
         this.sushis = new LinkedList<>();
+        
     }
 
     public boolean add(ActCharac character){
@@ -41,15 +43,18 @@ public class SushiLine implements ActCharac{
     
     @Override
     public void draw(Graphics2D g) {
-        for(ActCharac element : sushis){
-            element.draw(g);
-        }
+       if(index <= this.sushis.size()){
+            index = 0;
+       }
+        this.sushis.get(index).draw(g);
     }
 
     @Override
     public void update() {
-         for(ActCharac element : sushis){
-            element.update();
-        }
+        if(index <= this.sushis.size()){
+            index = 0;
+       }
+       this.sushis.get(index).update();
+        
     }
 }

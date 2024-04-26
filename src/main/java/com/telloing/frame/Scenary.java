@@ -45,7 +45,7 @@ public class Scenary extends JPanel implements Runnable {
         MovCharact listener = new MovCharact();
         this.elements = new EscenaryElements();
         this.sushis = new SushiLine();
-        for(int i = 0; i<10; i++){
+        for(int i = 0; i<6; i++){
             System.out.println(i);
             System.out.println(this.sushis.add(FoodDirector.getInstancia().createSushi1(this, listener)));
         }

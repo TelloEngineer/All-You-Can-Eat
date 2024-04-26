@@ -40,6 +40,7 @@ public class EscenaryElements implements ActCharac{
     @Override
     public void draw(Graphics2D g) {
         for(ActCharac element : characters){
+            
             element.draw(g);
         }
     }
