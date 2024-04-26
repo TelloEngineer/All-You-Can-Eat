@@ -8,6 +8,7 @@ import java.awt.Container;
 
 import com.telloing.frame.Chracters.Food;
 import com.telloing.frame.Chracters.MovCharact;
+import com.telloing.frame.Chracters.Collision.CollisionerPlaneArea;
 import com.telloing.frame.Chracters.ChracterAttri;
 import com.telloing.frame.Frames.Animations;
 import com.telloing.frame.Scenary;
@@ -24,11 +25,12 @@ import javax.imageio.ImageIO;
  * @author josue
  */
 class FoodBuilder {
-    Food food;
-    Container container; 
-    MovCharact motion;
+    private Food food;
+    private Container container; 
+    private MovCharact motion;
     private static FoodBuilder foodBuilder;
-    Hashtable<String, Animations> listAnimations;
+    private Hashtable<String, Animations> listAnimations;
+
     
 
     private FoodBuilder(){
@@ -54,7 +56,8 @@ class FoodBuilder {
 
     // diferencia entre bara y comida 32
     public Food getFood(){
-        this.food = new Food(new ChracterAttri(72,203,3, listAnimations), motion, container);
+        this.food = new Food(new ChracterAttri(72,203,3, listAnimations), 
+                 motion, container);
         return this.food;
     }
     

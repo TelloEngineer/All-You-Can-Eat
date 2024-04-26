@@ -4,15 +4,10 @@
  */
 package com.telloing.frame.Chracters;
 
-import com.telloing.frame.Chracters.ActCharac;
-import com.telloing.frame.Chracters.ChracterAttri;
 import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-
 import com.telloing.frame.Chracters.Collision.CollisionerPlaneArea;
-import com.telloing.frame.Chracters.MovCharact;
 
 /**
  *
@@ -24,13 +19,23 @@ public class Food implements ActCharac {
     private Container container;
     private CollisionerPlaneArea collisionChecker;
 
+
     public Food(ChracterAttri attri, MovCharact listener, Container container) {
         this.attributes = attri;
         this.listener = listener;
         this.container = container;
         this.attributes.setImage(this.attributes.getListAnimations().get("comer").getFrames().get(0));
-        collisionChecker = new CollisionerPlaneArea(462, 1);
+        this.collisionChecker = new CollisionerPlaneArea(CollisionerPlaneArea.collisionFood, 1);
         this.addCollisions(0);
+    }
+
+    
+    public CollisionerPlaneArea getCollisionChecker() {
+        return collisionChecker;
+    }
+
+    public void setCollisionChecker(CollisionerPlaneArea collisionChecker) {
+        this.collisionChecker = collisionChecker;
     }
 
     public void setAttributes(ChracterAttri atributos) {
@@ -43,7 +48,6 @@ public class Food implements ActCharac {
 
     @Override
     public void draw(Graphics2D g) {
-        System.out.println(this.attributes.getX());
         g.drawImage(this.attributes.getImage(), this.attributes.getX(), this.attributes.getY(), this.container);
     }
 

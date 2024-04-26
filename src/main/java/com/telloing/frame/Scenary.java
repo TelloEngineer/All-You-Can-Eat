@@ -35,6 +35,7 @@ public class Scenary extends JPanel implements Runnable {
     
     private final EscenaryElements elements;
     private final SushiLine sushis;
+    private static MovCharact listener;
 
 
     public Scenary() {
@@ -42,10 +43,10 @@ public class Scenary extends JPanel implements Runnable {
         fps = 24;
         drawInterval = 1000 / fps;
 
-        MovCharact listener = new MovCharact();
+        listener = new MovCharact();
         this.elements = new EscenaryElements();
         this.sushis = new SushiLine();
-        for(int i = 0; i<6; i++){
+        for(int i = 0; i<4; i++){
             System.out.println(i);
             System.out.println(this.sushis.add(FoodDirector.getInstancia().createSushi1(this, listener)));
         }

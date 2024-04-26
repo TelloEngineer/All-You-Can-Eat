@@ -9,7 +9,12 @@ import java.util.Arrays;
  * InnerCollisioner
  */ 
 
+
 public class CollisionerPlaneArea{
+    // Generic collisionZone
+    public static final int[] collisionFood = new int[462];
+
+
     private int[] collisionZone;
     private int actualPosition;
     public void setActualPosition(int actualPosition) {
@@ -40,8 +45,8 @@ public class CollisionerPlaneArea{
         this.representationObj = representationObj1;
     }
 
-    public CollisionerPlaneArea(int dimension, int representationObj){
-        this.collisionZone = new int[dimension];
+    public CollisionerPlaneArea(int[] collisionZone, int representationObj){
+        this.collisionZone = collisionZone;
         this.representationObj = representationObj;
     } 
 

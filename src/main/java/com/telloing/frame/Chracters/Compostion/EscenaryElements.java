@@ -43,6 +43,7 @@ public class EscenaryElements implements ActCharac{
             
             element.draw(g);
         }
+        
     }
 
     @Override
