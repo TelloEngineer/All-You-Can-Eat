@@ -25,9 +25,6 @@ public class CollisionerPlaneArea{
     public void setNewCollisionerArea(int point, int dimension, int symbol){
         for(int i = 0; i < dimension; i++){
             collisionZone[point + i] = symbol;
-            System.out.print(point + i);
-            System.out.print(" colision: ");
-            System.out.println(collisionZone[i]);
         }
     }
 

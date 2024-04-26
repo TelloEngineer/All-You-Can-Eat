@@ -4,12 +4,15 @@
  */
 package com.telloing.frame.Chracters;
 
+import com.telloing.frame.Chracters.ActCharac;
+import com.telloing.frame.Chracters.ChracterAttri;
 import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import com.telloing.frame.Chracters.Collision.CollisionerPlaneArea;
+import com.telloing.frame.Chracters.MovCharact;
 
 /**
  *
