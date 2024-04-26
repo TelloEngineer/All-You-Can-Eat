@@ -43,6 +43,7 @@ public class Food implements ActCharac {
 
     @Override
     public void draw(Graphics2D g) {
+        System.out.println(this.attributes.getX());
         g.drawImage(this.attributes.getImage(), this.attributes.getX(), this.attributes.getY(), this.container);
     }
 
