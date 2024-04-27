@@ -51,7 +51,6 @@ public class CollisionerPlaneArea{
             this.actualPosition = newPosition;
         }
         
-        System.out.println(Arrays.toString(collisionZone));
         return collisionZone[newPosition];
     }
     public int getActualPosition() {

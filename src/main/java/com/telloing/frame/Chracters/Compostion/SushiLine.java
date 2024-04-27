@@ -22,6 +22,7 @@ import java.util.List;
 
  import java.awt.Container;
  import java.awt.event.KeyEvent;
+import java.lang.reflect.Array;
 
  
 class Sushi_Online implements ActCharac {
@@ -109,30 +110,23 @@ public class SushiLine implements ActCharac{
     public void update() {
         for(Food element : sushis){
             action.setSushi(element);
-            checListener(element);
+            checkListener(element);
+            System.out.println(Arrays.toString(CollisionerPlaneArea.collisionFood));
         }
     }
 
-    private void checListener(Food sushi){
+    private void checkListener(Food sushi){
         switch (Scenary.listener.getKeyCode()) {
-            case KeyEvent.VK_E:
-                this.addCollisions(KeyEvent.VK_E, sushi);
-                break;
-            default:
-        }
-        Scenary.listener.setKeyCode(-1);
-        this.checkCollision(sushi.getCollisionChecker().updateCollision(sushi.getAttributes().getSpeed()), sushi);
-    }
-
-    private void addCollisions(int event, Food sushi) {
-        switch (event) {
             case KeyEvent.VK_E:
                 setNewCollisionerArea(420, 2, 3);
                 break;
             default:
                 setNewCollisionerArea(420, 2, 0);
         }
+        Scenary.listener.setKeyCode(-1);
+        this.checkCollision(sushi.getCollisionChecker().updateCollision(sushi.getAttributes().getSpeed()), sushi);
     }
+
     private void checkCollision(int idObj, Food sushi){
         switch (idObj) {
             case 2:
@@ -143,7 +137,6 @@ public class SushiLine implements ActCharac{
             case 3:
             sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
             sushi.getCollisionChecker().setActualPosition(0);
-            System.out.println(Arrays.toString(sushi.getCollisionChecker().getCollisionZone()));
             sushis.remove(sushi);
                 break;
             default:
