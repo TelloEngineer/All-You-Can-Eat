@@ -114,7 +114,7 @@ public class SushiLine implements ActCharac {
     @Override
     public void update() {
         Food sushi;
-        sushisToRemove.clear(); //lista para guardar cuales a eliminar
+        sushisToRemove.clear(); //lista para guardar cuales a eliminar. se vacia, para iniciar en 0
         for(iterador = sushis.listIterator(); iterador.hasNext();) {//se ocupa actualizar cada vez que se itera
             sushi = iterador.next(); //sirve como una pila, asi que lo saca de la misma
 
