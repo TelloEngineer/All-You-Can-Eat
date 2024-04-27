@@ -68,13 +68,11 @@ class Sushi_Online implements ActCharac {
 public class SushiLine implements ActCharac {
     private List<Food> sushis;
     private List<Food> sushisToRemove;
-    private ListIterator<Food> iterador;
     private Sushi_Online action;
 
     public SushiLine() {
         this.sushis = new LinkedList<>();
         this.sushisToRemove = new LinkedList<>();
-        this.iterador = sushis.listIterator();
         this.action = new Sushi_Online(null, null);
     }
 
@@ -102,10 +100,7 @@ public class SushiLine implements ActCharac {
 
     @Override
     public void draw(Graphics2D g) {
-        Food sushi;
-        for(iterador = sushis.listIterator(); iterador.hasNext();) { //se ocupa actualizar cada vez que se itera
-            sushi = iterador.next(); //sirve como una pila, asi que lo saca de la misma
-
+        for(Food sushi : sushis) { //se ocupa actualizar cada vez que se itera
             action.setSushi(sushi);
             action.draw(g);
         }
@@ -113,11 +108,8 @@ public class SushiLine implements ActCharac {
 
     @Override
     public void update() {
-        Food sushi;
         sushisToRemove.clear(); //lista para guardar cuales a eliminar. se vacia, para iniciar en 0
-        for(iterador = sushis.listIterator(); iterador.hasNext();) {//se ocupa actualizar cada vez que se itera
-            sushi = iterador.next(); //sirve como una pila, asi que lo saca de la misma
-
+        for(Food sushi: sushis) {
             action.setSushi(sushi);
             checkListener(sushi);
             checkCollision(sushi); // default: action.update();
