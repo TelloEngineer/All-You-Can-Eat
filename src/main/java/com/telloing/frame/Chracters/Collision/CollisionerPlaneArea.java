@@ -13,24 +13,22 @@ import java.util.Arrays;
 public class CollisionerPlaneArea{
     // Generic collisionZone
     public static final int[] collisionFood = new int[462];
-
-
+    private int representationObj;
     private int[] collisionZone;
     private int actualPosition;
+
+    public CollisionerPlaneArea(int[] collisionZone, int representationObj){
+        this.collisionZone = collisionZone;
+        this.representationObj = representationObj;
+    } 
+
     public void setActualPosition(int actualPosition) {
         this.actualPosition = actualPosition;
     }
 
-    private int representationObj;
 
     public int getRepresentationObj() {
         return representationObj;
-    }
-
-    public void setNewCollisionerArea(int point, int dimension, int symbol){
-        for(int i = 0; i < dimension; i++){
-            collisionZone[point + i] = symbol;
-        }
     }
 
     /**
@@ -45,11 +43,6 @@ public class CollisionerPlaneArea{
         this.representationObj = representationObj1;
     }
 
-    public CollisionerPlaneArea(int[] collisionZone, int representationObj){
-        this.collisionZone = collisionZone;
-        this.representationObj = representationObj;
-    } 
-
     public int updateCollision(int addPosition){
         int newPosition = this.actualPosition + addPosition;
         if(collisionZone[newPosition] == 0){
@@ -57,6 +50,8 @@ public class CollisionerPlaneArea{
             collisionZone[newPosition] = 1;
             this.actualPosition = newPosition;
         }
+        
+        System.out.println(Arrays.toString(collisionZone));
         return collisionZone[newPosition];
     }
     public int getActualPosition() {

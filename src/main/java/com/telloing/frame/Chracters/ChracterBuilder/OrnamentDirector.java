@@ -154,4 +154,16 @@ public class OrnamentDirector {
         builder.buildAttri(x, y);
         return builder.getOrnament();
     }
+    public Ornament createChef(Container container, final int x, final int y){
+        builder.buildFrames("CocineroDormir.png", new CoordenatesCuter(192,102,2,6));
+        builder.buildContainer(container);
+        builder.buildAttri(x, y);
+        return builder.getOrnament();
+    }
+    public Ornament createCliente(Container container, final int x, final int y){
+        builder.buildFrames("ClienteManoArriba.png", new CoordenatesCuter(192,147,3,6));
+        builder.buildContainer(container);
+        builder.buildAttri(x, y);
+        return builder.getOrnament();
+    }
 }

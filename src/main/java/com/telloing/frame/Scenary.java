@@ -27,9 +27,9 @@ public class Scenary extends JPanel implements Runnable {
     private final int fps;
     private final long drawInterval;
     
-    private static final EscenaryElements elements = new EscenaryElements();;
-    private static final SushiLine sushis = new SushiLine();
-    private static MovCharact listener;
+    public static final EscenaryElements elements = new EscenaryElements();;
+    public static final SushiLine sushis = new SushiLine();
+    public static MovCharact listener;
 
 
     public Scenary() {
@@ -38,12 +38,15 @@ public class Scenary extends JPanel implements Runnable {
         drawInterval = 1000 / fps;
 
         listener = new MovCharact();
-        for(int i = 0; i<4; i++){
+        for(int i = 0; i<1; i++){
             System.out.println(i);
             System.out.println(Scenary.sushis.add(FoodDirector.getInstancia().createSushi1(this, listener)));
         }
+        
+        Scenary.elements.add(OrnamentDirector.getInstance().createChef(this, 150, 60));
         Scenary.elements.add(Scenary.sushis);
         Scenary.elements.add(FoodBeltDirector.getInstance().createBelt(this));
+        Scenary.elements.add(OrnamentDirector.getInstance().createCliente(this, 75, 210));
         Scenary.elements.add(OrnamentDirector.getInstance().createRibbon(this, 60, 80));
         Scenary.elements.add(OrnamentDirector.getInstance().createPaper(this, 90, 80));
         Scenary.elements.add(OrnamentDirector.getInstance().createPunpun(this, 115,80));

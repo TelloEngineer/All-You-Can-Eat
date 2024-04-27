@@ -5,7 +5,6 @@
 package com.telloing.frame.Chracters.Compostion;
 
 import com.telloing.frame.Chracters.ActCharac;
-import com.telloing.frame.Chracters.Collision.FoodEvents;
 
 import java.awt.Graphics2D;
 import java.util.LinkedList;
@@ -19,11 +18,9 @@ import java.util.TreeSet;
  */
 public class EscenaryElements implements ActCharac{
     private List<ActCharac> characters;
-    private FoodEvents foodUpdate;
 
     public EscenaryElements() {
         this.characters = new LinkedList<>();
-        this.foodUpdate = new FoodEvents();
     }
 
     public boolean add(ActCharac character){
