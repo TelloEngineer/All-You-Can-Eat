@@ -11,6 +11,7 @@ import com.telloing.frame.Chracters.Collision.CollisionerPlaneArea;
 import com.telloing.frame.Chracters.Food;
 
 import java.awt.Graphics2D;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,12 +21,8 @@ import java.util.List;
  */
 
  import java.awt.Container;
- import java.awt.Graphics2D;
  import java.awt.event.KeyEvent;
- 
- import com.telloing.frame.Scenary;
- import com.telloing.frame.Chracters.ActCharac;
- import com.telloing.frame.Chracters.Food;
+
  
 class Sushi_Online implements ActCharac {
  
@@ -144,8 +141,10 @@ public class SushiLine implements ActCharac{
             sushi.getCollisionChecker().setActualPosition(0);
                 break;
             case 3:
-            sushi.getAttributes().setX(190);
-            sushi.getAttributes().setY(256);
+            sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
+            sushi.getCollisionChecker().setActualPosition(0);
+            System.out.println(Arrays.toString(sushi.getCollisionChecker().getCollisionZone()));
+            sushis.remove(sushi);
                 break;
             default:
                 action.update();
