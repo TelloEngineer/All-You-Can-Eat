@@ -45,18 +45,20 @@ class Sushis_onLine {
         return sushisToShow;
     }
     public void addSushi(List<Food> sushis){ 
+        System.out.println("arriba: " + sushisToShow.size() + " index" + index);
         if(timer > lapse){
+            System.out.println("timer: " + sushisToShow.size());
             timer = 0;
             if(index < sushis.size()){
-                if(sushisToShow.size() <= sushis.size()){
-                    //System.out.println(sushis.size());
+                System.out.println("index size: " + sushisToShow.size());
+                if(!sushisToShow.contains(sushis.get(index))){
+                    System.out.println("sushi size: " +sushisToShow.size());
                     sushisToShow.add(sushis.get(index));
                 }
             }
             index = index < limitSushis ? ++index : 0;
            
-            if(sushisToShow.size() == 4){
-                System.out.println(sushisToShow.size());
+            /*if(sushisToShow.size() == 4){
                 System.out.println("4 sushi checker pos: " + sushisToShow.get(3).getCollisionChecker().getActualPosition());
                 System.out.println("4 sushi pos: " + sushisToShow.get(3).getAttributes().getX());
                 System.out.println("3 sushi checker pos: " + sushisToShow.get(2).getCollisionChecker().getActualPosition());
@@ -65,7 +67,7 @@ class Sushis_onLine {
                 System.out.println("2 sushi pos: " + sushisToShow.get(1).getAttributes().getX());
                 System.out.println("1 sushi checker pos: " + sushisToShow.get(0).getCollisionChecker().getActualPosition());
                 System.out.println("1 sushi pos: " + sushisToShow.get(0).getAttributes().getX());
-            }
+            }*/
 
         }
         timer++;
