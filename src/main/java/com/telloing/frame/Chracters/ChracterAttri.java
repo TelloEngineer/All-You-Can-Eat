@@ -7,7 +7,6 @@ package com.telloing.frame.Chracters;
 import java.util.Hashtable;
 
 import com.telloing.frame.Frames.Animations;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 /**
@@ -20,23 +19,22 @@ public class ChracterAttri {
     private int speed;
     
     private BufferedImage image;
-    private boolean collision;
-    private Rectangle solidArea; // rectangle = x, y, width, height
-    
     private Hashtable<String, Animations> listAnimations;
+    private boolean visible;
+    private int timer;
+    private int delay;
     
 
-    public Hashtable<String, Animations> getListAnimations() {
-        return listAnimations;
-    }
+    
+   
 
     public ChracterAttri(int x, int y, int speed, Hashtable<String, Animations> listAnimations) {
         this.x = x;
         this.y = y;
         this.speed = speed;
         this.listAnimations = listAnimations;
-        this.collision = false;
-        this.solidArea = new Rectangle(0, 0, 32, 32);
+
+        this.visible = true;
     }
 
     public void setChracterAttri(ChracterAttri attri){
@@ -44,8 +42,41 @@ public class ChracterAttri {
         this.x = attri.getX();
         this.y = attri.getY();
         this.listAnimations.clear();
+        this.visible = attri.isVisible();
         this.listAnimations.putAll(attri.getListAnimations());
     }
+    public Hashtable<String, Animations> getListAnimations() {
+        return listAnimations;
+    }
+
+    public int getTimer() {
+        return timer;
+    }
+
+    public void setTimer(int delay){
+        this.delay = delay;
+        this.visible = false;
+        this.timer = 0;
+    }
+
+    public boolean isReady(){
+        if(this.visible){
+            timer = 0;
+            return this.visible;
+        }
+        this.visible = timer++ >= delay;
+        return this.visible;
+    }
+
+    public boolean isVisible() {
+        
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+
     
     public int getX() {
         return x;
@@ -71,22 +102,6 @@ public class ChracterAttri {
         this.speed = speed;
     }
     
-    public void setCollision(boolean collision) {
-        this.collision = collision;
-    }
-    
-    public boolean getCollision() {
-        return this.collision;
-    }
-    
-    public void setSolidArea(Rectangle solidArea) {
-        this.solidArea = solidArea;
-    }
-    
-    public Rectangle getSolidArea() {
-        return this.solidArea;
-    }
-
     public BufferedImage getImage() {
         return image;
     }
