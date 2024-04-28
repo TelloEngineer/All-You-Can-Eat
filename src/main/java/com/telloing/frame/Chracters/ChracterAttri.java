@@ -13,52 +13,23 @@ import java.awt.image.BufferedImage;
  *
  * @author josue
  */
-public class ChracterAttri {
-    private int x;
-    private int y;
-    private int speed;
-    
-    private BufferedImage image;
-    private Hashtable<String, Animations> listAnimations;
+class Timering{
     private boolean visible;
+    
     private int timer;
     private int delay;
     
-
-    
-   
-
-    public ChracterAttri(int x, int y, int speed, Hashtable<String, Animations> listAnimations) {
-        this.x = x;
-        this.y = y;
-        this.speed = speed;
-        this.listAnimations = listAnimations;
-
+    public Timering() {
         this.visible = true;
-    }
-
-    public void setChracterAttri(ChracterAttri attri){
-        this.speed = attri.getSpeed();
-        this.x = attri.getX();
-        this.y = attri.getY();
-        this.listAnimations.clear();
-        this.visible = attri.isVisible();
-        this.listAnimations.putAll(attri.getListAnimations());
-    }
-    public Hashtable<String, Animations> getListAnimations() {
-        return listAnimations;
-    }
-
-    public int getTimer() {
-        return timer;
-    }
-
-    public void setTimer(int delay){
-        this.delay = delay;
-        this.visible = false;
         this.timer = 0;
+        this.delay = 0;
     }
-
+    public boolean isVisible() {
+        return visible;
+    }
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
     public boolean isReady(){
         if(this.visible){
             timer = 0;
@@ -67,15 +38,64 @@ public class ChracterAttri {
         this.visible = timer++ >= delay;
         return this.visible;
     }
+    public int getTimer() {
+        return timer;
+    }
+    public void setTimer(int timer) {
+        this.timer = timer;
+    }
+    public int getDelay() {
+        return delay;
+    }
+    public void setDelay(int delay) {
+        this.delay = delay;
+    }
+}
 
-    public boolean isVisible() {
-        
-        return visible;
+public class ChracterAttri {
+    private int x;
+    private int y;
+    private int speed;
+    
+    private BufferedImage image;
+    private Hashtable<String, Animations> listAnimations;
+    private Timering timer;
+    
+    
+    public ChracterAttri(int x, int y, int speed, Hashtable<String, Animations> listAnimations) {
+        this.x = x;
+        this.y = y;
+        this.speed = speed;
+        this.listAnimations = listAnimations;
+        this.timer = new Timering();
     }
 
-    public void setVisible(boolean visible) {
-        this.visible = visible;
+    public void setChracterAttri(ChracterAttri attri){
+        this.speed = attri.getSpeed();
+        this.x = attri.getX();
+        this.y = attri.getY();
+        this.listAnimations.clear();
+        this.listAnimations.putAll(attri.getListAnimations());
     }
+    public Hashtable<String, Animations> getListAnimations() {
+        return listAnimations;
+    }
+
+    public int getTimer() {
+        return this.timer.getTimer();
+    }
+
+    public void setTimer(int delay){
+        this.timer.setDelay(delay);
+        this.timer.setVisible(false);
+        this.timer.setTimer(0);
+    }
+
+    public boolean isReady(){
+        return timer.isReady();
+    }
+
+    
 
     
     public int getX() {

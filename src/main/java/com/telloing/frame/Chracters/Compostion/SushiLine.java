@@ -54,8 +54,6 @@ class Sushis_onLine {
                 }
             }
             index = index < limitSushis ? sushisToShow.size() : 0;
-
-
         }
         timer++;
         
