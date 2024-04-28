@@ -44,7 +44,7 @@ class Sushis_onLine {
     }
 
     public void addSushi(List<Food> sushis) {
-        System.out.println("arriba: " + sushisToShow.size() + " index" + index);
+        //System.out.println("arriba: " + sushisToShow.size() + " index" + index);
         if (timer > lapse) {
             timer = 0;
             if (index < sushis.size()) {
@@ -55,31 +55,11 @@ class Sushis_onLine {
             }
             index = index < limitSushis ? sushisToShow.size() : 0;
 
-            /*
-             * if(sushisToShow.size() == 4){
-             * System.out.println("4 sushi checker pos: " +
-             * sushisToShow.get(3).getCollisionChecker().getActualPosition());
-             * System.out.println("4 sushi pos: " +
-             * sushisToShow.get(3).getAttributes().getX());
-             * System.out.println("3 sushi checker pos: " +
-             * sushisToShow.get(2).getCollisionChecker().getActualPosition());
-             * System.out.println("3 sushi pos: " +
-             * sushisToShow.get(2).getAttributes().getX());
-             * System.out.println("2 sushi checker pos: " +
-             * sushisToShow.get(1).getCollisionChecker().getActualPosition());
-             * System.out.println("2 sushi pos: " +
-             * sushisToShow.get(1).getAttributes().getX());
-             * System.out.println("1 sushi checker pos: " +
-             * sushisToShow.get(0).getCollisionChecker().getActualPosition());
-             * System.out.println("1 sushi pos: " +
-             * sushisToShow.get(0).getAttributes().getX());
-             * }
-             */
 
         }
         timer++;
         
-        System.out.println("timer: " + timer);
+        
         // System.out.println( "Index: " + Integer.toString(index) + " timer:"+
         // Integer.toString(timer) + sushisToShow.toString());
     }
@@ -126,7 +106,7 @@ class Sushi_Online implements ActCharac {
 }
 
 public class SushiLine implements ActCharac {
-    private final int delay = 32;
+    private final int delay = 300;
 
     private List<Food> sushis;
     private List<Food> sushisToRemove;
@@ -184,7 +164,6 @@ public class SushiLine implements ActCharac {
                 checkListener(sushi);
                 checkCollision(sushi); // default: action.update();
             }
-            System.out.println(sushi.getAttributes().getTimer());
         }
         sushis.removeAll(sushisToRemove); // revisa los sushis a eliminar, A HUEVO, se hace asi
         // porque si borramos directamente, y nos quedamos sin sushis, EXCEPTION
