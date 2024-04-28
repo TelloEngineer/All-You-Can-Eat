@@ -9,6 +9,7 @@ import com.telloing.frame.Chracters.ChracterBuilder.FoodDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.OrnamentDirector;
 import com.telloing.frame.Chracters.Compostion.EscenaryElements;
 import com.telloing.frame.Chracters.Compostion.SushiLine;
+import com.telloing.frame.Chracters.Compostion.SushiTable;
 import com.telloing.frame.Frames.BackGroundDirector;
 import com.telloing.frame.Chracters.MovCharact;
 import java.awt.Graphics;
@@ -29,6 +30,7 @@ public class Scenary extends JPanel implements Runnable {
     
     public static final EscenaryElements elements = new EscenaryElements();;
     public static final SushiLine sushis = new SushiLine();
+    public static final SushiTable sushisToEat = new SushiTable();
     public static MovCharact listener;
 
 
@@ -45,6 +47,7 @@ public class Scenary extends JPanel implements Runnable {
         
         Scenary.elements.add(OrnamentDirector.getInstance().createChef(this, 150, 60));
         Scenary.elements.add(Scenary.sushis);
+        Scenary.elements.add(Scenary.sushisToEat);
         Scenary.elements.add(FoodBeltDirector.getInstance().createBelt(this));
         Scenary.elements.add(OrnamentDirector.getInstance().createCliente(this, 412, 210));
         Scenary.elements.add(OrnamentDirector.getInstance().createRibbon(this, 60, 80));

@@ -105,6 +105,7 @@ class Sushi_Online implements ActCharac {
 
 public class SushiLine implements ActCharac {
     private final int delay = 300;
+    private final int max = 32;
 
     private List<Food> sushis;
     private List<Food> sushisToRemove;
@@ -121,7 +122,7 @@ public class SushiLine implements ActCharac {
     }
 
     public boolean add(Food character) {
-        if (this.sushis.size() >= 32) {
+        if (this.sushis.size() >= max) {
             return false;
         }
         action.setContainer(character.getContainer());
@@ -171,7 +172,7 @@ public class SushiLine implements ActCharac {
 
     private void checkListener(Food sushi) {
         switch (Scenary.listener.getKeyCode()) {
-            case KeyEvent.VK_E:
+            case KeyEvent.VK_Z:
                 setNewCollisionerArea(415, 10, 3);
                 break;
             default:
@@ -191,9 +192,11 @@ public class SushiLine implements ActCharac {
                 sushi.getAttributes().setTimer(this.delay);
                 break;
             case 3:
+             if(Scenary.sushisToEat.add(sushi)){
                 sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
                 sushi.getCollisionChecker().setActualPosition(0);
                 System.out.println(sushisToRemove.add(sushi));
+             }  
                 break;
             default:
                 action.update();
