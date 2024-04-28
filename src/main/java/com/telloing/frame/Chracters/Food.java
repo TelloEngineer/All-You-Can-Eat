@@ -53,4 +53,11 @@ public class Food{
         return attributes;
     }
 
+
+    @Override
+    public String toString() {
+        return "Food [attributes=" + attributes + ", listener=" + listener + ", container=" + container
+                + ", collisionChecker=" + collisionChecker + "]";
+    }
+
 }

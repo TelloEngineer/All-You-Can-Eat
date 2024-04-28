@@ -17,14 +17,62 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
+import java.awt.Container;
+import java.awt.event.KeyEvent;
+import java.lang.reflect.Array;
+
 /**
  *
  * @author josue
  */
 
-import java.awt.Container;
-import java.awt.event.KeyEvent;
-import java.lang.reflect.Array;
+class Sushis_onLine {
+    private final int lapse = 8;
+    private final int limitSushis =32;
+
+    private List<Food> sushisToShow;
+    private int timer;
+    private int index;
+
+    
+
+    public Sushis_onLine() {
+        this.sushisToShow = new LinkedList<Food>();
+        this.timer = 8;
+    }
+
+    public List<Food> getSushisToShow() {
+        return sushisToShow;
+    }
+    public void addSushi(List<Food> sushis){ 
+        if(timer > lapse){
+            timer = 0;
+            if(index < sushis.size()){
+                if(sushisToShow.size() <= sushis.size()){
+                    //System.out.println(sushis.size());
+                    sushisToShow.add(sushis.get(index));
+                }
+            }
+            index = index < limitSushis ? ++index : 0;
+           
+            if(sushisToShow.size() == 4){
+                System.out.println(sushisToShow.size());
+                System.out.println("4 sushi checker pos: " + sushisToShow.get(3).getCollisionChecker().getActualPosition());
+                System.out.println("4 sushi pos: " + sushisToShow.get(3).getAttributes().getX());
+                System.out.println("3 sushi checker pos: " + sushisToShow.get(2).getCollisionChecker().getActualPosition());
+                System.out.println("3 sushi pos: " + sushisToShow.get(2).getAttributes().getX());
+                System.out.println("2 sushi checker pos: " + sushisToShow.get(1).getCollisionChecker().getActualPosition());
+                System.out.println("2 sushi pos: " + sushisToShow.get(1).getAttributes().getX());
+                System.out.println("1 sushi checker pos: " + sushisToShow.get(0).getCollisionChecker().getActualPosition());
+                System.out.println("1 sushi pos: " + sushisToShow.get(0).getAttributes().getX());
+            }
+
+        }
+        timer++;
+        //System.out.println( "Index: " + Integer.toString(index) + " timer:"+ Integer.toString(timer) + sushisToShow.toString());
+    }
+
+}
 
 class Sushi_Online implements ActCharac {
 
@@ -69,20 +117,22 @@ public class SushiLine implements ActCharac {
     private List<Food> sushis;
     private List<Food> sushisToRemove;
     private Sushi_Online action;
+    private Sushis_onLine sushisToShow;
 
     public SushiLine() {
         this.sushis = new LinkedList<>();
         this.sushisToRemove = new LinkedList<>();
         this.action = new Sushi_Online(null, null);
+        setNewCollisionerArea(430, 3, 2);
+        this.sushisToShow = new Sushis_onLine();
+
     }
 
     public boolean add(Food character) {
         if (this.sushis.size() >= 32) {
             return false;
         }
-
         action.setContainer(character.getContainer());
-        setNewCollisionerArea(430, 3, 2);
         return this.sushis.add(character);
     }
 
@@ -100,22 +150,26 @@ public class SushiLine implements ActCharac {
 
     @Override
     public void draw(Graphics2D g) {
-        for(Food sushi : sushis) { //se ocupa actualizar cada vez que se itera
+        for(Food sushi : sushisToShow.getSushisToShow()) { //se ocupa actualizar cada vez que se itera
             action.setSushi(sushi);
             action.draw(g);
         }
+        //System.out.println(Arrays.toString(CollisionerPlaneArea.collisionFood));
     }
 
     @Override
     public void update() {
+        //System.out.println(Arrays.toString(CollisionerPlaneArea.collisionFood));
+        sushisToShow.addSushi(sushis);
         sushisToRemove.clear(); //lista para guardar cuales a eliminar. se vacia, para iniciar en 0
-        for(Food sushi: sushis) {
+        for(Food sushi: sushisToShow.getSushisToShow()) {
             action.setSushi(sushi);
             checkListener(sushi);
             checkCollision(sushi); // default: action.update();
         }
         sushis.removeAll(sushisToRemove); // revisa los sushis a eliminar, A HUEVO, se hace asi
         // porque si borramos directamente, y nos quedamos sin sushis, EXCEPTION  java.util.ConcurrentModificationException
+        sushisToShow.getSushisToShow().removeAll(sushisToRemove);
     }
 
     private void checkListener(Food sushi) {
