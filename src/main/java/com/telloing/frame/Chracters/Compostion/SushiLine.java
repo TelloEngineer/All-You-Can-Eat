@@ -45,18 +45,15 @@ class Sushis_onLine {
 
     public void addSushi(List<Food> sushis) {
         //System.out.println("arriba: " + sushisToShow.size() + " index" + index);
-        if (timer > lapse) {
-            timer = 0;
-            if (index < sushis.size()) {
-                if (!sushisToShow.contains(sushis.get(index))) {
-
-                    sushisToShow.add(sushis.get(index));
-                }
-            }
-            index = index < limitSushis ? sushisToShow.size() : 0;
+        if (timer < lapse) {
+            timer++; 
+            return;
         }
-        timer++;
-        
+        timer = 0;
+        if (index < sushis.size()) {
+            sushisToShow.add(sushis.get(index));
+            index++;
+        }
         
         // System.out.println( "Index: " + Integer.toString(index) + " timer:"+
         // Integer.toString(timer) + sushisToShow.toString());
@@ -116,7 +113,7 @@ public class SushiLine implements ActCharac {
         this.sushis = new LinkedList<>();
         this.sushisToRemove = new LinkedList<>();
         this.action = new Sushi_Online(null, null);
-        setNewCollisionerArea(430, 3, 2);
+        CollisionerPlaneArea.fillArea(430, 2, CollisionerPlaneArea.collisionFood,3);
         this.sushisToShow = new Sushis_onLine();
 
     }
@@ -144,7 +141,7 @@ public class SushiLine implements ActCharac {
     @Override
     public void draw(Graphics2D g) {
         for (Food sushi : sushisToShow.getSushisToShow()) { // se ocupa actualizar cada vez que se itera
-            if (sushi.getAttributes().isReady()) {
+            if (sushi.getAttributes().getTimer().isReady()) {
                 action.setSushi(sushi);
                 action.draw(g);
             }
@@ -154,15 +151,15 @@ public class SushiLine implements ActCharac {
 
     @Override
     public void update() {
-        // System.out.println(Arrays.toString(CollisionerPlaneArea.collisionFood));
         sushisToShow.addSushi(sushis);
         sushisToRemove.clear(); // lista para guardar cuales a eliminar. se vacia, para iniciar en 0
         for (Food sushi : sushisToShow.getSushisToShow()) {
-            if (sushi.getAttributes().isReady()) {
+            checkListener();
+            if (sushi.getAttributes().getTimer().isReady()) {
                 action.setSushi(sushi);
-                checkListener(sushi);
                 checkCollision(sushi); // default: action.update();
             }
+            System.out.println(Arrays.toString(CollisionerPlaneArea.collisionFood));
         }
         sushis.removeAll(sushisToRemove); // revisa los sushis a eliminar, A HUEVO, se hace asi
         // porque si borramos directamente, y nos quedamos sin sushis, EXCEPTION
@@ -170,13 +167,13 @@ public class SushiLine implements ActCharac {
         sushisToShow.getSushisToShow().removeAll(sushisToRemove);
     }
 
-    private void checkListener(Food sushi) {
+    private void checkListener() {
         switch (Scenary.listener.getKeyCode()) {
             case KeyEvent.VK_Z:
-                setNewCollisionerArea(415, 10, 3);
+                CollisionerPlaneArea.fillArea(415, 3, CollisionerPlaneArea.collisionFood,10);
                 break;
             default:
-                setNewCollisionerArea(415, 10, 0);
+                CollisionerPlaneArea.fillArea(415, 0, CollisionerPlaneArea.collisionFood,10);
         }
         Scenary.listener.setKeyCode(-1);
 
@@ -189,10 +186,11 @@ public class SushiLine implements ActCharac {
                 sushi.getAttributes().setX(72);
                 sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
                 sushi.getCollisionChecker().setActualPosition(0);
-                sushi.getAttributes().setTimer(this.delay);
+                sushi.getAttributes().getTimer().startTimer(this.delay);
                 break;
             case 3:
              if(Scenary.sushisToEat.add(sushi)){
+                sushi.getAttributes().getTimer().setAlive(false);
                 sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
                 sushi.getCollisionChecker().setActualPosition(0);
                 System.out.println(sushisToRemove.add(sushi));
@@ -203,9 +201,6 @@ public class SushiLine implements ActCharac {
         }
     }
 
-    private void setNewCollisionerArea(int point, int dimension, int symbol) {
-        for (int i = 0; i < dimension; i++) {
-            CollisionerPlaneArea.collisionFood[point + i] = symbol;
-        }
-    }
+    
+
 }

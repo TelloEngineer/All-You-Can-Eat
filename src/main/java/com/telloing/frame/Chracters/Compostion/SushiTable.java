@@ -36,7 +36,7 @@ class Sushi_Ontable implements ActCharac {
 
     @Override
     public void draw(Graphics2D g) {
-        g.drawImage(sushi.getAttributes().getImage(), sushi.getAttributes().getX(), sushi.getAttributes().getY(),
+        g.drawImage(sushi.getAttributes().getImage(), 72, 250,
                 container);
     }
 
@@ -63,6 +63,7 @@ public class SushiTable implements ActCharac {
     }
 
     public boolean add(Food character) {
+        character.getAttributes().reset();
         if (this.sushis.size() >= max) {
             return false;
         }

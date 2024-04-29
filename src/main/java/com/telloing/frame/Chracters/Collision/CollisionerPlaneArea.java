@@ -65,6 +65,12 @@ public class CollisionerPlaneArea{
         this.collisionZone = collisionZone;
     }
 
+    public static void fillArea(int point, int symbol, int[] array, int zone) {
+        for (int i = 0; i < zone; i++) {
+            array[point + i] = symbol;
+        }
+    }
+
     @Override
     public String toString() {
         return "CollisionerPlaneArea [collisionZone=" + Arrays.toString(collisionZone) + ", actualPosition="

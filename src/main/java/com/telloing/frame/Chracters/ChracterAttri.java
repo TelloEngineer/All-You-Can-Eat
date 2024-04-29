@@ -6,6 +6,7 @@ package com.telloing.frame.Chracters;
 
 import java.util.Hashtable;
 
+import com.telloing.frame.Chracters.Compostion.LifeTime;
 import com.telloing.frame.Frames.Animations;
 import java.awt.image.BufferedImage;
 
@@ -13,44 +14,7 @@ import java.awt.image.BufferedImage;
  *
  * @author josue
  */
-class Timering{
-    private boolean visible;
-    
-    private int timer;
-    private int delay;
-    
-    public Timering() {
-        this.visible = true;
-        this.timer = 0;
-        this.delay = 0;
-    }
-    public boolean isVisible() {
-        return visible;
-    }
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-    public boolean isReady(){
-        if(this.visible){
-            timer = 0;
-            return this.visible;
-        }
-        this.visible = timer++ >= delay;
-        return this.visible;
-    }
-    public int getTimer() {
-        return timer;
-    }
-    public void setTimer(int timer) {
-        this.timer = timer;
-    }
-    public int getDelay() {
-        return delay;
-    }
-    public void setDelay(int delay) {
-        this.delay = delay;
-    }
-}
+
 
 public class ChracterAttri {
     private int x;
@@ -59,7 +23,7 @@ public class ChracterAttri {
     
     private BufferedImage image;
     private Hashtable<String, Animations> listAnimations;
-    private Timering timer;
+    private LifeTime timer;
     
     
     public ChracterAttri(int x, int y, int speed, Hashtable<String, Animations> listAnimations) {
@@ -67,7 +31,11 @@ public class ChracterAttri {
         this.y = y;
         this.speed = speed;
         this.listAnimations = listAnimations;
-        this.timer = new Timering();
+        this.timer = new LifeTime();
+    }
+
+    public void reset(){
+        timer.reset();
     }
 
     public void setChracterAttri(ChracterAttri attri){
@@ -81,21 +49,9 @@ public class ChracterAttri {
         return listAnimations;
     }
 
-    public int getTimer() {
-        return this.timer.getTimer();
+    public LifeTime getTimer() {
+        return this.timer;
     }
-
-    public void setTimer(int delay){
-        this.timer.setDelay(delay);
-        this.timer.setVisible(false);
-        this.timer.setTimer(0);
-    }
-
-    public boolean isReady(){
-        return timer.isReady();
-    }
-
-    
 
     
     public int getX() {
