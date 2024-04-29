@@ -3,7 +3,7 @@ package com.telloing.frame.Chracters.ChracterBuilder;
 import java.awt.Container;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -13,12 +13,13 @@ import com.telloing.frame.Scenary;
 import com.telloing.frame.Chracters.ChracterAttri;
 import com.telloing.frame.Chracters.FoodBelt;
 import com.telloing.frame.Frames.Animations;
+import java.util.Map;
 
 public class FoodBeltDirector {
     FoodBelt belt;
     Container container; 
     private static FoodBeltDirector foodBuilder;
-    Hashtable<String, Animations> listAnimations;
+    Map<String, Animations> listAnimations;
     
 
     private FoodBeltDirector(){
@@ -58,7 +59,7 @@ public class FoodBeltDirector {
 
         
         Animations anim;
-        Hashtable<String, Animations> list = new Hashtable<String, Animations>();
+        Map<String, Animations> list = new HashMap<>();
 
         anim = new Animations(Animations.separateFrames(setFrames, 21, 462, 12, 1));
         list.put("Avanzar", anim);

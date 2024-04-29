@@ -4,11 +4,10 @@
  */
 package com.telloing.frame.Chracters;
 
-import java.util.Hashtable;
-
 import com.telloing.frame.Chracters.Compostion.LifeTime;
 import com.telloing.frame.Frames.Animations;
 import java.awt.image.BufferedImage;
+import java.util.Map;
 
 /**
  *
@@ -22,20 +21,20 @@ public class ChracterAttri {
     private int speed;
     
     private BufferedImage image;
-    private Hashtable<String, Animations> listAnimations;
-    private LifeTime timer;
+    private Map<String, Animations> listAnimations;
+    private LifeTime lifeTime;
     
     
-    public ChracterAttri(int x, int y, int speed, Hashtable<String, Animations> listAnimations) {
+    public ChracterAttri(int x, int y, int speed, Map<String, Animations> listAnimations) {
         this.x = x;
         this.y = y;
         this.speed = speed;
         this.listAnimations = listAnimations;
-        this.timer = new LifeTime();
+        this.lifeTime = new LifeTime();
     }
 
     public void reset(){
-        timer.reset();
+        lifeTime.reset();
     }
 
     public void setChracterAttri(ChracterAttri attri){
@@ -45,12 +44,12 @@ public class ChracterAttri {
         this.listAnimations.clear();
         this.listAnimations.putAll(attri.getListAnimations());
     }
-    public Hashtable<String, Animations> getListAnimations() {
+    public Map<String, Animations> getListAnimations() {
         return listAnimations;
     }
 
-    public LifeTime getTimer() {
-        return this.timer;
+    public LifeTime getLifeTime() {
+        return this.lifeTime;
     }
 
     

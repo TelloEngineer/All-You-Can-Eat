@@ -141,7 +141,7 @@ public class SushiLine implements ActCharac {
     @Override
     public void draw(Graphics2D g) {
         for (Food sushi : sushisToShow.getSushisToShow()) { // se ocupa actualizar cada vez que se itera
-            if (sushi.getAttributes().getTimer().isReady()) {
+            if (sushi.getAttributes().getLifeTime().isReady()) {
                 action.setSushi(sushi);
                 action.draw(g);
             }
@@ -155,11 +155,10 @@ public class SushiLine implements ActCharac {
         sushisToRemove.clear(); // lista para guardar cuales a eliminar. se vacia, para iniciar en 0
         for (Food sushi : sushisToShow.getSushisToShow()) {
             checkListener();
-            if (sushi.getAttributes().getTimer().isReady()) {
+            if (sushi.getAttributes().getLifeTime().isReady()) {
                 action.setSushi(sushi);
                 checkCollision(sushi); // default: action.update();
             }
-            System.out.println(Arrays.toString(CollisionerPlaneArea.collisionFood));
         }
         sushis.removeAll(sushisToRemove); // revisa los sushis a eliminar, A HUEVO, se hace asi
         // porque si borramos directamente, y nos quedamos sin sushis, EXCEPTION
@@ -186,14 +185,14 @@ public class SushiLine implements ActCharac {
                 sushi.getAttributes().setX(72);
                 sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
                 sushi.getCollisionChecker().setActualPosition(0);
-                sushi.getAttributes().getTimer().startTimer(this.delay);
+                sushi.getAttributes().getLifeTime().startTimer(this.delay);
                 break;
             case 3:
              if(Scenary.sushisToEat.add(sushi)){
-                sushi.getAttributes().getTimer().setAlive(false);
+                System.out.println(sushisToRemove.add(sushi));
+                sushi.getAttributes().getLifeTime().setAlive(false);
                 sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
                 sushi.getCollisionChecker().setActualPosition(0);
-                System.out.println(sushisToRemove.add(sushi));
              }  
                 break;
             default:
