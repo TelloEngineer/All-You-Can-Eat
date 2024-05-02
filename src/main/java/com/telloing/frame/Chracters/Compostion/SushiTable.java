@@ -1,21 +1,33 @@
 package com.telloing.frame.Chracters.Compostion;
 
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
+import javax.swing.text.html.HTMLDocument.Iterator;
+
+import com.telloing.frame.Scenary;
 import com.telloing.frame.Chracters.ActCharac;
 import com.telloing.frame.Chracters.Food;
+import com.telloing.frame.Chracters.Collision.CollisionerPlaneArea;
+
 import java.awt.Container;
 
-class Sushi_Ontable implements ActCharac {
+class Sushi_Ontable {
 
     private Food sushi;
     private Container container;
+    private ListIterator iterator;
 
     public Sushi_Ontable(Food sushi, Container container) {
         this.sushi = sushi;
         this.container = container;
+        if (sushi != null) {
+            this.iterator = sushi.getAttributes().getListAnimations().get("comer").getFrames().listIterator();
+        }
     }
 
     public Container getContainer() {
@@ -32,34 +44,35 @@ class Sushi_Ontable implements ActCharac {
 
     public void setSushi(Food sushi) {
         this.sushi = sushi;
+        this.iterator = this.sushi.getAttributes().getListAnimations().get("comer").getFrames().listIterator();
     }
 
-    @Override
     public void draw(Graphics2D g) {
         g.drawImage(sushi.getAttributes().getImage(), sushi.getAttributes().getX(), sushi.getAttributes().getY(),
                 container);
     }
 
-    @Override
-    public void update() {
-
+    public boolean update() {
+        if (iterator.hasNext()) {
+            sushi.getAttributes().setImage((BufferedImage) iterator.next());
+            return true;
+        }
+        return false;
     }
 
 }
 
 public class SushiTable implements ActCharac {
     private final int max = 7;
-    private final int[] positionX = { 372,342,312,282,252,222,192};
+    private final int[] positionX = { 372, 342, 312, 282, 252, 222, 192 };
     private final int positionY = 260;
+    private final int elementToDelete = 0;
 
     private List<Food> sushis;
-    private List<Food> sushisToRemove;
     private Sushi_Ontable action;
-    private int index;
 
     public SushiTable() {
         this.sushis = new LinkedList<>();
-        this.sushisToRemove = new LinkedList<>();
         this.action = new Sushi_Ontable(null, null);
         // inicializar el random
     }
@@ -70,7 +83,7 @@ public class SushiTable implements ActCharac {
             return false;
         }
         action.setContainer(character.getContainer());
-        character.getAttributes().setX(positionX[index++]);
+        character.getAttributes().setX(positionX[sushis.size()]);
         character.getAttributes().setY(positionY);
         return this.sushis.add(character);
     }
@@ -97,21 +110,25 @@ public class SushiTable implements ActCharac {
 
     @Override
     public void update() {
-        // condicion, si se activo la bandera de que acabo la animacion, sera true o
-        // false
-        // operador ternario, en donde si es true, pide un nuevo numero random
-        // si no lo es, simplemente vuelve a guardar su propio valor.
-        // defino un random del 0 - 3;
-        // declaro switch
-        // cada case es un numero del random
-        // dentro case, llama a la animacion del cocinero.
-        // cada case, tiene un nombre en especifico.
-        // se llama cada funcion. pero antes la bandera se pone en false.
+        
+        checkListener();
     }
 
-    // creamos un metodo, por accion, 1 duerme, 2 estatico, 3 interactua. parametro
-    // dentro de cada metodo, llamara a la banderita, para saber, que ya acabo la
-    // animacion.
-    // cambiamos de numero random.
+    private void checkListener() {
+        if (sushis.isEmpty()) {
+            return;
+        }
+        action.setSushi(sushis.get(elementToDelete));
+        System.out.println(Scenary.listener.getKeyCode());
+        switch (Scenary.listener.getKeyCode()) {
+            case KeyEvent.VK_E:
+                if (action.update()) {
+                    sushis.remove(elementToDelete);
+                }
+                break;
+        }
+        Scenary.listener.setKeyCode(-1);
+
+    }
 
 }
