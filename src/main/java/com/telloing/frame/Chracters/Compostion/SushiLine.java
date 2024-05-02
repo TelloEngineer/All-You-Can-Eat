@@ -21,7 +21,6 @@ import java.awt.event.KeyEvent;
 
 class Sushis_onLine {
     private final int lapse = 8;
-    private final int limitSushis = 32;
 
     private List<Food> sushisToShow;
     private int timer; // define el espacio entre sushis
@@ -167,12 +166,11 @@ public class SushiLine implements ActCharac {
         switch (Scenary.listener.getKeyCode()) {
             case KeyEvent.VK_Z:
                 CollisionerPlaneArea.fillArea(415, 3, CollisionerPlaneArea.collisionFood,10);
+                Scenary.listener.setKeyCode(-1);
                 break;
             default:
                 CollisionerPlaneArea.fillArea(415, 0, CollisionerPlaneArea.collisionFood,10);
         }
-        Scenary.listener.setKeyCode(-1);
-
     }
 
     private void checkCollision(Food sushi) {

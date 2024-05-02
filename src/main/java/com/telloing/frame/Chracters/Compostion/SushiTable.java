@@ -53,7 +53,9 @@ class Sushi_Ontable {
     }
 
     public boolean update() {
+        System.out.println(iterator.nextIndex());
         if (iterator.hasNext()) {
+            System.out.println("change");
             sushi.getAttributes().setImage((BufferedImage) iterator.next());
             return true;
         }
@@ -67,9 +69,11 @@ public class SushiTable implements ActCharac {
     private final int[] positionX = { 372, 342, 312, 282, 252, 222, 192 };
     private final int positionY = 260;
     private final int elementToDelete = 0;
+    private final int lapse = 8;
 
     private List<Food> sushis;
     private Sushi_Ontable action;
+    private int timer;
 
     public SushiTable() {
         this.sushis = new LinkedList<>();
@@ -110,7 +114,7 @@ public class SushiTable implements ActCharac {
 
     @Override
     public void update() {
-        
+
         checkListener();
     }
 
@@ -119,15 +123,19 @@ public class SushiTable implements ActCharac {
             return;
         }
         action.setSushi(sushis.get(elementToDelete));
-        System.out.println(Scenary.listener.getKeyCode());
         switch (Scenary.listener.getKeyCode()) {
             case KeyEvent.VK_E:
+                if (timer < lapse) {
+                    timer++;
+                    return;
+                }
+                timer = 0;
                 if (action.update()) {
                     sushis.remove(elementToDelete);
                 }
+                Scenary.listener.setKeyCode(-1);
                 break;
         }
-        Scenary.listener.setKeyCode(-1);
 
     }
 
