@@ -36,7 +36,7 @@ class Sushi_Ontable implements ActCharac {
 
     @Override
     public void draw(Graphics2D g) {
-        g.drawImage(sushi.getAttributes().getImage(), 72, 250,
+        g.drawImage(sushi.getAttributes().getImage(), sushi.getAttributes().getX(), sushi.getAttributes().getY(),
                 container);
     }
 
@@ -49,13 +49,15 @@ class Sushi_Ontable implements ActCharac {
 
 public class SushiTable implements ActCharac {
     private final int max = 7;
+    private final int[] positionX = { 372,342,312,282,252,222,192};
+    private final int positionY = 260;
 
     private List<Food> sushis;
     private List<Food> sushisToRemove;
-    private int[] posiciones;
     private Sushi_Ontable action;
+    private int index;
 
-    public SushiTable(){
+    public SushiTable() {
         this.sushis = new LinkedList<>();
         this.sushisToRemove = new LinkedList<>();
         this.action = new Sushi_Ontable(null, null);
@@ -68,6 +70,8 @@ public class SushiTable implements ActCharac {
             return false;
         }
         action.setContainer(character.getContainer());
+        character.getAttributes().setX(positionX[index++]);
+        character.getAttributes().setY(positionY);
         return this.sushis.add(character);
     }
 
@@ -93,19 +97,21 @@ public class SushiTable implements ActCharac {
 
     @Override
     public void update() {
-        // condicion, si se activo la bandera de que acabo la animacion, sera true o false
-        //operador ternario, en donde si es true, pide un nuevo numero random
+        // condicion, si se activo la bandera de que acabo la animacion, sera true o
+        // false
+        // operador ternario, en donde si es true, pide un nuevo numero random
         // si no lo es, simplemente vuelve a guardar su propio valor.
-        //defino un random del 0 - 3;
-        //declaro switch
-        // cada case es un numero del random 
+        // defino un random del 0 - 3;
+        // declaro switch
+        // cada case es un numero del random
         // dentro case, llama a la animacion del cocinero.
         // cada case, tiene un nombre en especifico.
         // se llama cada funcion. pero antes la bandera se pone en false.
     }
 
-    // creamos  un metodo, por accion, 1 duerme, 2 estatico, 3 interactua. parametro
-    // dentro de cada metodo, llamara a la banderita, para saber, que ya acabo la animacion.
+    // creamos un metodo, por accion, 1 duerme, 2 estatico, 3 interactua. parametro
+    // dentro de cada metodo, llamara a la banderita, para saber, que ya acabo la
+    // animacion.
     // cambiamos de numero random.
 
 }

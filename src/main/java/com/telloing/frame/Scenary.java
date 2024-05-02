@@ -40,7 +40,7 @@ public class Scenary extends JPanel implements Runnable {
         drawInterval = 1000 / fps;
 
         listener = new MovCharact();
-        for(int i = 0; i<3; i++){
+        for(int i = 0; i<8; i++){
             System.out.print(i);
             System.out.println(Scenary.sushis.add(FoodDirector.getInstancia().createSushi1(this, listener)));
         }

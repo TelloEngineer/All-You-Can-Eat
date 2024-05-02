@@ -8,18 +8,11 @@ import com.telloing.frame.Scenary;
 import com.telloing.frame.Chracters.ActCharac;
 import com.telloing.frame.Chracters.Food;
 import com.telloing.frame.Chracters.Collision.CollisionerPlaneArea;
-import com.telloing.frame.Chracters.Food;
-
 import java.awt.Graphics2D;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
-
 import java.awt.Container;
 import java.awt.event.KeyEvent;
-import java.lang.reflect.Array;
 
 /**
  *
@@ -43,13 +36,18 @@ class Sushis_onLine {
         return sushisToShow;
     }
 
-    public void addSushi(List<Food> sushis) {
+    public void updateSushi(List<Food> sushis) {
         //System.out.println("arriba: " + sushisToShow.size() + " index" + index);
         if (timer < lapse) {
             timer++; 
             return;
         }
         timer = 0;
+        if(index > sushis.size()){
+            sushisToShow.retainAll(sushis);
+            index = sushisToShow.size();
+            return;
+        }
         if (index < sushis.size()) {
             sushisToShow.add(sushis.get(index));
             index++;
@@ -151,7 +149,7 @@ public class SushiLine implements ActCharac {
 
     @Override
     public void update() {
-        sushisToShow.addSushi(sushis);
+        sushisToShow.updateSushi(sushis);
         sushisToRemove.clear(); // lista para guardar cuales a eliminar. se vacia, para iniciar en 0
         for (Food sushi : sushisToShow.getSushisToShow()) {
             checkListener();
@@ -163,7 +161,6 @@ public class SushiLine implements ActCharac {
         sushis.removeAll(sushisToRemove); // revisa los sushis a eliminar, A HUEVO, se hace asi
         // porque si borramos directamente, y nos quedamos sin sushis, EXCEPTION
         // java.util.ConcurrentModificationException
-        sushisToShow.getSushisToShow().removeAll(sushisToRemove);
     }
 
     private void checkListener() {

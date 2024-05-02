@@ -9,8 +9,6 @@ import com.telloing.frame.Chracters.ActCharac;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  *
