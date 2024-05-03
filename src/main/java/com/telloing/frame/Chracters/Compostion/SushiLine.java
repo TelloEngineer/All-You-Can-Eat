@@ -165,6 +165,7 @@ public class SushiLine implements ActCharac {
     private void checkListener() {
         switch (Scenary.listener.getKeyCode()) {
             case KeyEvent.VK_Z:
+            // activa animacion de mano;
                 CollisionerPlaneArea.fillArea(415, 3, CollisionerPlaneArea.collisionFood, 10);
                 Scenary.listener.setKeyCode(-1);
                 break;
