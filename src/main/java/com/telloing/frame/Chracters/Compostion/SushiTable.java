@@ -26,6 +26,7 @@ class Sushi_Ontable {
     public Sushi_Ontable(Food sushi, Container container) {
         this.sushi = sushi;
         this.container = container;
+        this.index = 1;
     }
 
     public Container getContainer() {
@@ -56,22 +57,21 @@ class Sushi_Ontable {
             sushi.getAttributes().setImage(animation.getFrames().get(index++));
             return false;
         }
-        index = 0;
+        index = 1;
         return true;
     }
 
 }
 
 public class SushiTable implements ActCharac {
-    private final int max = 7;
+    private final int max_sushis = 7;
     private final int[] positionX = { 372, 342, 312, 282, 252, 222, 192 };
     private final int positionY = 260;
     private final int elementToDelete = 0;
-    private final int lapse = 8;
 
     private List<Food> sushis;
     private Sushi_Ontable action;
-    private int timer;
+    private int indexSushi;
 
     public SushiTable() {
         this.sushis = new LinkedList<>();
@@ -81,12 +81,13 @@ public class SushiTable implements ActCharac {
 
     public boolean add(Food character) {
         character.getAttributes().reset();
-        if (this.sushis.size() >= max) {
+        if (this.sushis.size() >= max_sushis) {
             return false;
         }
         action.setContainer(character.getContainer());
-        character.getAttributes().setX(positionX[sushis.size()]);
+        character.getAttributes().setX(positionX[indexSushi]);
         character.getAttributes().setY(positionY);
+        indexSushi = indexSushi < max_sushis - 1 ? ++indexSushi : 0;
         return this.sushis.add(character);
     }
 
