@@ -176,24 +176,26 @@ public class SushiLine implements ActCharac {
 
     private void checkCollision(Food sushi) {
         int idObj = sushi.getCollisionChecker().updateCollision(sushi.getAttributes().getSpeed());
+        System.out.println(idObj);
         switch (idObj) {
             case 2:
                 sushi.getAttributes().setX(72);
                 sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
                 sushi.getCollisionChecker().setActualPosition(0);
                 sushi.getAttributes().getLifeTime().startTimer(this.delay);
-                break;
+                return;
             case 3:
                 if (Scenary.sushisToEat.add(sushi)) {
-                    System.out.println(sushisToRemove.add(sushi));
+                    System.out.println("hola");
                     sushi.getAttributes().getLifeTime().setAlive(false);
                     sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
                     sushi.getCollisionChecker().setActualPosition(0);
+                    sushisToRemove.add(sushi);
                 }
-                break;
-            default:
-                action.update();
+                return;
         }
+        action.update();
     }
+    
 
 }

@@ -9,7 +9,7 @@ import com.telloing.frame.Chracters.MovCharact;
 
 public class SushisLineDirector {
     private final Random random = new Random();
-    private final int range = 6;
+    private final int range = 8;
     private final int lapse = 20;
 
     private static SushisLineDirector sushisLineDirector;
