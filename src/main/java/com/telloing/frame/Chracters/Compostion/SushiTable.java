@@ -124,6 +124,7 @@ public class SushiTable implements ActCharac {
         action.setSushi(sushis.get(elementToDelete));
         switch (Scenary.listener.getKeyCode()) {
             case KeyEvent.VK_E:
+                // animacion comer
                 if (action.update()) {
                     sushis.remove(elementToDelete);
                 }
