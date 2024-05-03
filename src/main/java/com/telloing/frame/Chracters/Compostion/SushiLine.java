@@ -36,13 +36,13 @@ class Sushis_onLine {
     }
 
     public void updateSushi(List<Food> sushis) {
-        //System.out.println("arriba: " + sushisToShow.size() + " index" + index);
+        // System.out.println("arriba: " + sushisToShow.size() + " index" + index);
         if (timer < lapse) {
-            timer++; 
+            timer++;
             return;
         }
         timer = 0;
-        if(index > sushis.size()){
+        if (index > sushis.size()) {
             sushisToShow.retainAll(sushis);
             index = sushisToShow.size();
             return;
@@ -51,7 +51,7 @@ class Sushis_onLine {
             sushisToShow.add(sushis.get(index));
             index++;
         }
-        
+
         // System.out.println( "Index: " + Integer.toString(index) + " timer:"+
         // Integer.toString(timer) + sushisToShow.toString());
     }
@@ -110,7 +110,7 @@ public class SushiLine implements ActCharac {
         this.sushis = new LinkedList<>();
         this.sushisToRemove = new LinkedList<>();
         this.action = new Sushi_Online(null, null);
-        CollisionerPlaneArea.fillArea(430, 2, CollisionerPlaneArea.collisionFood,3);
+        CollisionerPlaneArea.fillArea(430, 2, CollisionerPlaneArea.collisionFood, 3);
         this.sushisToShow = new Sushis_onLine();
 
     }
@@ -165,11 +165,11 @@ public class SushiLine implements ActCharac {
     private void checkListener() {
         switch (Scenary.listener.getKeyCode()) {
             case KeyEvent.VK_Z:
-                CollisionerPlaneArea.fillArea(415, 3, CollisionerPlaneArea.collisionFood,10);
+                CollisionerPlaneArea.fillArea(415, 3, CollisionerPlaneArea.collisionFood, 10);
                 Scenary.listener.setKeyCode(-1);
                 break;
             default:
-                CollisionerPlaneArea.fillArea(415, 0, CollisionerPlaneArea.collisionFood,10);
+                CollisionerPlaneArea.fillArea(415, 0, CollisionerPlaneArea.collisionFood, 10);
         }
     }
 
@@ -183,18 +183,16 @@ public class SushiLine implements ActCharac {
                 sushi.getAttributes().getLifeTime().startTimer(this.delay);
                 break;
             case 3:
-             if(Scenary.sushisToEat.add(sushi)){
-                sushisToRemove.add(sushi);
-                sushi.getAttributes().getLifeTime().setAlive(false);
-                sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
-                sushi.getCollisionChecker().setActualPosition(0);
-             }  
+                if (Scenary.sushisToEat.add(sushi)) {
+                    System.out.println(sushisToRemove.add(sushi));
+                    sushi.getAttributes().getLifeTime().setAlive(false);
+                    sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
+                    sushi.getCollisionChecker().setActualPosition(0);
+                }
                 break;
             default:
                 action.update();
         }
     }
-
-    
 
 }

@@ -7,6 +7,7 @@ package com.telloing.frame;
 import com.telloing.frame.Chracters.ChracterBuilder.FoodBeltDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.FoodDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.OrnamentDirector;
+import com.telloing.frame.Chracters.ChracterBuilder.SushisLineDirector;
 import com.telloing.frame.Chracters.Compostion.EscenaryElements;
 import com.telloing.frame.Chracters.Compostion.SushiLine;
 import com.telloing.frame.Chracters.Compostion.SushiTable;
@@ -40,9 +41,8 @@ public class Scenary extends JPanel implements Runnable {
         drawInterval = 1000 / fps;
 
         listener = new MovCharact();
-        for(int i = 0; i<8; i++){
-            System.out.print(i);
-            System.out.println(Scenary.sushis.add(FoodDirector.getInstancia().createSushi1(this, listener)));
+        for(int i = 0; i<14; i++){
+            Scenary.sushis.add(SushisLineDirector.getInstance().getNewSushi(this, listener));
         }
         
         Scenary.elements.add(OrnamentDirector.getInstance().createChef(this, 150, 60));
@@ -96,8 +96,7 @@ public class Scenary extends JPanel implements Runnable {
     }
 
     public void update() {
-        Scenary.elements.update();
-        
+        Scenary.elements.update(); 
     }
 
 }
