@@ -41,7 +41,7 @@ public class Scenary extends JPanel implements Runnable {
         drawInterval = 1000 / fps;
 
         listener = new MovCharact();
-        for(int i = 0; i<10; i++){
+        for(int i = 0; i<19; i++){
             Scenary.sushis.add(SushisLineDirector.getInstance().getNewSushi(this, listener));
         }
         

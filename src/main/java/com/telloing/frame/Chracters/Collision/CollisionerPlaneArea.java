@@ -46,8 +46,8 @@ public class CollisionerPlaneArea{
     public int updateCollision(int addPosition){
         int newPosition = this.actualPosition + addPosition;
         if(collisionZone[newPosition] == 0){
-            collisionZone[this.actualPosition] = 0;
-            collisionZone[newPosition] = 1;
+            //collisionZone[this.actualPosition] = 0;
+            //collisionZone[newPosition] = 1;
             this.actualPosition = newPosition;
         }
         

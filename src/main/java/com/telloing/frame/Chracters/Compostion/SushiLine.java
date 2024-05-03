@@ -9,6 +9,7 @@ import com.telloing.frame.Chracters.ActCharac;
 import com.telloing.frame.Chracters.Food;
 import com.telloing.frame.Chracters.Collision.CollisionerPlaneArea;
 import java.awt.Graphics2D;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.awt.Container;
@@ -20,15 +21,14 @@ import java.awt.event.KeyEvent;
  */
 
 class Sushis_onLine {
-    private final int lapse = 8;
+    private final long lapse = 1000; // milisegundos
 
     private List<Food> sushisToShow;
-    private int timer; // define el espacio entre sushis
-    private int index; // define el sushi en el que se esta
+    private long startTime;
+    private int index;
 
     public Sushis_onLine() {
         this.sushisToShow = new LinkedList<Food>();
-        this.timer = 8;
     }
 
     public List<Food> getSushisToShow() {
@@ -37,11 +37,11 @@ class Sushis_onLine {
 
     public void updateSushi(List<Food> sushis) {
         // System.out.println("arriba: " + sushisToShow.size() + " index" + index);
-        if (timer < lapse) {
-            timer++;
+        long difference = System.currentTimeMillis() - this.startTime;
+        if (difference < lapse) {
             return;
         }
-        timer = 0;
+        this.startTime = System.currentTimeMillis();
         if (index > sushis.size()) {
             sushisToShow.retainAll(sushis);
             index = sushisToShow.size();
@@ -166,11 +166,11 @@ public class SushiLine implements ActCharac {
         switch (Scenary.listener.getKeyCode()) {
             case KeyEvent.VK_Z:
             // activa animacion de mano;
-                CollisionerPlaneArea.fillArea(415, 3, CollisionerPlaneArea.collisionFood, 10);
+                CollisionerPlaneArea.fillArea(400, 3, CollisionerPlaneArea.collisionFood, 3);
                 Scenary.listener.setKeyCode(-1);
                 break;
             default:
-                CollisionerPlaneArea.fillArea(415, 0, CollisionerPlaneArea.collisionFood, 10);
+                CollisionerPlaneArea.fillArea(400, 0, CollisionerPlaneArea.collisionFood, 3);
         }
     }
 
@@ -185,15 +185,20 @@ public class SushiLine implements ActCharac {
                 sushi.getAttributes().getLifeTime().startTimer(this.delay);
                 break;
             case 3:
+                System.out.println(Arrays.toString(CollisionerPlaneArea.collisionFood));
                 if (Scenary.sushisToEat.add(sushi)) {
                     System.out.println("hola");
                     sushi.getAttributes().getLifeTime().setAlive(false);
                     sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
                     sushi.getCollisionChecker().setActualPosition(0);
+                    sushisToRemove.add(sushi);
                 }
                 break;
-                
+            default:
+                action.update();
         }
+        System.out.print(sushi);
+        System.out.println(sushi.getAttributes().getX());
     }
 
 }
