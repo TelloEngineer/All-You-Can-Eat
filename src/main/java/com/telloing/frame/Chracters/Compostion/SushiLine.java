@@ -184,7 +184,7 @@ public class SushiLine implements ActCharac {
                 break;
             case 3:
              if(Scenary.sushisToEat.add(sushi)){
-                System.out.println(sushisToRemove.add(sushi));
+                sushisToRemove.add(sushi);
                 sushi.getAttributes().getLifeTime().setAlive(false);
                 sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
                 sushi.getCollisionChecker().setActualPosition(0);

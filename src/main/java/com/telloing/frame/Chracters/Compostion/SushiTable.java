@@ -13,6 +13,7 @@ import com.telloing.frame.Scenary;
 import com.telloing.frame.Chracters.ActCharac;
 import com.telloing.frame.Chracters.Food;
 import com.telloing.frame.Chracters.Collision.CollisionerPlaneArea;
+import com.telloing.frame.Frames.Animations;
 
 import java.awt.Container;
 
@@ -20,14 +21,11 @@ class Sushi_Ontable {
 
     private Food sushi;
     private Container container;
-    private ListIterator iterator;
+    private int index;
 
     public Sushi_Ontable(Food sushi, Container container) {
         this.sushi = sushi;
         this.container = container;
-        if (sushi != null) {
-            this.iterator = sushi.getAttributes().getListAnimations().get("comer").getFrames().listIterator();
-        }
     }
 
     public Container getContainer() {
@@ -44,7 +42,7 @@ class Sushi_Ontable {
 
     public void setSushi(Food sushi) {
         this.sushi = sushi;
-        this.iterator = this.sushi.getAttributes().getListAnimations().get("comer").getFrames().listIterator();
+       
     }
 
     public void draw(Graphics2D g) {
@@ -53,13 +51,13 @@ class Sushi_Ontable {
     }
 
     public boolean update() {
-        System.out.println(iterator.nextIndex());
-        if (iterator.hasNext()) {
-            System.out.println("change");
-            sushi.getAttributes().setImage((BufferedImage) iterator.next());
-            return true;
+        Animations animation = this.sushi.getAttributes().getListAnimations().get("comer");
+        if (index < animation.getFrames().size()) {
+            sushi.getAttributes().setImage(animation.getFrames().get(index++));
+            return false;
         }
-        return false;
+        index = 0;
+        return true;
     }
 
 }
@@ -125,11 +123,6 @@ public class SushiTable implements ActCharac {
         action.setSushi(sushis.get(elementToDelete));
         switch (Scenary.listener.getKeyCode()) {
             case KeyEvent.VK_E:
-                if (timer < lapse) {
-                    timer++;
-                    return;
-                }
-                timer = 0;
                 if (action.update()) {
                     sushis.remove(elementToDelete);
                 }
