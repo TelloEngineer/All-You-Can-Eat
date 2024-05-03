@@ -5,7 +5,6 @@
 package com.telloing.frame;
 
 import com.telloing.frame.Chracters.ChracterBuilder.FoodBeltDirector;
-import com.telloing.frame.Chracters.ChracterBuilder.FoodDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.OrnamentDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.SushisLineDirector;
 import com.telloing.frame.Chracters.Compostion.EscenaryElements;
@@ -25,9 +24,9 @@ import javax.swing.JPanel;
  */
 public class Scenary extends JPanel implements Runnable {
 
-    transient Thread gameTh;
-    private final int fps;
-    private final long drawInterval;
+    transient Thread gameTh, beltTh;
+    private static final int fps = 24;
+    public static final long drawInterval = 1000 / fps;
     
     public static final EscenaryElements elements = new EscenaryElements();;
     public static final SushiLine sushis = new SushiLine();
@@ -37,11 +36,9 @@ public class Scenary extends JPanel implements Runnable {
 
     public Scenary() {
         
-        fps = 24;
-        drawInterval = 1000 / fps;
 
         listener = new MovCharact();
-        for(int i = 0; i<19; i++){
+        for(int i = 0; i<32; i++){
             Scenary.sushis.add(SushisLineDirector.getInstance().getNewSushi(this, listener));
         }
         

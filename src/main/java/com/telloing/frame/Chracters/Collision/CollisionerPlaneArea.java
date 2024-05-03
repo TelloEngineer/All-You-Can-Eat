@@ -37,22 +37,24 @@ public class CollisionerPlaneArea{
      * @param representationObj1
      */
     public void setRepresentationObj(int representationObj1) {
+        
         if(representationObj1 == 0){
             this.representationObj = 1;
         }
         this.representationObj = representationObj1;
     }
 
-    public int updateCollision(int addPosition){
-        int newPosition = this.actualPosition + addPosition;
-        if(collisionZone[newPosition] == 0){
-            //collisionZone[this.actualPosition] = 0;
-            //collisionZone[newPosition] = 1;
-            this.actualPosition = newPosition;
-        }
+    public int mapChecking(int actualPos, int speed){
         
-        return collisionZone[newPosition];
+        if(collisionZone[actualPos] == 0){
+            collisionZone[this.actualPosition] = 0;
+            collisionZone[actualPos] = 1;
+        }
+        this.actualPosition = actualPos;
+        //System.out.println("actual position: " + this.actualPosition);  
+        return collisionZone[this.actualPosition];
     }
+    
     public int getActualPosition() {
         return actualPosition;
     }

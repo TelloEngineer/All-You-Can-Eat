@@ -6,6 +6,7 @@ package com.telloing.frame.Chracters.Compostion;
 
 import com.telloing.frame.Scenary;
 import com.telloing.frame.Chracters.ActCharac;
+import com.telloing.frame.Chracters.ChracterBuilder.FoodDirector;
 import com.telloing.frame.Chracters.Food;
 import com.telloing.frame.Chracters.Collision.CollisionerPlaneArea;
 import java.awt.Graphics2D;
@@ -21,7 +22,7 @@ import java.awt.event.KeyEvent;
  */
 
 class Sushis_onLine {
-    private final long lapse = 1000; // milisegundos
+    static public final long lapse = 500; // milisegundos
 
     private List<Food> sushisToShow;
     private long startTime;
@@ -98,7 +99,7 @@ class Sushi_Online implements ActCharac {
 }
 
 public class SushiLine implements ActCharac {
-    private final int delay = 300;
+    private final long delay = Sushis_onLine.lapse;
     private final int max = 32;
 
     private List<Food> sushis;
@@ -110,7 +111,7 @@ public class SushiLine implements ActCharac {
         this.sushis = new LinkedList<>();
         this.sushisToRemove = new LinkedList<>();
         this.action = new Sushi_Online(null, null);
-        CollisionerPlaneArea.fillArea(430, 2, CollisionerPlaneArea.collisionFood, 3);
+        //CollisionerPlaneArea.fillArea(420, 2, CollisionerPlaneArea.collisionFood, 42);
         this.sushisToShow = new Sushis_onLine();
 
     }
@@ -166,28 +167,30 @@ public class SushiLine implements ActCharac {
         switch (Scenary.listener.getKeyCode()) {
             case KeyEvent.VK_Z:
             // activa animacion de mano;
-                CollisionerPlaneArea.fillArea(400, 3, CollisionerPlaneArea.collisionFood, 3);
+                CollisionerPlaneArea.fillArea(390, 3, CollisionerPlaneArea.collisionFood, 10);
+                System.out.println(Arrays.toString(CollisionerPlaneArea.collisionFood));
                 Scenary.listener.setKeyCode(-1);
                 break;
             default:
-                CollisionerPlaneArea.fillArea(400, 0, CollisionerPlaneArea.collisionFood, 3);
+                CollisionerPlaneArea.fillArea(390, 0, CollisionerPlaneArea.collisionFood, 10);
         }
     }
 
     private void checkCollision(Food sushi) {
-        int idObj = sushi.getCollisionChecker().updateCollision(sushi.getAttributes().getSpeed());
-        System.out.println(idObj);
+        int actualPos = sushi.getAttributes().getX() - FoodDirector.SUSHI_POS_X;
+        //System.out.println("Collision: " + Integer.toString(actualPos));
+        //System.out.println("X: " + Integer.toString(sushi.getAttributes().getX()));
+        int idObj = sushi.getCollisionChecker().mapChecking(actualPos, sushi.getAttributes().getSpeed());
+        if(sushi.getCollisionChecker().getActualPosition() > 420){
+            sushi.getAttributes().setX(72);
+            sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
+            sushi.getCollisionChecker().setActualPosition(0);
+            sushi.getAttributes().getLifeTime().startTimer(this.delay);
+            return;
+        }
         switch (idObj) {
-            case 2:
-                sushi.getAttributes().setX(72);
-                sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
-                sushi.getCollisionChecker().setActualPosition(0);
-                sushi.getAttributes().getLifeTime().startTimer(this.delay);
-                break;
             case 3:
-                System.out.println(Arrays.toString(CollisionerPlaneArea.collisionFood));
                 if (Scenary.sushisToEat.add(sushi)) {
-                    System.out.println("hola");
                     sushi.getAttributes().getLifeTime().setAlive(false);
                     sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
                     sushi.getCollisionChecker().setActualPosition(0);
@@ -197,8 +200,6 @@ public class SushiLine implements ActCharac {
             default:
                 action.update();
         }
-        System.out.print(sushi);
-        System.out.println(sushi.getAttributes().getX());
     }
 
 }

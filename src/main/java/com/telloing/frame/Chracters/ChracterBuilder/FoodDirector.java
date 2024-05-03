@@ -55,7 +55,7 @@ class FoodBuilder {
 
     // diferencia entre bara y comida 32
     public Food getFood(){
-        return new Food(new ChracterAttri(72,203,3, listAnimations), 
+        return new Food(new ChracterAttri(FoodDirector.SUSHI_POS_X,203,3, listAnimations), 
                  motion, container);
     }
     
@@ -74,7 +74,7 @@ class FoodBuilder {
         Animations anim;
         Map<String, Animations> list = new HashMap<>();
 
-        anim = new Animations(Animations.separateFrames(setFrames, 32, 32, 2, 2));
+        anim = new Animations(Animations.separateFrames(setFrames, FoodDirector.SUSHI_SIZE, FoodDirector.SUSHI_SIZE, 2, 2));
         list.put("comer", anim);
         listAnimations = list;
     }
@@ -84,6 +84,8 @@ class FoodBuilder {
  * @author josue
  */
 public class FoodDirector {
+    public static final int SUSHI_SIZE = 32;
+    public static final int SUSHI_POS_X = 72;
     private final FoodBuilder builder;
     private static FoodDirector foodDirector;
 

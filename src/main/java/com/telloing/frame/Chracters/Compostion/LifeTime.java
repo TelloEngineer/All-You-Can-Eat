@@ -4,7 +4,7 @@ public class LifeTime{
     private boolean visible;
     private boolean alive;
     private int timer;
-    private int delay;
+    private long delay;
     
     public LifeTime() {
         reset();
@@ -31,7 +31,7 @@ public class LifeTime{
         this.alive = false;
     }
 
-    public void startTimer(int delay){
+    public void startTimer(long delay){
         this.setDelay(delay);
         this.setVisible(false);
         this.setTimer(0);
@@ -54,10 +54,10 @@ public class LifeTime{
     public void setTimer(int timer) {
         this.timer = timer;
     }
-    public int getDelay() {
+    public long getDelay() {
         return delay;
     }
-    public void setDelay(int delay) {
+    public void setDelay(long delay) {
         this.delay = delay;
     }
 }
