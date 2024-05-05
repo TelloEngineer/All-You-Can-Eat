@@ -73,12 +73,12 @@ class Sushis_onLine {
 
 }
 
-class Sushi_Online implements ActCharac {
+class OnlineAction implements ActCharac {
 
     private Food sushi;
     private Container container;
 
-    public Sushi_Online(Food sushi, Container container) {
+    public OnlineAction(Food sushi, Container container) {
         this.sushi = sushi;
         this.container = container;
     }
@@ -123,13 +123,13 @@ public class SushiLine implements ActCharac {
     private final int max = 32;
 
     private List<Food> sushis;
-    private Sushi_Online action;
+    private OnlineAction action;
     private Sushis_onLine sushisToShow;
     private ActivationZone1D activation;
 
     public SushiLine() {
         this.sushis = new LinkedList<>();
-        this.action = new Sushi_Online(null, null);
+        this.action = new OnlineAction(null, null);
         ActivationZone1D.fillArea(430, 2, ActivationZone1D.collisionFood, 32);
         this.sushisToShow = new Sushis_onLine();
         this.activation = new ActivationZone1D(ActivationZone1D.collisionFood);
