@@ -43,9 +43,9 @@ public class ActivationZone1D {
 
     public int checkArea(int pos, int area){
         int activationCode;
-        System.out.println("pos: "+ pos + " " + (pos + area));
+        //System.out.println("pos: "+ pos + " " + (pos + area));
         for (int i = (pos + area); i > pos; i--) {
-            activationCode = checkCollision(pos);
+            activationCode = checkCollision(i);
             if(activationCode !=0){
                 return activationCode;
             } 
