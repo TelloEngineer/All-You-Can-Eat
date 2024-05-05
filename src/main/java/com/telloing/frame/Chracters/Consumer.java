@@ -22,10 +22,10 @@ public class Consumer implements ActCharac {
     private Container container;
 
     
-    public Consumer(Animations animation, MovCharact listener, Container container) {
-        this.animation = animation;
-        this.listener = listener;
+    public Consumer(ChracterAttri attributes, MovCharact listener, Container container) {
         this.container = container;
+        this.listener = listener;
+        this.attributes = attributes;
     }
     
     public void setAttributes(ChracterAttri atributos) {
