@@ -37,7 +37,7 @@ class Sushi_Ontable {
 
     public void setSushi(Food sushi) {
         this.sushi = sushi;
-       
+
     }
 
     public void draw(Graphics2D g) {
@@ -59,7 +59,7 @@ class Sushi_Ontable {
 
 public class SushiTable implements ActCharac {
     private final int max_sushis = 7;
-    private final int[] positionX = { 372, 342, 312, 282, 252, 222, 192 };
+    private final int[] positionX = { 222, 252, 282, 312, 342, 372, 402 };
     private final int positionY = 260;
     private final int elementToDelete = 0;
 
@@ -102,15 +102,15 @@ public class SushiTable implements ActCharac {
     @Override
     public void draw(Graphics2D g) {
         sushis.addAll(sushis_toAdd);
-        
-        //System.out.println(this.sushis.size() + " : " + this.sushis_toAdd.size());
+
+        // System.out.println(this.sushis.size() + " : " + this.sushis_toAdd.size());
         for (Food sushi : sushis) { // se ocupa actualizar cada vez que se itera
             action.setSushi(sushi);
             action.draw(g);
         }
         sushis_toAdd.clear();
-        
-        //System.out.println(this.sushis.size() + " - " + this.sushis_toAdd.size());
+
+        // System.out.println(this.sushis.size() + " - " + this.sushis_toAdd.size());
     }
 
     @Override
