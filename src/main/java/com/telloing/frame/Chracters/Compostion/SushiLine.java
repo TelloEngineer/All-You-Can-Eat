@@ -11,7 +11,6 @@ import com.telloing.frame.Chracters.Collision.ActivationZone1D;
 import com.telloing.frame.Chracters.Collision.ActivationZoneObj;
 import com.telloing.frame.Chracters.Food;
 import java.awt.Graphics2D;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.awt.Container;
