@@ -157,6 +157,7 @@ public class SushiLine implements ActCharac {
                 action.setSushi(sushi);
                 action.draw(g);
             }
+            g.drawRect((FoodDirector.SUSHI_POS_X + 130), 223, 20, 1);
         }
     }
 
@@ -176,7 +177,7 @@ public class SushiLine implements ActCharac {
 
     private void checkActivators() {
         final int zone = 20;
-        final int point = 300;
+        final int point = 130;
 
         switch (Scenary.listener.getKeyCode()) {
             case KeyEvent.VK_Z:
@@ -193,7 +194,7 @@ public class SushiLine implements ActCharac {
     private void checkActivation(Food sushi) {
         action.setSushi(sushi);
         int actualPos = sushi.getAttributes().getX() - FoodDirector.SUSHI_POS_X;
-        int objSymbol = activation.checkCollision(actualPos);
+        int objSymbol = activation.checkArea(actualPos, sushi.getAttributes().getImage().getWidth());
         switch (objSymbol) {
             case 0:
                 action.update();

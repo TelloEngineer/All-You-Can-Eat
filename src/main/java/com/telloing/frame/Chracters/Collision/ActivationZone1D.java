@@ -41,6 +41,18 @@ public class ActivationZone1D {
         return activationZone[pos];
     }
 
+    public int checkArea(int pos, int area){
+        int activationCode;
+        System.out.println("pos: "+ pos + " " + (pos + area));
+        for (int i = (pos + area); i > pos; i--) {
+            activationCode = checkCollision(pos);
+            if(activationCode !=0){
+                return activationCode;
+            } 
+        }
+        return 0;
+    }
+
     public static boolean fillArea(int point, int symbol, int[] array, int zone) {
         for (int i = 0; i < zone; i++) {
             array[point + i] = symbol;
