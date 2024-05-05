@@ -203,10 +203,12 @@ public class SushiLine implements ActCharac {
         switch (objSymbol) {
             case 0:
                 action.update();
-                //System.out.println(sushis.indexOf(action.getSushi()) + " - " + action.toString());
+                break;
+            case 3:
+                activation.getActivatedObjs().add(new ActivationZoneObj(objSymbol, sushi));
+                action.update();
                 break;
             default:
-                //System.out.println(sushis.indexOf(sushi) + " activated: " + sushi.toString());
                 activation.getActivatedObjs().add(new ActivationZoneObj(objSymbol, sushi));
         }
     }
@@ -227,8 +229,6 @@ public class SushiLine implements ActCharac {
                     break;
             }
         }
-        // System.out.println(sushis.size() + " : " +
-        // activation.getActivatedObjs().toString());
         activation.getActivatedObjs().clear();
     }
 
