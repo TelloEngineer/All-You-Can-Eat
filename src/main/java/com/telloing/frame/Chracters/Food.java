@@ -5,9 +5,6 @@
 package com.telloing.frame.Chracters;
 
 import java.awt.Container;
-import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import com.telloing.frame.Chracters.Collision.CollisionerPlaneArea;
 
 /**
  *

@@ -10,7 +10,6 @@ import com.telloing.frame.Chracters.ChracterBuilder.FoodDirector;
 import com.telloing.frame.Chracters.Collision.ActivationZone1D;
 import com.telloing.frame.Chracters.Collision.ActivationZoneObj;
 import com.telloing.frame.Chracters.Food;
-import com.telloing.frame.Chracters.Collision.ActivationZone1D;
 import java.awt.Graphics2D;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -39,8 +38,7 @@ class Sushis_onLine {
         return sushisToShow;
     }
 
-    public void updateSushi(List<Food> sushis) {
-        // System.out.println("arriba: " + sushisToShow.size() + " index" + index);
+    public void updateList(List<Food> sushis) {
         sushisToShow.retainAll(sushis);
         if (index > sushisToShow.size()) { index = sushisToShow.size(); }
 
@@ -54,13 +52,9 @@ class Sushis_onLine {
             sushisToShow.add(sushis.get(index));
             index++;
         }
-
-        // System.out.println( "Index: " + Integer.toString(index) + " timer:"+
-        // System.out.println(sushisToShow.toString());
     }
 
     public boolean isTheLast(List<Food> sushis) {
-        //System.out.println(sushis.size() + " - " + sushis_Showed);
         if (sushis_Showed >= sushis.size() - 1) {
             sushis_Showed = 0;
             index = 0;
@@ -164,12 +158,11 @@ public class SushiLine implements ActCharac {
                 action.draw(g);
             }
         }
-        // System.out.println(Arrays.toString(ActivationZone1D.collisionFood));
     }
 
     @Override
     public void update() {
-        sushisToShow.updateSushi(sushis);
+        sushisToShow.updateList(sushis);
         for (Food sushi : sushisToShow.getSushisToShow()) {
             checkActivators();
             if (sushi.getAttributes().getLifeTime().isVisible()) {
@@ -190,6 +183,7 @@ public class SushiLine implements ActCharac {
                 // activa animacion de mano;
                 ActivationZone1D.fillArea(point, 3, ActivationZone1D.collisionFood, zone);
                 Scenary.listener.setKeyCode(-1);
+                System.out.println(Arrays.toString(ActivationZone1D.collisionFood));
                 break;
             default:
                 ActivationZone1D.fillArea(point, 0, ActivationZone1D.collisionFood, zone);
@@ -204,7 +198,7 @@ public class SushiLine implements ActCharac {
             case 0:
                 action.update();
                 break;
-            case 3:
+            case 3: // si quieres que la mano siempre interactue con los sushis.
                 activation.getActivatedObjs().add(new ActivationZoneObj(objSymbol, sushi));
                 action.update();
                 break;

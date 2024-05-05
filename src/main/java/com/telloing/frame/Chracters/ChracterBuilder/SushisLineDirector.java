@@ -3,7 +3,6 @@ package com.telloing.frame.Chracters.ChracterBuilder;
 import java.awt.Container;
 import java.util.Random;
 
-import com.telloing.frame.Scenary;
 import com.telloing.frame.Chracters.Food;
 import com.telloing.frame.Chracters.MovCharact;
 

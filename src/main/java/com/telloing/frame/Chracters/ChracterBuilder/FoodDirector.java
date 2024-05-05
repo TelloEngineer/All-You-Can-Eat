@@ -7,7 +7,6 @@ package com.telloing.frame.Chracters.ChracterBuilder;
 import java.awt.Container;
 
 import com.telloing.frame.Chracters.Food;
-import com.telloing.frame.Chracters.MovCharact;
 import com.telloing.frame.Chracters.ChracterAttri;
 import com.telloing.frame.Frames.Animations;
 import com.telloing.frame.Scenary;

@@ -2,17 +2,11 @@ package com.telloing.frame.Chracters.Compostion;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
-
-import javax.swing.text.html.HTMLDocument.Iterator;
-
 import com.telloing.frame.Scenary;
 import com.telloing.frame.Chracters.ActCharac;
 import com.telloing.frame.Chracters.Food;
-import com.telloing.frame.Chracters.Collision.CollisionerPlaneArea;
 import com.telloing.frame.Frames.Animations;
 
 import java.awt.Container;
