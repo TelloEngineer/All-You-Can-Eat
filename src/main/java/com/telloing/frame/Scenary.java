@@ -38,8 +38,8 @@ public class Scenary extends JPanel implements Runnable {
         
 
         listener = new MovCharact();
-        for(int i = 0; i<32; i++){
-            Scenary.sushis.add(SushisLineDirector.getInstance().getNewSushi(this, listener));
+        for(int i = 0; i<33; i++){
+            Scenary.sushis.add(SushisLineDirector.getInstance().getNewSushi(this));
         }
         
         Scenary.elements.add(OrnamentDirector.getInstance().createChef(this, 150, 60));

@@ -25,43 +25,32 @@ import javax.imageio.ImageIO;
  * @author josue
  */
 class FoodBuilder {
-    private Container container; 
-    private MovCharact motion;
+    private Container container;
     private static FoodBuilder foodBuilder;
     private Map<String, Animations> listAnimations;
 
-    
+    private FoodBuilder() {
+    }
 
-    private FoodBuilder(){
-    }
-    
-    public static FoodBuilder getInstance(){
-        
-        if(foodBuilder == null){
+    public static FoodBuilder getInstance() {
+
+        if (foodBuilder == null) {
             foodBuilder = new FoodBuilder();
-        } 
+        }
         return foodBuilder;
-    }
-    
-    
-    public void buildMotion(MovCharact motion) {
-        this.motion = motion;
     }
 
     public void buildContainer(Container container) {
         this.container = container;
     }
-    
 
     // diferencia entre bara y comida 32
-    public Food getFood(){
-        return new Food(new ChracterAttri(FoodDirector.SUSHI_POS_X,203,3, listAnimations), 
-                 motion, container);
+    public Food getFood() {
+        return new Food(new ChracterAttri(FoodDirector.SUSHI_POS_X, 203, 3, listAnimations), container);
     }
-    
 
-    public void buildFrames(String nameFile){
-        
+    public void buildFrames(String nameFile) {
+
         BufferedImage setFrames;
         try {
             setFrames = ImageIO.read(getClass().getResourceAsStream(nameFile));
@@ -70,15 +59,17 @@ class FoodBuilder {
             Logger.getLogger(Scenary.class.getName()).log(Level.SEVERE, null, ex);
             return;
         }
-        
+
         Animations anim;
         Map<String, Animations> list = new HashMap<>();
 
-        anim = new Animations(Animations.separateFrames(setFrames, FoodDirector.SUSHI_SIZE, FoodDirector.SUSHI_SIZE, 2, 2));
+        anim = new Animations(
+                Animations.separateFrames(setFrames, FoodDirector.SUSHI_SIZE, FoodDirector.SUSHI_SIZE, 2, 2));
         list.put("comer", anim);
         listAnimations = list;
     }
 }
+
 /**
  *
  * @author josue
@@ -92,61 +83,66 @@ public class FoodDirector {
     private FoodDirector() {
         this.builder = FoodBuilder.getInstance();
     }
-    
-    public static FoodDirector getInstancia(){
-        if(foodDirector == null){
+
+    public static FoodDirector getInstancia() {
+        if (foodDirector == null) {
             foodDirector = new FoodDirector();
         }
         return foodDirector;
     }
-    
-    public Food createSushi1(Container container, MovCharact listener ){
+
+    public Food createSushi1(Container container) {
         builder.buildFrames("./Sushi/Sushi 1.png");
         builder.buildContainer(container);
-        builder.buildMotion(listener);
         return builder.getFood();
     }
-    public Food createSushi2(Container container, MovCharact listener ){
+
+    public Food createSushi2(Container container) {
         builder.buildFrames("./Sushi/Sushi 2.png");
         builder.buildContainer(container);
-        builder.buildMotion(listener);
+
         return builder.getFood();
     }
-    public Food createSushi3(Container container, MovCharact listener ){
+
+    public Food createSushi3(Container container) {
         builder.buildFrames("./Sushi/Sushi 3.png");
         builder.buildContainer(container);
-        builder.buildMotion(listener);
+
         return builder.getFood();
     }
-    public Food createSushi4(Container container, MovCharact listener ){
+
+    public Food createSushi4(Container container) {
         builder.buildFrames("./Sushi/Sushi 4.png");
         builder.buildContainer(container);
-        builder.buildMotion(listener);
+
         return builder.getFood();
     }
-    public Food createSushi5(Container container, MovCharact listener ){
+
+    public Food createSushi5(Container container) {
         builder.buildFrames("./Sushi/Sushi 5.png");
         builder.buildContainer(container);
-        builder.buildMotion(listener);
+
         return builder.getFood();
     }
-    public Food createSushi6(Container container, MovCharact listener ){
+
+    public Food createSushi6(Container container) {
         builder.buildFrames("./Sushi/Sushi 6.png");
         builder.buildContainer(container);
-        builder.buildMotion(listener);
+
         return builder.getFood();
     }
-    public Food createSushi7(Container container, MovCharact listener ){
+
+    public Food createSushi7(Container container) {
         builder.buildFrames("./Sushi/Sushi 7.png");
         builder.buildContainer(container);
-        builder.buildMotion(listener);
+
         return builder.getFood();
     }
-    public Food createSushi8(Container container, MovCharact listener ){
+
+    public Food createSushi8(Container container) {
         builder.buildFrames("./Sushi/Sushi 8.png");
         builder.buildContainer(container);
-        builder.buildMotion(listener);
+
         return builder.getFood();
     }
 }
-

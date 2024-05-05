@@ -13,36 +13,23 @@ import com.telloing.frame.Chracters.Collision.CollisionerPlaneArea;
  *
  * @author josue
  */
-public class Food{
+public class Food {
+
     private ChracterAttri attributes; // que quede claro, no cambiar.
-    private MovCharact listener;
     private Container container;
-    private CollisionerPlaneArea collisionChecker;
-    
+
     public Container getContainer() {
         return container;
     }
-
 
     public void setContainer(Container container) {
         this.container = container;
     }
 
-    public Food(ChracterAttri attri, MovCharact listener, Container container) {
+    public Food(ChracterAttri attri, Container container) {
         this.attributes = attri;
-        this.listener = listener;
         this.container = container;
         this.attributes.setImage(this.attributes.getListAnimations().get("comer").getFrames().get(0));
-        this.collisionChecker = new CollisionerPlaneArea(CollisionerPlaneArea.collisionFood, 1);
-    }
-
-    
-    public CollisionerPlaneArea getCollisionChecker() {
-        return collisionChecker;
-    }
-
-    public void setCollisionChecker(CollisionerPlaneArea collisionChecker) {
-        this.collisionChecker = collisionChecker;
     }
 
     public void setAttributes(ChracterAttri atributos) {
@@ -53,11 +40,11 @@ public class Food{
         return attributes;
     }
 
-
     @Override
     public String toString() {
-        return "Food [attributes=" + attributes + ", listener=" + listener + ", container=" + container
-                + ", collisionChecker=" + collisionChecker + "]";
+        return "Food [attributes=" + attributes + "]";
     }
+
+    
 
 }

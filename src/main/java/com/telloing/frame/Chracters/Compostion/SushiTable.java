@@ -70,11 +70,13 @@ public class SushiTable implements ActCharac {
     private final int elementToDelete = 0;
 
     private List<Food> sushis;
+    private List<Food> sushis_toAdd;
     private Sushi_Ontable action;
     private int indexSushi;
 
     public SushiTable() {
         this.sushis = new LinkedList<>();
+        this.sushis_toAdd = new LinkedList<>();
         this.action = new Sushi_Ontable(null, null);
         // inicializar el random
     }
@@ -88,7 +90,7 @@ public class SushiTable implements ActCharac {
         character.getAttributes().setX(positionX[indexSushi]);
         character.getAttributes().setY(positionY);
         indexSushi = indexSushi < max_sushis - 1 ? ++indexSushi : 0;
-        return this.sushis.add(character);
+        return this.sushis_toAdd.add(character);
     }
 
     public boolean remove(Food character) {
@@ -105,10 +107,16 @@ public class SushiTable implements ActCharac {
 
     @Override
     public void draw(Graphics2D g) {
+        sushis.addAll(sushis_toAdd);
+        
+        //System.out.println(this.sushis.size() + " : " + this.sushis_toAdd.size());
         for (Food sushi : sushis) { // se ocupa actualizar cada vez que se itera
             action.setSushi(sushi);
             action.draw(g);
         }
+        sushis_toAdd.clear();
+        
+        //System.out.println(this.sushis.size() + " - " + this.sushis_toAdd.size());
     }
 
     @Override

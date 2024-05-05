@@ -7,8 +7,10 @@ package com.telloing.frame.Chracters.Compostion;
 import com.telloing.frame.Scenary;
 import com.telloing.frame.Chracters.ActCharac;
 import com.telloing.frame.Chracters.ChracterBuilder.FoodDirector;
+import com.telloing.frame.Chracters.Collision.ActivationZone1D;
+import com.telloing.frame.Chracters.Collision.ActivationZoneObj;
 import com.telloing.frame.Chracters.Food;
-import com.telloing.frame.Chracters.Collision.CollisionerPlaneArea;
+import com.telloing.frame.Chracters.Collision.ActivationZone1D;
 import java.awt.Graphics2D;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -20,13 +22,14 @@ import java.awt.event.KeyEvent;
  *
  * @author josue
  */
-
 class Sushis_onLine {
+
     static public final long lapse = 500; // milisegundos
 
     private List<Food> sushisToShow;
     private long startTime;
     private int index;
+    private int sushis_Showed;
 
     public Sushis_onLine() {
         this.sushisToShow = new LinkedList<Food>();
@@ -38,23 +41,34 @@ class Sushis_onLine {
 
     public void updateSushi(List<Food> sushis) {
         // System.out.println("arriba: " + sushisToShow.size() + " index" + index);
+        sushisToShow.retainAll(sushis);
+        if (index > sushisToShow.size()) { index = sushisToShow.size(); }
+
         long difference = System.currentTimeMillis() - this.startTime;
         if (difference < lapse) {
             return;
         }
+
         this.startTime = System.currentTimeMillis();
-        if (index > sushis.size()) {
-            sushisToShow.retainAll(sushis);
-            index = sushisToShow.size();
-            return;
-        }
         if (index < sushis.size()) {
             sushisToShow.add(sushis.get(index));
             index++;
         }
 
         // System.out.println( "Index: " + Integer.toString(index) + " timer:"+
-        // Integer.toString(timer) + sushisToShow.toString());
+        // System.out.println(sushisToShow.toString());
+    }
+
+    public boolean isTheLast(List<Food> sushis) {
+        //System.out.println(sushis.size() + " - " + sushis_Showed);
+        if (sushis_Showed >= sushis.size() - 1) {
+            sushis_Showed = 0;
+            index = 0;
+            sushisToShow.clear();
+            return true;
+        }
+        sushis_Showed++;
+        return false;
     }
 
 }
@@ -96,23 +110,29 @@ class Sushi_Online implements ActCharac {
         sushi.getAttributes().setX(sushi.getAttributes().getX() + sushi.getAttributes().getSpeed());
     }
 
+    @Override
+    public String toString() {
+        return "Sushi_Online [sushi=" + sushi.toString() + "]";
+    }
+
 }
 
 public class SushiLine implements ActCharac {
+
     private final long delay = Sushis_onLine.lapse;
     private final int max = 32;
 
     private List<Food> sushis;
-    private List<Food> sushisToRemove;
     private Sushi_Online action;
     private Sushis_onLine sushisToShow;
+    private ActivationZone1D activation;
 
     public SushiLine() {
         this.sushis = new LinkedList<>();
-        this.sushisToRemove = new LinkedList<>();
         this.action = new Sushi_Online(null, null);
-        //CollisionerPlaneArea.fillArea(420, 2, CollisionerPlaneArea.collisionFood, 42);
+        ActivationZone1D.fillArea(430, 2, ActivationZone1D.collisionFood, 32);
         this.sushisToShow = new Sushis_onLine();
+        this.activation = new ActivationZone1D(ActivationZone1D.collisionFood);
 
     }
 
@@ -144,62 +164,72 @@ public class SushiLine implements ActCharac {
                 action.draw(g);
             }
         }
-        // System.out.println(Arrays.toString(CollisionerPlaneArea.collisionFood));
+        // System.out.println(Arrays.toString(ActivationZone1D.collisionFood));
     }
 
     @Override
     public void update() {
         sushisToShow.updateSushi(sushis);
-        sushisToRemove.clear(); // lista para guardar cuales a eliminar. se vacia, para iniciar en 0
         for (Food sushi : sushisToShow.getSushisToShow()) {
-            checkListener();
-            if (sushi.getAttributes().getLifeTime().isReady()) {
-                action.setSushi(sushi);
-                checkCollision(sushi); // default: action.update();
+            checkActivators();
+            if (sushi.getAttributes().getLifeTime().isVisible()) {
+                checkActivation(sushi); // no activation: action.update();
             }
         }
-        sushis.removeAll(sushisToRemove); // revisa los sushis a eliminar, A HUEVO, se hace asi
+        activateActivations(); // revisa los sushis a eliminar, A HUEVO, se hace asi
         // porque si borramos directamente, y nos quedamos sin sushis, EXCEPTION
         // java.util.ConcurrentModificationException
     }
 
-    private void checkListener() {
+    private void checkActivators() {
+        final int zone = 20;
+        final int point = 300;
+
         switch (Scenary.listener.getKeyCode()) {
             case KeyEvent.VK_Z:
-            // activa animacion de mano;
-                CollisionerPlaneArea.fillArea(390, 3, CollisionerPlaneArea.collisionFood, 10);
-                System.out.println(Arrays.toString(CollisionerPlaneArea.collisionFood));
+                // activa animacion de mano;
+                ActivationZone1D.fillArea(point, 3, ActivationZone1D.collisionFood, zone);
                 Scenary.listener.setKeyCode(-1);
                 break;
             default:
-                CollisionerPlaneArea.fillArea(390, 0, CollisionerPlaneArea.collisionFood, 10);
+                ActivationZone1D.fillArea(point, 0, ActivationZone1D.collisionFood, zone);
         }
     }
 
-    private void checkCollision(Food sushi) {
+    private void checkActivation(Food sushi) {
+        action.setSushi(sushi);
         int actualPos = sushi.getAttributes().getX() - FoodDirector.SUSHI_POS_X;
-        //System.out.println("Collision: " + Integer.toString(actualPos));
-        //System.out.println("X: " + Integer.toString(sushi.getAttributes().getX()));
-        int idObj = sushi.getCollisionChecker().mapChecking(actualPos, sushi.getAttributes().getSpeed());
-        if(sushi.getCollisionChecker().getActualPosition() > 420){
-            sushi.getAttributes().setX(72);
-            sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
-            sushi.getCollisionChecker().setActualPosition(0);
-            sushi.getAttributes().getLifeTime().startTimer(this.delay);
-            return;
-        }
-        switch (idObj) {
-            case 3:
-                if (Scenary.sushisToEat.add(sushi)) {
-                    sushi.getAttributes().getLifeTime().setAlive(false);
-                    sushi.getCollisionChecker().getCollisionZone()[sushi.getCollisionChecker().getActualPosition()] = 0;
-                    sushi.getCollisionChecker().setActualPosition(0);
-                    sushisToRemove.add(sushi);
-                }
+        int objSymbol = activation.checkCollision(actualPos);
+        switch (objSymbol) {
+            case 0:
+                action.update();
+                //System.out.println(sushis.indexOf(action.getSushi()) + " - " + action.toString());
                 break;
             default:
-                action.update();
+                //System.out.println(sushis.indexOf(sushi) + " activated: " + sushi.toString());
+                activation.getActivatedObjs().add(new ActivationZoneObj(objSymbol, sushi));
         }
+    }
+
+    private void activateActivations() {
+        for (ActivationZoneObj obj : activation.getActivatedObjs()) {
+            switch (obj.getObjSymbol()) {
+                case 2:
+                case -1:
+                    obj.getObj().getAttributes().setX(72);
+                    obj.getObj().getAttributes().getLifeTime().startTimer(this.delay);
+                    break;
+                case 3:
+                    boolean isDeletable = Scenary.sushisToEat.add(obj.getObj());
+                    if (isDeletable) {
+                        sushis.remove(obj.getObj());
+                    }
+                    break;
+            }
+        }
+        // System.out.println(sushis.size() + " : " +
+        // activation.getActivatedObjs().toString());
+        activation.getActivatedObjs().clear();
     }
 
 }

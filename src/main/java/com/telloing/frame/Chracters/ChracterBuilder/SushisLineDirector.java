@@ -32,36 +32,35 @@ public class SushisLineDirector {
             return;
         }
         timer = 0;
-        Scenary.sushis.add(getNewSushi(container, mov));
     }
 
-    public Food getNewSushi(Container container, MovCharact mov) {
+    public Food getNewSushi(Container container) {
         int num = random.nextInt(range);
-        Food charac = FoodDirector.getInstancia().createSushi1(container, mov);
+        Food charac = FoodDirector.getInstancia().createSushi1(container);
         switch (num) {
             case 0:
-                charac = FoodDirector.getInstancia().createSushi1(container, mov);
+                charac = FoodDirector.getInstancia().createSushi1(container);
             break;
             case 1:
-                charac = FoodDirector.getInstancia().createSushi2(container, mov);
+                charac = FoodDirector.getInstancia().createSushi2(container);
             break;
             case 2:
-                charac = FoodDirector.getInstancia().createSushi3(container, mov);
+                charac = FoodDirector.getInstancia().createSushi3(container);
             break;
             case 3:
-                charac = FoodDirector.getInstancia().createSushi4(container, mov);
+                charac = FoodDirector.getInstancia().createSushi4(container);
             break;
             case 4:
-                charac = FoodDirector.getInstancia().createSushi5(container, mov);
+                charac = FoodDirector.getInstancia().createSushi5(container);
             break;
             case 5:
-                charac = FoodDirector.getInstancia().createSushi6(container, mov);
+                charac = FoodDirector.getInstancia().createSushi6(container);
             break;
             case 6:
-                charac = FoodDirector.getInstancia().createSushi7(container, mov);
+                charac = FoodDirector.getInstancia().createSushi7(container);
             break;
             case 7:
-                charac = FoodDirector.getInstancia().createSushi8(container, mov);
+                charac = FoodDirector.getInstancia().createSushi8(container);
             break;
         }
         return charac;

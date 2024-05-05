@@ -3,7 +3,7 @@ package com.telloing.frame.Chracters.Compostion;
 public class LifeTime{
     private boolean visible;
     private boolean alive;
-    private int timer;
+    private int startTime;
     private long delay;
     
     public LifeTime() {
@@ -11,7 +11,7 @@ public class LifeTime{
     }
     public final void reset(){
         this.visible = true;
-        this.timer = 0;
+        this.startTime = 0;
         this.delay = 0;
         this.alive = true;
     }
@@ -38,21 +38,18 @@ public class LifeTime{
     }
 
     public boolean isReady(){
-        if (!this.alive){
-            return this.alive;
-        }
         if(this.visible){
-            timer = 0;
+            startTime = 0;
             return this.visible;
         }
-        this.visible = timer++ >= delay;
+        this.visible = startTime++ >= delay;
         return this.visible;
     }
     public int getTimer() {
-        return timer;
+        return startTime;
     }
-    public void setTimer(int timer) {
-        this.timer = timer;
+    public void setTimer(int startTime) {
+        this.startTime = startTime;
     }
     public long getDelay() {
         return delay;
