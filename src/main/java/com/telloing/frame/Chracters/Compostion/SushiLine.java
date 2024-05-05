@@ -46,7 +46,6 @@ class Sushis_onLine {
         if (difference < lapse) {
             return;
         }
-
         this.startTime = System.currentTimeMillis();
         if (index < sushis.size()) {
             sushisToShow.add(sushis.get(index));
@@ -176,7 +175,7 @@ public class SushiLine implements ActCharac {
     }
 
     private void checkActivators() {
-        final int zone = 32;
+        final int zone = 20;
         final int point = 300;
 
         switch (Scenary.listener.getKeyCode()) {
