@@ -124,9 +124,10 @@ public class SushiLine implements ActCharac {
     public SushiLine() {
         this.sushis = new LinkedList<>();
         this.action = new OnlineAction(null, null);
-        ActivationZone1D.fillArea(430, 2, ActivationZone1D.collisionFood, 32);
         this.sushisToShow = new Sushis_onLine();
         this.activation = new ActivationZone1D(ActivationZone1D.collisionFood);
+        
+        ActivationZone1D.fillArea(430, 2, ActivationZone1D.collisionFood, 32);
 
     }
 
@@ -153,7 +154,7 @@ public class SushiLine implements ActCharac {
     @Override
     public void draw(Graphics2D g) {
         for (Food sushi : sushisToShow.getSushisToShow()) { // se ocupa actualizar cada vez que se itera
-            if (sushi.getAttributes().getLifeTime().isReady()) {
+            if (sushi.getAttributes().getLifeTime().isVisible()) {
                 action.setSushi(sushi);
                 action.draw(g);
             }
@@ -165,7 +166,7 @@ public class SushiLine implements ActCharac {
         sushisToShow.updateList(sushis);
         for (Food sushi : sushisToShow.getSushisToShow()) {
             checkActivators();
-            if (sushi.getAttributes().getLifeTime().isVisible()) {
+            if (sushi.getAttributes().getLifeTime().isReady()) {
                 checkActivation(sushi); // no activation: action.update();
             }
         }
@@ -175,7 +176,7 @@ public class SushiLine implements ActCharac {
     }
 
     private void checkActivators() {
-        final int zone = 20;
+        final int zone = 32;
         final int point = 300;
 
         switch (Scenary.listener.getKeyCode()) {
@@ -183,7 +184,7 @@ public class SushiLine implements ActCharac {
                 // activa animacion de mano;
                 ActivationZone1D.fillArea(point, 3, ActivationZone1D.collisionFood, zone);
                 Scenary.listener.setKeyCode(-1);
-                System.out.println(Arrays.toString(ActivationZone1D.collisionFood));
+                //System.out.println(Arrays.toString(ActivationZone1D.collisionFood));
                 break;
             default:
                 ActivationZone1D.fillArea(point, 0, ActivationZone1D.collisionFood, zone);
