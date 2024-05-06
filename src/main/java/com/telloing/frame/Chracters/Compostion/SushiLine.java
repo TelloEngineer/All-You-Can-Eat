@@ -157,7 +157,6 @@ public class SushiLine implements ActCharac {
                 action.setSushi(sushi);
                 action.draw(g);
             }
-            g.drawRect((FoodDirector.SUSHI_POS_X + 130), 203, 20, 1);
         }
     }
 

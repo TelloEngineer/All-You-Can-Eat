@@ -29,8 +29,8 @@ public class Animations {
         return Scalr.resize(original, newHeight, newWidth);
     }
 
-    public void rescaleFrames(int porcentage) {
-        ListIterator<BufferedImage> iterador = this.frames.listIterator();
+    public void rescaleFrames(int porcentage, int start) {
+        ListIterator<BufferedImage> iterador = this.frames.listIterator(start);
         BufferedImage image;
         while (iterador.hasNext()) {
             image = iterador.next();

@@ -49,6 +49,8 @@ class Sushi_Ontable {
         Animations animation = this.sushi.getAttributes().getListAnimations().get("comer");
         if (index < animation.getFrames().size()) {
             sushi.getAttributes().setImage(animation.getFrames().get(index++));
+            sushi.getAttributes().setX(120);
+            sushi.getAttributes().setY(160);
             return false;
         }
         index = 1;

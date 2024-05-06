@@ -28,7 +28,6 @@ public class AnimationIterator {
             takeIndex = animations.getFrames().size();
             return true;
         }
-        System.out.println(takeIndex);
         attri.setImage(animations.getFrames().get(takeIndex++));
         return false;
     }
