@@ -53,7 +53,7 @@ public class Consumer implements ActCharac {
     }
     
     public boolean upHand(){
-        return animationIter.untilLast(attributes);
+        return animationIter.untilLast(attributes, this.attributes.getListAnimations().get("take"));
     }
 
     public void downHand(){

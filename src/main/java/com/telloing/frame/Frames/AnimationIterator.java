@@ -4,7 +4,7 @@ import com.telloing.frame.Chracters.ChracterAttri;
 import com.telloing.frame.Chracters.Compostion.LifeTime;
 
 public class AnimationIterator {
-    static public final long lapse = 100; // milisegundos
+    static public final long lapse = 30; // milisegundos
     private long startTime;
 
     private int takeIndex;
@@ -17,8 +17,7 @@ public class AnimationIterator {
         this.takeIndex = takeIndex;
     }
 
-    public boolean untilLast(ChracterAttri attri){
-        Animations animations = attri.getListAnimations().get("take");
+    public boolean untilLast(ChracterAttri attri , Animations animations){
         long difference = System.currentTimeMillis() - this.startTime;
         if (difference < lapse) {
             return false;
