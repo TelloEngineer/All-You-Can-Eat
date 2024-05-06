@@ -5,6 +5,7 @@
 package com.telloing.frame.Chracters;
 
 
+import com.telloing.frame.Frames.AnimationIterator;
 import com.telloing.frame.Frames.Animations;
 import java.awt.Container;
 import java.awt.Graphics2D;
@@ -20,14 +21,19 @@ import java.util.ListIterator;
 public class Consumer implements ActCharac {
     private ChracterAttri attributes; //que quede claro, no cambiar.
     private Container container;
-    private int takeIndex;
+    private AnimationIterator animationIter;
+
 
     
+    public AnimationIterator getAnimationIter() {
+        return animationIter;
+    }
+
     public Consumer(ChracterAttri attributes, Container container) {
         this.container = container;
         this.attributes = attributes;
         this.attributes.setImage(this.attributes.getListAnimations().get("take").getFrames().get(0));
-        this.takeIndex = 0;
+        this.animationIter = new AnimationIterator();
     }
     
     public void setAttributes(ChracterAttri atributos) {
@@ -47,19 +53,12 @@ public class Consumer implements ActCharac {
     }
     
     public boolean upHand(){
-        Animations animations = this.attributes.getListAnimations().get("take");
-        if (takeIndex >= animations.getFrames().size()) {
-            takeIndex = animations.getFrames().size();
-            return true;
-        }
-        System.out.println(takeIndex);
-        this.attributes.setImage(animations.getFrames().get(takeIndex++));
-        return false;
+        return animationIter.untilLast(attributes);
     }
 
     public void downHand(){
-        takeIndex = 0;
-        this.attributes.setImage(this.attributes.getListAnimations().get("take").getFrames().get(takeIndex));
+        animationIter.setTakeIndex(0);
+        this.attributes.setImage(this.attributes.getListAnimations().get("take").getFrames().get(animationIter.getTakeIndex()));
     }
 
     @Override
