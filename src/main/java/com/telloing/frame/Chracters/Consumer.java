@@ -47,12 +47,14 @@ public class Consumer implements ActCharac {
     }
     
     public boolean upHand(){
-        Animations animation = this.attributes.getListAnimations().get("take");
-        if (takeIndex < animation.getFrames().size()) {
-            this.attributes.setImage(animation.getFrames().get(animation.getFrames().size() -1));
-           return false;
+        Animations animations = this.attributes.getListAnimations().get("take");
+        if (takeIndex >= animations.getFrames().size()) {
+            takeIndex = animations.getFrames().size();
+            return true;
         }
-        return true;
+        System.out.println(takeIndex);
+        this.attributes.setImage(animations.getFrames().get(takeIndex++));
+        return false;
     }
 
     public void downHand(){
