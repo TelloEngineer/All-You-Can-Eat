@@ -126,7 +126,7 @@ public class SushiLine implements ActCharac {
         this.sushisToShow = new Sushis_onLine();
         this.activation = new ActivationZone1D(ActivationZone1D.collisionFood);
         
-        ActivationZone1D.fillArea(430, 2, ActivationZone1D.collisionFood, 32);
+        ActivationZone1D.fillArea(450, 2, ActivationZone1D.collisionFood, 5);
 
     }
 

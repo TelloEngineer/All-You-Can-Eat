@@ -43,6 +43,9 @@ class Sushi_Ontable {
     public void draw(Graphics2D g) {
         g.drawImage(sushi.getAttributes().getImage(), sushi.getAttributes().getX(), sushi.getAttributes().getY(),
                 container);
+        //activar condicion
+            //dibujar particular
+            // use draw method
     }
 
     public boolean update() {
@@ -51,6 +54,7 @@ class Sushi_Ontable {
             sushi.getAttributes().setImage(animation.getFrames().get(index++));
             sushi.getAttributes().setX(120);
             sushi.getAttributes().setY(160);
+            // bandera
             return false;
         }
         index = 1;
@@ -134,6 +138,8 @@ public class SushiTable implements ActCharac {
                 }
                 Scenary.listener.setKeyCode(-1);
                 break;
+            default:
+                //restablece original values.
         }
 
     }
