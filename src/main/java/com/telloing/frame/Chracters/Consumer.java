@@ -9,6 +9,8 @@ import com.telloing.frame.Frames.Animations;
 import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.util.ListIterator;
 
 
 /**
@@ -16,16 +18,16 @@ import java.awt.event.KeyEvent;
  * @author aleck
  */
 public class Consumer implements ActCharac {
-    private Animations animation;
     private ChracterAttri attributes; //que quede claro, no cambiar.
-    private MovCharact listener;
     private Container container;
+    private int takeIndex;
 
     
-    public Consumer(ChracterAttri attributes, MovCharact listener, Container container) {
+    public Consumer(ChracterAttri attributes, Container container) {
         this.container = container;
-        this.listener = listener;
         this.attributes = attributes;
+        this.attributes.setImage(this.attributes.getListAnimations().get("take").getFrames().get(0));
+        this.takeIndex = 0;
     }
     
     public void setAttributes(ChracterAttri atributos) {
@@ -38,21 +40,26 @@ public class Consumer implements ActCharac {
         return attributes;
     }
 
-
-    public void setAnimation(Animations animation) {
-        this.animation = animation;
-    }
-    
-    
-    public Animations getAnimation() {
-        return animation;
-    }
     
     @Override
     public void draw(Graphics2D g) {
-        // Moves to the next frame 
+        g.drawImage(this.attributes.getImage(),this.getAttributes().getX(), this.getAttributes().getY(), container);
     }
     
+    public boolean upHand(){
+        Animations animation = this.attributes.getListAnimations().get("take");
+        if (takeIndex < animation.getFrames().size()) {
+            this.attributes.setImage(animation.getFrames().get(animation.getFrames().size() -1));
+           return false;
+        }
+        return true;
+    }
+
+    public void downHand(){
+        takeIndex = 0;
+        this.attributes.setImage(this.attributes.getListAnimations().get("take").getFrames().get(takeIndex));
+    }
+
     @Override
     public void update() {
         // Updates the information

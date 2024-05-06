@@ -4,6 +4,7 @@
  */
 package com.telloing.frame;
 
+import com.telloing.frame.Chracters.ChracterBuilder.ConsumerDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.FoodBeltDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.OrnamentDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.SushisLineDirector;
@@ -11,6 +12,7 @@ import com.telloing.frame.Chracters.Compostion.EscenaryElements;
 import com.telloing.frame.Chracters.Compostion.SushiLine;
 import com.telloing.frame.Chracters.Compostion.SushiTable;
 import com.telloing.frame.Frames.BackGroundDirector;
+import com.telloing.frame.Chracters.Consumer;
 import com.telloing.frame.Chracters.MovCharact;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -28,21 +30,23 @@ public class Scenary extends JPanel implements Runnable {
     private static final int fps = 24;
     public static final long drawInterval = 1000 / fps;
     
-    public static final EscenaryElements elements = new EscenaryElements();;
+    public static final EscenaryElements elements = new EscenaryElements();
     public static final SushiLine sushis = new SushiLine();
     public static final SushiTable sushisToEat = new SushiTable();
+    public static Consumer consumer;
     public static MovCharact listener;
 
 
     public Scenary() {
         
+        consumer = ConsumerDirector.getInstance().createConsumer(this);
 
         listener = new MovCharact();
         
         Scenary.elements.add(OrnamentDirector.getInstance().createChef(this, 150, 60));
         Scenary.elements.add(Scenary.sushis);
         Scenary.elements.add(FoodBeltDirector.getInstance().createBelt(this));
-        Scenary.elements.add(OrnamentDirector.getInstance().createCliente(this, 75, 210));
+        Scenary.elements.add(consumer);
         Scenary.elements.add(OrnamentDirector.getInstance().createRibbon(this, 60, 80));
         Scenary.elements.add(OrnamentDirector.getInstance().createPaper(this, 90, 80));
         Scenary.elements.add(OrnamentDirector.getInstance().createPunpun(this, 115,80));

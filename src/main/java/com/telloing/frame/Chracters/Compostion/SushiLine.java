@@ -22,7 +22,7 @@ import java.awt.event.KeyEvent;
  */
 class Sushis_onLine {
 
-    static public final long lapse = 500; // milisegundos
+    static public final long lapse = 600; // milisegundos
 
     private List<Food> sushisToShow;
     private long startTime;
@@ -114,6 +114,7 @@ public class SushiLine implements ActCharac {
     private final long delay = Sushis_onLine.lapse;
     private final int max = 32;
 
+    
     private List<Food> sushis;
     private OnlineAction action;
     private Sushis_onLine sushisToShow;
@@ -177,15 +178,17 @@ public class SushiLine implements ActCharac {
     private void checkActivators() {
         final int zone = 20;
         final int point = 130;
-
+        System.out.println(Scenary.listener.getKeyCode());
         switch (Scenary.listener.getKeyCode()) {
             case KeyEvent.VK_Z:
                 // activa animacion de mano;
-                ActivationZone1D.fillArea(point, 3, ActivationZone1D.collisionFood, zone);
-                Scenary.listener.setKeyCode(-1);
-                //System.out.println(Arrays.toString(ActivationZone1D.collisionFood));
+                if(Scenary.consumer.upHand()){
+                    ActivationZone1D.fillArea(point, 3, ActivationZone1D.collisionFood, zone);
+                    Scenary.listener.setKeyCode(-1);
+                }
                 break;
             default:
+                Scenary.consumer.downHand();
                 ActivationZone1D.fillArea(point, 0, ActivationZone1D.collisionFood, zone);
         }
     }
