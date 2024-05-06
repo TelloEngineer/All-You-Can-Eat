@@ -48,23 +48,26 @@ class FoodBuilder {
         return new Food(new ChracterAttri(FoodDirector.SUSHI_POS_X, 203, 3, listAnimations), container);
     }
 
-    public void buildFrames(String nameFile) {
+    
 
+    private Animations buildFrames(String nameFile, CoordenatesCuter coord) {
         BufferedImage setFrames;
+        
         try {
             setFrames = ImageIO.read(getClass().getResourceAsStream(nameFile));
-
         } catch (IOException ex) {
             Logger.getLogger(Scenary.class.getName()).log(Level.SEVERE, null, ex);
-            return;
+            return null;
         }
+        
+        return new Animations(Animations.separateFrames(setFrames, coord.getHeight(), coord.getWidth(), coord.getRow(), coord.getCol()));
+    
+    }
 
-        Animations anim;
-        Map<String, Animations> list = new HashMap<>();
-
-        anim = new Animations(
-                Animations.separateFrames(setFrames, FoodDirector.SUSHI_SIZE, FoodDirector.SUSHI_SIZE, 2, 2));
-        list.put("comer", anim);
+    public void buildAnimations(String name, String nameGigant){
+        Map<String, Animations> list = new HashMap<String, Animations>();
+        list.put("show", buildFrames(name, new CoordenatesCuter(FoodDirector.SUSHI_SIZE, FoodDirector.SUSHI_SIZE, 2, 2)));
+        list.put("comer", buildFrames(nameGigant, new CoordenatesCuter(FoodDirector.SUSHI_GIGANT_SIZE, FoodDirector.SUSHI_GIGANT_SIZE, 2, 2)));
         listAnimations = list;
     }
 }
@@ -75,6 +78,7 @@ class FoodBuilder {
  */
 public class FoodDirector {
     public static final int SUSHI_SIZE = 32;
+    public static final int SUSHI_GIGANT_SIZE = 192;
     public static final int SUSHI_POS_X = 72;
     private final FoodBuilder builder;
     private static FoodDirector foodDirector;
@@ -91,55 +95,55 @@ public class FoodDirector {
     }
 
     public Food createSushi1(Container container) {
-        builder.buildFrames("./Sushi/Sushi 1.png");
+        builder.buildAnimations("./Sushi/Sushi 1.png", "./Sushi/Gigant/Sushi 1 grande.png");
         builder.buildContainer(container);
         return builder.getFood();
     }
 
     public Food createSushi2(Container container) {
-        builder.buildFrames("./Sushi/Sushi 2.png");
+        builder.buildAnimations("./Sushi/Sushi 2.png", "./Sushi/Gigant/Sushi 2 grande.png");
         builder.buildContainer(container);
 
         return builder.getFood();
     }
 
     public Food createSushi3(Container container) {
-        builder.buildFrames("./Sushi/Sushi 3.png");
+        builder.buildAnimations("./Sushi/Sushi 3.png", "./Sushi/Gigant/Sushi 3 grande.png");
         builder.buildContainer(container);
 
         return builder.getFood();
     }
 
     public Food createSushi4(Container container) {
-        builder.buildFrames("./Sushi/Sushi 4.png");
+        builder.buildAnimations("./Sushi/Sushi 4.png", "./Sushi/Gigant/Sushi 4 grande.png");
         builder.buildContainer(container);
 
         return builder.getFood();
     }
 
     public Food createSushi5(Container container) {
-        builder.buildFrames("./Sushi/Sushi 5.png");
+        builder.buildAnimations("./Sushi/Sushi 5.png", "./Sushi/Gigant/Sushi 5 grande.png");
         builder.buildContainer(container);
 
         return builder.getFood();
     }
 
     public Food createSushi6(Container container) {
-        builder.buildFrames("./Sushi/Sushi 6.png");
+        builder.buildAnimations("./Sushi/Sushi 6.png", "./Sushi/Gigant/Sushi 6 grande.png");
         builder.buildContainer(container);
 
         return builder.getFood();
     }
 
     public Food createSushi7(Container container) {
-        builder.buildFrames("./Sushi/Sushi 7.png");
+        builder.buildAnimations("./Sushi/Sushi 7.png", "./Sushi/Gigant/Sushi 7 grande.png");
         builder.buildContainer(container);
 
         return builder.getFood();
     }
 
     public Food createSushi8(Container container) {
-        builder.buildFrames("./Sushi/Sushi 8.png");
+        builder.buildAnimations("./Sushi/Sushi 8.png", "./Sushi/Gigant/Sushi 8 grande.png");
         builder.buildContainer(container);
 
         return builder.getFood();
