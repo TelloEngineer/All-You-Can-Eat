@@ -57,6 +57,7 @@ public class Consumer implements ActCharac {
 
         boolean isNext = animation.updateNextFrame();
         if(isNext){
+            System.out.println("hola");
             attributes.setFrame(animation.getActualFrame());
             return false;
         }
@@ -74,6 +75,7 @@ public class Consumer implements ActCharac {
     }
 
     public boolean upHand(){
+        
         return animationRunning(this.attributes.getListAnimations().get("take"));
     }
 
