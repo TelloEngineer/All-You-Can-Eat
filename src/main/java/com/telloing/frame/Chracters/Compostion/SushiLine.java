@@ -9,6 +9,7 @@ import com.telloing.frame.Chracters.ActCharac;
 import com.telloing.frame.Chracters.ChracterBuilder.FoodDirector;
 import com.telloing.frame.Chracters.Collision.ActivationZone1D;
 import com.telloing.frame.Chracters.Collision.ActivationZoneObj;
+import com.telloing.frame.Frames.Delayer;
 import com.telloing.frame.Chracters.Food;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
@@ -25,12 +26,12 @@ class Sushis_onLine {
     static public final long lapse = 600; // milisegundos
 
     private List<Food> sushisToShow;
-    private long startTime;
+    private Delayer delayer;
     private int index;
-    private int sushis_Showed;
 
     public Sushis_onLine() {
         this.sushisToShow = new LinkedList<Food>();
+        this.delayer = new Delayer(lapse);
     }
 
     public List<Food> getSushisToShow() {
@@ -41,27 +42,16 @@ class Sushis_onLine {
         sushisToShow.retainAll(sushis);
         if (index > sushisToShow.size()) { index = sushisToShow.size(); }
 
-        long difference = System.currentTimeMillis() - this.startTime;
-        if (difference < lapse) {
+        if (!delayer.isTime()) {
             return;
         }
-        this.startTime = System.currentTimeMillis();
+        delayer.startTimer();
         if (index < sushis.size()) {
             sushisToShow.add(sushis.get(index));
             index++;
         }
     }
 
-    public boolean isTheLast(List<Food> sushis) {
-        if (sushis_Showed >= sushis.size() - 1) {
-            sushis_Showed = 0;
-            index = 0;
-            sushisToShow.clear();
-            return true;
-        }
-        sushis_Showed++;
-        return false;
-    }
 
 }
 
@@ -93,7 +83,7 @@ class OnlineAction implements ActCharac {
 
     @Override
     public void draw(Graphics2D g) {
-        g.drawImage(sushi.getAttributes().getImage(), sushi.getAttributes().getX(), sushi.getAttributes().getY(),
+        g.drawImage(sushi.getAttributes().getFrame(), sushi.getAttributes().getX(), sushi.getAttributes().getY(),
                 container);
     }
 
@@ -193,7 +183,7 @@ public class SushiLine implements ActCharac {
     private void checkActivation(Food sushi) {
         action.setSushi(sushi);
         int actualPos = sushi.getAttributes().getX() - FoodDirector.SUSHI_POS_X;
-        int objSymbol = activation.checkArea(actualPos, sushi.getAttributes().getImage().getWidth());
+        int objSymbol = activation.checkArea(actualPos, sushi.getAttributes().getFrame().getWidth());
         switch (objSymbol) {
             case 0:
                 action.update();

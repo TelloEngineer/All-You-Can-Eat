@@ -17,11 +17,12 @@ import org.imgscalr.Scalr;
 public class Animations {
 
     private List<BufferedImage> frames;
-    private int numFrame;
+    private ListIterator<BufferedImage> iterator;
+    private BufferedImage actualFrame;
 
     public Animations(List<BufferedImage> frames) {
         this.frames = frames;
-        this.numFrame = 0;
+        this.iterator = frames.listIterator();
     }
     
     private BufferedImage Rescale(BufferedImage original, int newHeight, int newWidth) {
@@ -68,12 +69,32 @@ public class Animations {
         this.frames.addAll(frames);
     }
 
-    public BufferedImage getNextFrame() {
-        if (numFrame >= frames.size()) {
-            numFrame = 0;
+    /**
+     * this method update actualFrame attribute
+     * and return if it was the last frame,
+     * when its the last frame, we restart our frames counter
+     * @return if its last frame
+     */
+    public boolean updateNextFrame() {
+        if (!iterator.hasNext()) {
+            return false;
+            
         }
-        return frames.get(numFrame++);
+        this.actualFrame = iterator.next();
+        return true;
     }
 
+    public boolean setNextFrame(int numberFrame){
+        if(numberFrame > frames.size() -1){
+            return false;
+        }
+        iterator = frames.listIterator(numberFrame);
+        this.actualFrame = frames.get(numberFrame);
+        return true;
+    }
+    
 
+    public BufferedImage getActualFrame() {
+        return actualFrame;
+    }
 }

@@ -15,12 +15,10 @@ class Sushi_Ontable {
 
     private Food sushi;
     private Container container;
-    private int index;
 
     public Sushi_Ontable(Food sushi, Container container) {
         this.sushi = sushi;
         this.container = container;
-        this.index = 1;
     }
 
     public Container getContainer() {
@@ -41,7 +39,7 @@ class Sushi_Ontable {
     }
 
     public void draw(Graphics2D g) {
-        g.drawImage(sushi.getAttributes().getImage(), sushi.getAttributes().getX(), sushi.getAttributes().getY(),
+        g.drawImage(sushi.getAttributes().getFrame(), sushi.getAttributes().getX(), sushi.getAttributes().getY(),
                 container);
         //activar condicion
             //dibujar particular
@@ -50,14 +48,13 @@ class Sushi_Ontable {
 
     public boolean update() {
         Animations animation = this.sushi.getAttributes().getListAnimations().get("comer");
-        if (index < animation.getFrames().size()) {
-            sushi.getAttributes().setImage(animation.getFrames().get(index++));
+        if (animation.updateNextFrame()) {
+            sushi.getAttributes().setFrame(animation.getActualFrame());
             sushi.getAttributes().setX(120);
             sushi.getAttributes().setY(160);
             // bandera
             return false;
         }
-        index = 1;
         return true;
     }
 

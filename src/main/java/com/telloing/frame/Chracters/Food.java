@@ -26,7 +26,7 @@ public class Food {
     public Food(ChracterAttri attri, Container container) {
         this.attributes = attri;
         this.container = container;
-        this.attributes.setImage(this.attributes.getListAnimations().get("comer").getFrames().get(0));
+        this.attributes.setFrame(this.attributes.getListAnimations().get("comer").getFrames().get(0));
     }
 
     public void setAttributes(ChracterAttri atributos) {

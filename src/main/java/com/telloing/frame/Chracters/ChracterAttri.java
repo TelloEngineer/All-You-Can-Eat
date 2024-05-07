@@ -20,7 +20,7 @@ public class ChracterAttri {
     private int y;
     private int speed;
     
-    private BufferedImage image;
+    private BufferedImage frame;
     private Map<String, Animations> listAnimations;
     private LifeTime lifeTime;
     
@@ -77,12 +77,12 @@ public class ChracterAttri {
         this.speed = speed;
     }
     
-    public BufferedImage getImage() {
-        return image;
+    public BufferedImage getFrame() {
+        return frame;
     }
 
-    public void setImage(BufferedImage image) {
-        this.image = image;
+    public void setFrame(BufferedImage frame) {
+        this.frame = frame;
     }
 
     
