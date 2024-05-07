@@ -134,9 +134,10 @@ public class SushiTable implements ActCharac {
                 if (action.update()) {
                     sushis.remove(elementToDelete);
                 }
+                Scenary.listener.setKeyCode(-1);
                 break;
             default:
-            Scenary.consumer.downHand();
+                Scenary.consumer.sitDown();
         }
 
     }
