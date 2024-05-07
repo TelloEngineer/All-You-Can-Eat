@@ -4,6 +4,7 @@
  */
 package com.telloing.frame.Chracters;
 
+import com.telloing.frame.Chracters.Elements.ChracterAttri;
 import java.awt.Container;
 
 /**

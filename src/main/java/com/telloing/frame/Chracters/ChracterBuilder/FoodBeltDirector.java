@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import javax.imageio.ImageIO;
 
 import com.telloing.frame.Scenary;
-import com.telloing.frame.Chracters.ChracterAttri;
+import com.telloing.frame.Chracters.Elements.ChracterAttri;
 import com.telloing.frame.Chracters.FoodBelt;
 import com.telloing.frame.Frames.Animations;
 import java.util.Map;

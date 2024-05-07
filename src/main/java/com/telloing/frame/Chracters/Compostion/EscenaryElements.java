@@ -4,7 +4,7 @@
  */
 package com.telloing.frame.Chracters.Compostion;
 
-import com.telloing.frame.Chracters.ActCharac;
+import com.telloing.frame.Chracters.Elements.ActCharac;
 
 import java.awt.Graphics2D;
 import java.util.LinkedList;

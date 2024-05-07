@@ -9,9 +9,9 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 
 import com.telloing.frame.Scenary;
-import com.telloing.frame.Chracters.ChracterAttri;
+import com.telloing.frame.Chracters.Elements.ChracterAttri;
 import com.telloing.frame.Chracters.Consumer;
-import com.telloing.frame.Chracters.MovCharact;
+import com.telloing.frame.Chracters.Elements.MovCharact;
 import com.telloing.frame.Frames.Animations;
 import java.util.logging.Level;
 import java.util.logging.Logger;

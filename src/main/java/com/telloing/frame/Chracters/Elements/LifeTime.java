@@ -1,4 +1,4 @@
-package com.telloing.frame.Chracters.Compostion;
+package com.telloing.frame.Chracters.Elements;
 
 public class LifeTime{
     private boolean visible;

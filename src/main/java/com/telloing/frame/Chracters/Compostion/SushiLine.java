@@ -5,7 +5,7 @@
 package com.telloing.frame.Chracters.Compostion;
 
 import com.telloing.frame.Scenary;
-import com.telloing.frame.Chracters.ActCharac;
+import com.telloing.frame.Chracters.Elements.ActCharac;
 import com.telloing.frame.Chracters.ChracterBuilder.FoodDirector;
 import com.telloing.frame.Chracters.Collision.ActivationZone1D;
 import com.telloing.frame.Chracters.Collision.ActivationZoneObj;
@@ -171,6 +171,7 @@ public class SushiLine implements ActCharac {
             case KeyEvent.VK_Z:
                 // activa animacion de mano;
                 if(Scenary.consumer.upHand()){
+                    System.out.println("hola");
                     ActivationZone1D.fillArea(point, 3, ActivationZone1D.collisionFood, zone);
                 }
                 break;

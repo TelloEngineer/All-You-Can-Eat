@@ -13,7 +13,7 @@ import com.telloing.frame.Chracters.Compostion.SushiLine;
 import com.telloing.frame.Chracters.Compostion.SushiTable;
 import com.telloing.frame.Frames.BackGroundDirector;
 import com.telloing.frame.Chracters.Consumer;
-import com.telloing.frame.Chracters.MovCharact;
+import com.telloing.frame.Chracters.Elements.MovCharact;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.logging.Level;

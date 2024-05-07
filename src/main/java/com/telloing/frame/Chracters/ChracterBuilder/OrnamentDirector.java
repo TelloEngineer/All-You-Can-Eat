@@ -7,7 +7,7 @@ package com.telloing.frame.Chracters.ChracterBuilder;
 
 import com.telloing.frame.Chracters.ChracterBuilder.OrnamentBuilder;
 import com.telloing.frame.Frames.Animations;
-import com.telloing.frame.Chracters.ChracterAttri;
+import com.telloing.frame.Chracters.Elements.ChracterAttri;
 import com.telloing.frame.Chracters.Ornament;
 import java.awt.Container;
 

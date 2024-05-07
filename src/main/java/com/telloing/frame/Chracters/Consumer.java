@@ -5,6 +5,8 @@
 package com.telloing.frame.Chracters;
 
 
+import com.telloing.frame.Chracters.Elements.ChracterAttri;
+import com.telloing.frame.Chracters.Elements.ActCharac;
 import com.telloing.frame.Frames.Delayer;
 import com.telloing.frame.Frames.Animations;
 import java.awt.Container;
@@ -63,7 +65,7 @@ public class Consumer implements ActCharac {
             attributes.setFrame(take.getActualFrame());
             return false;
         }
-        return isNext;
+        return true;
     }
 
     public void downHand(){

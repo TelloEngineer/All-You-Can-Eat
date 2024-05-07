@@ -4,7 +4,7 @@ import java.awt.Container;
 import java.util.Random;
 
 import com.telloing.frame.Chracters.Food;
-import com.telloing.frame.Chracters.MovCharact;
+import com.telloing.frame.Chracters.Elements.MovCharact;
 
 public class SushisLineDirector {
     private final Random random = new Random();
