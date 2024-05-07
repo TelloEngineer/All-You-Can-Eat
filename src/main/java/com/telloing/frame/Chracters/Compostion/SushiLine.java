@@ -171,7 +171,6 @@ public class SushiLine implements ActCharac {
             case KeyEvent.VK_Z:
                 // activa animacion de mano;
                 if(Scenary.consumer.upHand()){
-                    System.out.println("hola");
                     ActivationZone1D.fillArea(point, 3, ActivationZone1D.collisionFood, zone);
                 }
                 break;
