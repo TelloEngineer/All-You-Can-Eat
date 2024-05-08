@@ -6,7 +6,6 @@ package com.telloing.frame.Chracters;
 
 import com.telloing.frame.Chracters.Elements.ChracterAttri;
 import com.telloing.frame.Scenary;
-import com.telloing.frame.Chracters.Collision.ActivationZone1D;
 import com.telloing.frame.Chracters.Compostion.SushiLine;
 import com.telloing.frame.Chracters.Compostion.SushiTable;
 import com.telloing.frame.Chracters.Elements.ActCharac;
@@ -14,7 +13,6 @@ import com.telloing.frame.Frames.Delayer;
 import com.telloing.frame.Frames.Animations;
 import java.awt.Container;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 
 /**
  *
@@ -24,7 +22,7 @@ import java.awt.event.KeyEvent;
 public class Consumer implements ActCharac {
     public static boolean isUpHand = false;
 
-    private final long DELAY = 30;
+    private final long DELAY = 50;
 
     private ChracterAttri attributes; // que quede claro, no cambiar.
     private Container container;
@@ -50,7 +48,8 @@ public class Consumer implements ActCharac {
         g.drawImage(this.attributes.getFrame(), this.getAttributes().getX(), this.getAttributes().getY(), container);
     }
 
-    private boolean animationRunning(Animations animation) {
+    private boolean animationRunning(Animations animation, long delayTime) {
+        delay.setLapse(delayTime);
         if (!delay.isTime()) {
             return false;
         }
@@ -65,7 +64,7 @@ public class Consumer implements ActCharac {
     }
 
     public boolean eating() {
-        return animationRunning(this.attributes.getListAnimations().get("eat"));
+        return animationRunning(this.attributes.getListAnimations().get("eat"), DELAY);
     }
 
     public void noAction() {
@@ -79,14 +78,19 @@ public class Consumer implements ActCharac {
 
     public boolean upHand() {
 
-        return animationRunning(this.attributes.getListAnimations().get("take"));
+        return animationRunning(this.attributes.getListAnimations().get("take"), DELAY);
     }
 
-    
+    public void sleeping(){
+        Animations animation = this.attributes.getListAnimations().get("sleep");
+        if(animationRunning(animation, 100)){
+            animation.setNextFrame(0);
+        }
+    }
 
     @Override
     public void update() {
-        switch (Scenary.listener.getKeyCode()) {
+        /*switch (Scenary.listener.getKeyCode()) {
             case SushiLine.upHandKey:
                 Consumer.isUpHand = this.upHand();
                 break;
@@ -97,5 +101,7 @@ public class Consumer implements ActCharac {
                 this.noAction();
         }
         Scenary.listener.setKeyCode(-1);
+        */
+        sleeping();
     }
 }

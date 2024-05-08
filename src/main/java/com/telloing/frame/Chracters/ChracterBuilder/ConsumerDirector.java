@@ -62,6 +62,7 @@ class ConsumerBuilder{
         Map<String, Animations> list = new HashMap<String, Animations>();
         list.put("take", buildFrames("./Cliente/ClienteManoArriba.png", new CoordenatesCuter(192,147,3,6)));
         list.put("eat", buildFrames("./Cliente/ClienteComiendo.png", new CoordenatesCuter(192, 146,1,4)));
+        list.put("sleep", buildFrames("./Cliente/ClienteDormido.png", new CoordenatesCuter(192, 147,3,6)));
         listAnimations = list;
     }
 
