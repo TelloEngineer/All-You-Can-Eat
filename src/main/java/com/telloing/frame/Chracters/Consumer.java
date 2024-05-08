@@ -88,7 +88,7 @@ public class Consumer implements ActCharac {
 
     public void sleeping(){
         Animations animation = this.attributes.getListAnimations().get("sleep");
-        if(animationRunning(animation, 100)){
+        if(animationRunning(animation, 300)){
             animation.setNextFrame(0);
         }
     }
