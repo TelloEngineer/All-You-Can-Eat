@@ -61,6 +61,8 @@ class Sushi_Ontable {
 }
 
 public class SushiTable implements ActCharac {
+    public static final int eatKey = KeyEvent.VK_X;
+
     private final int max_sushis = 7;
     private final int[] positionX = { 222, 252, 282, 312, 342, 372, 402 };
     private final int positionY = 260;
@@ -128,7 +130,7 @@ public class SushiTable implements ActCharac {
         }
         action.setSushi(sushis.get(elementToDelete));
         switch (Scenary.listener.getKeyCode()) {
-            case KeyEvent.VK_X:
+            case SushiTable.eatKey:
                 // animacion comer
                 if (action.update()) {
                     sushis.remove(elementToDelete);

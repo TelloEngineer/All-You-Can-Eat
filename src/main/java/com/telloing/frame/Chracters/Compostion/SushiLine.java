@@ -101,6 +101,7 @@ class OnlineAction implements ActCharac {
 }
 
 public class SushiLine implements ActCharac {
+    public static final int upHandKey = KeyEvent.VK_Z;
 
     private final long delay = Sushis_onLine.lapse;
     private final int max = 32;
@@ -169,7 +170,7 @@ public class SushiLine implements ActCharac {
         final int zone = 20;
         final int point = 130;
         switch (Scenary.listener.getKeyCode()) {
-            case KeyEvent.VK_Z:
+            case SushiLine.upHandKey:
                 // activa animacion de mano;
                 if(Consumer.isUpHand){
                     ActivationZone1D.fillArea(point, 3, ActivationZone1D.collisionFood, zone);

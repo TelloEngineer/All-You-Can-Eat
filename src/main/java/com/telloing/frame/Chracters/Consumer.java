@@ -7,6 +7,8 @@ package com.telloing.frame.Chracters;
 import com.telloing.frame.Chracters.Elements.ChracterAttri;
 import com.telloing.frame.Scenary;
 import com.telloing.frame.Chracters.Collision.ActivationZone1D;
+import com.telloing.frame.Chracters.Compostion.SushiLine;
+import com.telloing.frame.Chracters.Compostion.SushiTable;
 import com.telloing.frame.Chracters.Elements.ActCharac;
 import com.telloing.frame.Frames.Delayer;
 import com.telloing.frame.Frames.Animations;
@@ -56,7 +58,6 @@ public class Consumer implements ActCharac {
 
         boolean isNext = animation.updateNextFrame();
         if (isNext) {
-            System.out.println("hola");
             attributes.setFrame(animation.getActualFrame());
             return false;
         }
@@ -86,10 +87,10 @@ public class Consumer implements ActCharac {
     @Override
     public void update() {
         switch (Scenary.listener.getKeyCode()) {
-            case KeyEvent.VK_Z:
+            case SushiLine.upHandKey:
                 Consumer.isUpHand = this.upHand();
                 break;
-            case KeyEvent.VK_X:
+            case SushiTable.eatKey:
                 this.eating();
                 break;
             default:
