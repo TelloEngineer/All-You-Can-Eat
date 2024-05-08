@@ -46,11 +46,11 @@ public class Scenary extends JPanel implements Runnable {
         Scenary.elements.add(OrnamentDirector.getInstance().createChef(this, 150, 60));
         Scenary.elements.add(Scenary.sushis);
         Scenary.elements.add(FoodBeltDirector.getInstance().createBelt(this));
-        Scenary.elements.add(consumer);
         Scenary.elements.add(OrnamentDirector.getInstance().createRibbon(this, 60, 80));
         Scenary.elements.add(OrnamentDirector.getInstance().createPaper(this, 90, 80));
         Scenary.elements.add(OrnamentDirector.getInstance().createPunpun(this, 115,80));
         Scenary.elements.add(Scenary.sushisToEat);
+        Scenary.elements.add(consumer);
 
         this.addKeyListener(listener);
         this.setFocusable(true);

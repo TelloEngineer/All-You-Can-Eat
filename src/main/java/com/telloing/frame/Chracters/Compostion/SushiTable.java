@@ -130,15 +130,11 @@ public class SushiTable implements ActCharac {
         switch (Scenary.listener.getKeyCode()) {
             case KeyEvent.VK_X:
                 // animacion comer
-                Scenary.consumer.eat();
                 if (action.update()) {
                     sushis.remove(elementToDelete);
                 }
-                Scenary.listener.setKeyCode(-1);
                 break;
-            default:
-                Scenary.consumer.sitDown();
-        }
+            }
 
     }
 

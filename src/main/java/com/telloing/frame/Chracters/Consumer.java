@@ -4,14 +4,15 @@
  */
 package com.telloing.frame.Chracters;
 
-
 import com.telloing.frame.Chracters.Elements.ChracterAttri;
+import com.telloing.frame.Scenary;
+import com.telloing.frame.Chracters.Collision.ActivationZone1D;
 import com.telloing.frame.Chracters.Elements.ActCharac;
 import com.telloing.frame.Frames.Delayer;
 import com.telloing.frame.Frames.Animations;
 import java.awt.Container;
 import java.awt.Graphics2D;
-
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -19,10 +20,11 @@ import java.awt.Graphics2D;
  */
 
 public class Consumer implements ActCharac {
+    public static boolean isUpHand = false;
 
     private final long DELAY = 30;
-    
-    private ChracterAttri attributes; //que quede claro, no cambiar.
+
+    private ChracterAttri attributes; // que quede claro, no cambiar.
     private Container container;
     private Delayer delay;
 
@@ -30,33 +32,30 @@ public class Consumer implements ActCharac {
         this.container = container;
         this.attributes = attributes;
         this.attributes.setFrame(this.attributes.getListAnimations().get("eat").getFrames().get(0));
-        this.delay= new Delayer(DELAY);
+        this.delay = new Delayer(DELAY);
     }
-    
+
     public void setAttributes(ChracterAttri atributos) {
         this.attributes = atributos;
     }
 
-    
-    
     public ChracterAttri getAttributes() {
         return attributes;
     }
 
-    
     @Override
     public void draw(Graphics2D g) {
-        g.drawImage(this.attributes.getFrame(),this.getAttributes().getX(), this.getAttributes().getY(), container);
+        g.drawImage(this.attributes.getFrame(), this.getAttributes().getX(), this.getAttributes().getY(), container);
     }
-    
-    private boolean animationRunning(Animations animation){
-        if(!delay.isTime()){
+
+    private boolean animationRunning(Animations animation) {
+        if (!delay.isTime()) {
             return false;
         }
         delay.startTimer();
 
         boolean isNext = animation.updateNextFrame();
-        if(isNext){
+        if (isNext) {
             System.out.println("hola");
             attributes.setFrame(animation.getActualFrame());
             return false;
@@ -64,40 +63,38 @@ public class Consumer implements ActCharac {
         return true;
     }
 
-    public boolean eating(){
+    public boolean eating() {
         return animationRunning(this.attributes.getListAnimations().get("eat"));
     }
 
-    public void sitDown(){
-        Animations eat = this.attributes.getListAnimations().get("eat");
-        eat.setNextFrame(0);
-        this.attributes.setFrame(eat.getActualFrame());
+    public void noAction() {
+        Animations animation = this.attributes.getListAnimations().get("eat");
+        animation.setNextFrame(0);
+        animation = this.attributes.getListAnimations().get("take");
+        animation.setNextFrame(0);
+        Consumer.isUpHand = false;
+        this.attributes.setFrame(animation.getActualFrame());
     }
 
-    public boolean upHand(){
-        
+    public boolean upHand() {
+
         return animationRunning(this.attributes.getListAnimations().get("take"));
     }
 
-    public void downHand(){
-        Animations take = this.attributes.getListAnimations().get("take");
-        take.setNextFrame(0);
-        this.attributes.setFrame(take.getActualFrame());
-    }
-
-    public boolean eat(){
-        Animations take = this.attributes.getListAnimations().get("take");
-        
-        boolean isNext = take.updateNextFrame();
-        if(isNext){
-            attributes.setFrame(take.getActualFrame());
-            return false;
-        }
-        return true;
-    }
+    
 
     @Override
     public void update() {
-        // Updates the information
+        switch (Scenary.listener.getKeyCode()) {
+            case KeyEvent.VK_Z:
+                Consumer.isUpHand = this.upHand();
+                break;
+            case KeyEvent.VK_X:
+                this.eating();
+                break;
+            default:
+                this.noAction();
+        }
+        Scenary.listener.setKeyCode(-1);
     }
 }
