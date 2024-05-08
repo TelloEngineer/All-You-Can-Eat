@@ -7,7 +7,7 @@ import com.telloing.frame.Chracters.Food;
 import com.telloing.frame.Chracters.Elements.MovCharact;
 
 public class SushisLineDirector {
-    private final Random random = new Random();
+    public static final Random random = new Random();
     private final int range = 8;
     private final int lapse = 20;
 

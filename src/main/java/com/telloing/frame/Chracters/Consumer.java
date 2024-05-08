@@ -6,6 +6,7 @@ package com.telloing.frame.Chracters;
 
 import com.telloing.frame.Chracters.Elements.ChracterAttri;
 import com.telloing.frame.Scenary;
+import com.telloing.frame.Chracters.ChracterBuilder.SushisLineDirector;
 import com.telloing.frame.Chracters.Compostion.SushiLine;
 import com.telloing.frame.Chracters.Compostion.SushiTable;
 import com.telloing.frame.Chracters.Elements.ActCharac;
@@ -13,6 +14,7 @@ import com.telloing.frame.Frames.Delayer;
 import com.telloing.frame.Frames.Animations;
 import java.awt.Container;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -23,16 +25,19 @@ public class Consumer implements ActCharac {
     public static boolean isUpHand = false;
 
     private final long DELAY = 50;
-
+    public static final int wakeUpKey = KeyEvent.VK_W;
+    
     private ChracterAttri attributes; // que quede claro, no cambiar.
     private Container container;
     private Delayer delay;
+    public boolean isSleep;
 
     public Consumer(ChracterAttri attributes, Container container) {
         this.container = container;
         this.attributes = attributes;
-        this.attributes.setFrame(this.attributes.getListAnimations().get("eat").getFrames().get(0));
+        this.attributes.setFrame(this.attributes.getListAnimations().get("take").getFrames().get(0));
         this.delay = new Delayer(DELAY);
+        this.isSleep = false;
     }
 
     public void setAttributes(ChracterAttri atributos) {
@@ -88,9 +93,41 @@ public class Consumer implements ActCharac {
         }
     }
 
+    private boolean heIsSleep(){
+        if(isSleep){
+            return isSleep;
+        }
+        int isTimeToSleep = SushisLineDirector.random.nextInt(100);
+        //int isTimeToSleep = 5;
+        System.out.println(isTimeToSleep);
+        switch (isTimeToSleep) {
+            case 54:
+                isSleep = true;
+                break;
+            default:
+                isSleep = false;
+        }
+        return isSleep;
+    }
+
+    private boolean isWaking(){
+        boolean isHeSleep = heIsSleep();
+        switch (Scenary.listener.getKeyCode()) {
+            case Consumer.wakeUpKey:
+                isSleep = false;
+                isHeSleep = isSleep;
+                break;
+        }
+        return !isHeSleep;
+    }
+
     @Override
     public void update() {
-        /*switch (Scenary.listener.getKeyCode()) {
+        if(!isWaking()){
+            this.sleeping();
+            return;
+        }
+        switch (Scenary.listener.getKeyCode()) {
             case SushiLine.upHandKey:
                 Consumer.isUpHand = this.upHand();
                 break;
@@ -101,7 +138,5 @@ public class Consumer implements ActCharac {
                 this.noAction();
         }
         Scenary.listener.setKeyCode(-1);
-        */
-        sleeping();
     }
 }
