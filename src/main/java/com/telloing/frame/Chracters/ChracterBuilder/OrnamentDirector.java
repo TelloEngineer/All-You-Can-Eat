@@ -155,7 +155,7 @@ public class OrnamentDirector {
         return builder.getOrnament();
     }
     public Ornament createChef(Container container, final int x, final int y){
-        builder.buildFrames("CocineroDormir.png", new CoordenatesCuter(192,102,2,6));
+        builder.buildFrames("./Cocinero/CocineroDormir.png", new CoordenatesCuter(192,102,2,6));
         builder.buildContainer(container);
         builder.buildAttri(x, y);
         return builder.getOrnament();
