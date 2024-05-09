@@ -101,7 +101,7 @@ class OnlineAction implements ActCharac {
 }
 
 public class SushiLine implements ActCharac {
-    public static final int upHandKey = KeyEvent.VK_Z;
+    public static final int upHandKey = KeyEvent.VK_F;
     public static final int INITIAL_POSITION = 72;
 
     private final long delay = Sushis_onLine.lapse;
