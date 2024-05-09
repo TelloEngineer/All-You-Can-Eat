@@ -68,14 +68,14 @@ public class Chef implements ActCharac {
     public void cutting(){
         Animations animation = this.attributes.getListAnimations().get("cutting"); 
         if(animationRunning(animation, DELAY)){
-            noAction();
+            animation.setNextFrame(0);
         }
     }
     
     public void sleeping(){
         Animations animation = this.attributes.getListAnimations().get("sleep"); 
-        if(animationRunning(animation, DELAY)){
-            noAction();
+        if(animationRunning(animation, 300)){
+            animation.setNextFrame(0);
         }
     }
 
@@ -90,6 +90,34 @@ public class Chef implements ActCharac {
         animation.setNextFrame(0);
     }
 
+    private boolean heIsSleep(){
+        if(isSleep){
+            return isSleep;
+        }
+        int isTimeToSleep = Scenary.random.nextInt(100);
+        //int isTimeToSleep = 5;
+        //System.out.println(isTimeToSleep);
+        switch (isTimeToSleep) {
+            case 58:
+                isSleep = true;
+                break;
+            default:
+                isSleep = false;
+        }
+        return isSleep;
+    }
+
+    private boolean isWaking(){
+        boolean isHeSleep = heIsSleep();
+        switch (Scenary.listener.getKeyCode()) {
+            case Chef.wakeUpKey:
+                isSleep = false;
+                isHeSleep = isSleep;
+                break;
+        }
+        return !isHeSleep;
+    }
+
     @Override
     public void draw(Graphics2D g) {
         g.drawImage(this.attributes.getFrame(), this.getAttributes().getX(), this.getAttributes().getY(), container);
@@ -97,6 +125,10 @@ public class Chef implements ActCharac {
     
     @Override
     public void update(){
+        if(!isWaking()){
+            this.sleeping();
+            return;
+        }
         if(!Scenary.sushis.isLimit() && putSushi()){
             Scenary.sushis.add(SushisLineDirector.getInstance().getNewSushi(null));
             noAction();

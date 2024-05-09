@@ -17,6 +17,7 @@ import com.telloing.frame.Chracters.Consumer;
 import com.telloing.frame.Chracters.Elements.MovCharact;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -34,15 +35,15 @@ public class Scenary extends JPanel implements Runnable {
     public static final EscenaryElements elements = new EscenaryElements();
     public static final SushiLine sushis = new SushiLine();
     public static final SushiTable sushisToEat = new SushiTable();
+    public static final Random random = new Random();
+    public static final MovCharact listener = new MovCharact();
+
     public static Consumer consumer;
-    public static MovCharact listener;
 
 
     public Scenary() {
         
         consumer = ConsumerDirector.getInstance().createConsumer(this);
-
-        listener = new MovCharact();
         
         Scenary.elements.add(ChefDirector.getInstance().createChef(this));
         Scenary.elements.add(Scenary.sushis);

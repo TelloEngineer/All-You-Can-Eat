@@ -97,7 +97,7 @@ public class Consumer implements ActCharac {
         if(isSleep){
             return isSleep;
         }
-        int isTimeToSleep = SushisLineDirector.random.nextInt(100);
+        int isTimeToSleep = Scenary.random.nextInt(100);
         //int isTimeToSleep = 5;
         //System.out.println(isTimeToSleep);
         switch (isTimeToSleep) {

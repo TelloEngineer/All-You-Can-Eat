@@ -3,11 +3,11 @@ package com.telloing.frame.Chracters.ChracterBuilder;
 import java.awt.Container;
 import java.util.Random;
 
+import com.telloing.frame.Scenary;
 import com.telloing.frame.Chracters.Food;
 import com.telloing.frame.Chracters.Elements.MovCharact;
 
 public class SushisLineDirector {
-    public static final Random random = new Random();
     private final int range = 8;
     private final int lapse = 20;
 
@@ -34,7 +34,7 @@ public class SushisLineDirector {
     }
 
     public Food getNewSushi(Container container) {
-        int num = random.nextInt(range);
+        int num = Scenary.random.nextInt(range);
         Food charac = FoodDirector.getInstancia().createSushi1(container);
         switch (num) {
             case 0:
