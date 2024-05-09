@@ -134,7 +134,6 @@ public class SushiLine implements ActCharac {
         if (this.sushis.size() >= max) {
             return false;
         }
-        System.out.println(this.sushis.size());
         action.setContainer(character.getContainer());
         return this.sushis.add(character);
     }

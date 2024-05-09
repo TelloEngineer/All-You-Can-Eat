@@ -96,11 +96,11 @@ public class Consumer implements ActCharac {
         if(isSleep){
             return isSleep;
         }
-        int isTimeToSleep = Scenary.random.nextInt(500);
+        int isTimeToSleep = Scenary.random.nextInt(350);
         //int isTimeToSleep = 5;
         //System.out.println(isTimeToSleep);
         switch (isTimeToSleep) {
-            case 254:
+            case 174:
                 isSleep = true;
                 break;
             default:
