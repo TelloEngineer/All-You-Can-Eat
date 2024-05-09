@@ -6,7 +6,6 @@ package com.telloing.frame.Chracters;
 
 import com.telloing.frame.Chracters.Elements.ChracterAttri;
 import com.telloing.frame.Scenary;
-import com.telloing.frame.Chracters.ChracterBuilder.SushisLineDirector;
 import com.telloing.frame.Chracters.Compostion.SushiLine;
 import com.telloing.frame.Chracters.Compostion.SushiTable;
 import com.telloing.frame.Chracters.Elements.ActCharac;
@@ -30,14 +29,14 @@ public class Consumer implements ActCharac {
     private ChracterAttri attributes; // que quede claro, no cambiar.
     private Container container;
     private Delayer delay;
-    public boolean isSleep;
+    public static boolean isSleep;
 
     public Consumer(ChracterAttri attributes, Container container) {
         this.container = container;
         this.attributes = attributes;
         this.attributes.setFrame(this.attributes.getListAnimations().get("take").getFrames().get(0));
         this.delay = new Delayer(DELAY);
-        this.isSleep = false;
+        isSleep = false;
     }
 
     public void setAttributes(ChracterAttri atributos) {
@@ -97,11 +96,11 @@ public class Consumer implements ActCharac {
         if(isSleep){
             return isSleep;
         }
-        int isTimeToSleep = Scenary.random.nextInt(100);
+        int isTimeToSleep = Scenary.random.nextInt(500);
         //int isTimeToSleep = 5;
         //System.out.println(isTimeToSleep);
         switch (isTimeToSleep) {
-            case 54:
+            case 254:
                 isSleep = true;
                 break;
             default:

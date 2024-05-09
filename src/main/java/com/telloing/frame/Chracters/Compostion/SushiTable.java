@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import com.telloing.frame.Scenary;
 import com.telloing.frame.Chracters.Elements.ActCharac;
+import com.telloing.frame.Chracters.Consumer;
 import com.telloing.frame.Chracters.Food;
 import com.telloing.frame.Frames.Animations;
 
@@ -125,6 +126,9 @@ public class SushiTable implements ActCharac {
     }
 
     private void checkListener() {
+        if(Consumer.isSleep){
+            return;
+        }
         if (sushis.isEmpty()) {
             return;
         }

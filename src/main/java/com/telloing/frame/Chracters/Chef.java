@@ -94,11 +94,11 @@ public class Chef implements ActCharac {
         if(isSleep){
             return isSleep;
         }
-        int isTimeToSleep = Scenary.random.nextInt(100);
+        int isTimeToSleep = Scenary.random.nextInt(500);
         //int isTimeToSleep = 5;
         //System.out.println(isTimeToSleep);
         switch (isTimeToSleep) {
-            case 58:
+            case 258:
                 isSleep = true;
                 break;
             default:
