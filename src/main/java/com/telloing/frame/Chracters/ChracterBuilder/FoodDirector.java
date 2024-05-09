@@ -78,7 +78,7 @@ class FoodBuilder {
  */
 public class FoodDirector {
     public static final int SUSHI_SIZE = 32;
-    public static final int SUSHI_POS_X = 72;
+    public static final int SUSHI_POS_X = 182;
     private final FoodBuilder builder;
     private static FoodDirector foodDirector;
 

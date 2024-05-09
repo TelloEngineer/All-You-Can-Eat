@@ -160,10 +160,4 @@ public class OrnamentDirector {
         builder.buildAttri(x, y);
         return builder.getOrnament();
     }
-    public Ornament createCliente(Container container, final int x, final int y){
-        builder.buildFrames("ClienteManoArriba.png", new CoordenatesCuter(192,147,3,6));
-        builder.buildContainer(container);
-        builder.buildAttri(x, y);
-        return builder.getOrnament();
-    }
 }

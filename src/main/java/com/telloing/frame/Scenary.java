@@ -4,6 +4,7 @@
  */
 package com.telloing.frame;
 
+import com.telloing.frame.Chracters.ChracterBuilder.ChefDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.ConsumerDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.FoodBeltDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.OrnamentDirector;
@@ -43,7 +44,7 @@ public class Scenary extends JPanel implements Runnable {
 
         listener = new MovCharact();
         
-        Scenary.elements.add(OrnamentDirector.getInstance().createChef(this, 150, 60));
+        Scenary.elements.add(ChefDirector.getInstance().createChef(this));
         Scenary.elements.add(Scenary.sushis);
         Scenary.elements.add(FoodBeltDirector.getInstance().createBelt(this));
         Scenary.elements.add(OrnamentDirector.getInstance().createRibbon(this, 60, 80));
@@ -91,7 +92,6 @@ public class Scenary extends JPanel implements Runnable {
     }
 
     public void update() {
-        Scenary.sushis.add(SushisLineDirector.getInstance().getNewSushi(this));
         Scenary.elements.update(); 
     }
 

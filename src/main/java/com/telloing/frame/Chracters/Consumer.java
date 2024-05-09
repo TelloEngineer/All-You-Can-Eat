@@ -99,7 +99,7 @@ public class Consumer implements ActCharac {
         }
         int isTimeToSleep = SushisLineDirector.random.nextInt(100);
         //int isTimeToSleep = 5;
-        System.out.println(isTimeToSleep);
+        //System.out.println(isTimeToSleep);
         switch (isTimeToSleep) {
             case 54:
                 isSleep = true;

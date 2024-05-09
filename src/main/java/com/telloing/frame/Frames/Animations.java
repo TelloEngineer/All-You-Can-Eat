@@ -23,6 +23,7 @@ public class Animations {
     public Animations(List<BufferedImage> frames) {
         this.frames = frames;
         this.iterator = frames.listIterator();
+        this.actualFrame = this.frames.get(0);
     }
     
     private BufferedImage Rescale(BufferedImage original, int newHeight, int newWidth) {

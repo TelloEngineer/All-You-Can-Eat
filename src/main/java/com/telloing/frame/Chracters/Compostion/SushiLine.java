@@ -24,15 +24,15 @@ import java.awt.event.KeyEvent;
  */
 class Sushis_onLine {
 
-    static public final long lapse = 600; // milisegundos
+    static public final long lapse = 500; // milisegundos
 
     private List<Food> sushisToShow;
-    private Delayer delayer;
+    //private Delayer delayer;
     private int index;
 
     public Sushis_onLine() {
         this.sushisToShow = new LinkedList<Food>();
-        this.delayer = new Delayer(lapse);
+        //this.delayer = new Delayer(lapse);
     }
 
     public List<Food> getSushisToShow() {
@@ -43,10 +43,10 @@ class Sushis_onLine {
         sushisToShow.retainAll(sushis);
         if (index > sushisToShow.size()) { index = sushisToShow.size(); }
 
-        if (!delayer.isTime()) {
+       /* if (!delayer.isTime()) {
             return;
         }
-        delayer.startTimer();
+        delayer.startTimer(); */
         if (index < sushis.size()) {
             sushisToShow.add(sushis.get(index));
             index++;
@@ -102,6 +102,7 @@ class OnlineAction implements ActCharac {
 
 public class SushiLine implements ActCharac {
     public static final int upHandKey = KeyEvent.VK_Z;
+    public static final int INITIAL_POSITION = 72;
 
     private final long delay = Sushis_onLine.lapse;
     private final int max = 32;
@@ -120,6 +121,13 @@ public class SushiLine implements ActCharac {
         
         ActivationZone1D.fillArea(450, 2, ActivationZone1D.collisionFood, 5);
 
+    }
+
+    public boolean isLimit(){
+        if (this.sushis.size() >= max) {
+            return true;
+        }
+        return false;
     }
 
     public boolean add(Food character) {
@@ -144,7 +152,7 @@ public class SushiLine implements ActCharac {
 
     @Override
     public void draw(Graphics2D g) {
-        for (Food sushi : sushisToShow.getSushisToShow()) { // se ocupa actualizar cada vez que se itera
+        for (Food sushi : sushis) { // se ocupa actualizar cada vez que se itera
             if (sushi.getAttributes().getLifeTime().isVisible()) {
                 action.setSushi(sushi);
                 action.draw(g);
@@ -154,8 +162,8 @@ public class SushiLine implements ActCharac {
 
     @Override
     public void update() {
-        sushisToShow.updateList(sushis);
-        for (Food sushi : sushisToShow.getSushisToShow()) {
+        //sushisToShow.updateList(sushis);
+        for (Food sushi : sushis) {
             checkActivators();
             if (sushi.getAttributes().getLifeTime().isReady()) {
                 checkActivation(sushi); // no activation: action.update();
@@ -183,7 +191,7 @@ public class SushiLine implements ActCharac {
 
     private void checkActivation(Food sushi) {
         action.setSushi(sushi);
-        int actualPos = sushi.getAttributes().getX() - FoodDirector.SUSHI_POS_X;
+        int actualPos = sushi.getAttributes().getX() - SushiLine.INITIAL_POSITION;
         int objSymbol = activation.checkArea(actualPos, sushi.getAttributes().getFrame().getWidth());
         switch (objSymbol) {
             case 0:
@@ -203,7 +211,7 @@ public class SushiLine implements ActCharac {
             switch (obj.getObjSymbol()) {
                 case 2:
                 case -1:
-                    obj.getObj().getAttributes().setX(72);
+                    obj.getObj().getAttributes().setX(SushiLine.INITIAL_POSITION);
                     obj.getObj().getAttributes().getLifeTime().startTimer(this.delay);
                     break;
                 case 3:
