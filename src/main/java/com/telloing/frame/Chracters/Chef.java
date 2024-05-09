@@ -126,10 +126,10 @@ public class Chef implements ActCharac {
 
     @Override
     public void draw(Graphics2D g) {
-        g.drawImage(this.attributes.getFrame(), this.getAttributes().getX(), this.getAttributes().getY(), container);
         if(isSleep){
             sleepAnimation.draw(g);
         }
+        g.drawImage(this.attributes.getFrame(), this.getAttributes().getX(), this.getAttributes().getY(), container);
     }
     
     @Override
