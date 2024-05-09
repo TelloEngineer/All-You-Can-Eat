@@ -3,6 +3,7 @@ package com.telloing.frame.Chracters;
 import com.telloing.frame.Chracters.Elements.MovCharact;
 import com.telloing.frame.Chracters.Elements.ChracterAttri;
 import com.telloing.frame.Scenary;
+import com.telloing.frame.Chracters.ChracterBuilder.OrnamentDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.SushisLineDirector;
 import com.telloing.frame.Chracters.Elements.ActCharac;
 import com.telloing.frame.Frames.Animations;
@@ -32,14 +33,19 @@ public class Chef implements ActCharac {
     private Container container;
     private Delayer delay;
     public boolean isSleep;
+    public Ornament sleepAnimation;
     
     
     public Chef(ChracterAttri attributes, Container container) {
+
         this.attributes = attributes;
         this.container = container;
         this.attributes.setFrame(this.attributes.getListAnimations().get("cutting").getActualFrame());
         this.delay = new Delayer(DELAY);
         this.isSleep = false;
+        int animationX = attributes.getX() + 30;
+        int animationY = attributes.getY() - 40;
+        sleepAnimation = OrnamentDirector.getInstance().createSleep("ParticulaDormir.png", container, animationX, animationY);
     }
     
     public void setAttributes(ChracterAttri atributos) {
@@ -121,12 +127,16 @@ public class Chef implements ActCharac {
     @Override
     public void draw(Graphics2D g) {
         g.drawImage(this.attributes.getFrame(), this.getAttributes().getX(), this.getAttributes().getY(), container);
+        if(isSleep){
+            sleepAnimation.draw(g);
+        }
     }
     
     @Override
     public void update(){
         if(!isWaking()){
             this.sleeping();
+            sleepAnimation.update();
             return;
         }
         if(!Scenary.sushis.isLimit() && putSushi()){

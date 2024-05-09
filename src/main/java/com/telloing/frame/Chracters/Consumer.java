@@ -6,6 +6,7 @@ package com.telloing.frame.Chracters;
 
 import com.telloing.frame.Chracters.Elements.ChracterAttri;
 import com.telloing.frame.Scenary;
+import com.telloing.frame.Chracters.ChracterBuilder.OrnamentDirector;
 import com.telloing.frame.Chracters.Compostion.SushiLine;
 import com.telloing.frame.Chracters.Compostion.SushiTable;
 import com.telloing.frame.Chracters.Elements.ActCharac;
@@ -30,6 +31,7 @@ public class Consumer implements ActCharac {
     private Container container;
     private Delayer delay;
     public static boolean isSleep;
+    public Ornament sleepAnimation;
 
     public Consumer(ChracterAttri attributes, Container container) {
         this.container = container;
@@ -37,6 +39,9 @@ public class Consumer implements ActCharac {
         this.attributes.setFrame(this.attributes.getListAnimations().get("take").getFrames().get(0));
         this.delay = new Delayer(DELAY);
         isSleep = false;
+        int animationX = attributes.getX() + 35;
+        int animationY = attributes.getY() - 70;
+        sleepAnimation = OrnamentDirector.getInstance().createSleep("ParticulaDormir.png", container, animationX, animationY);
     }
 
     public void setAttributes(ChracterAttri atributos) {
@@ -50,6 +55,9 @@ public class Consumer implements ActCharac {
     @Override
     public void draw(Graphics2D g) {
         g.drawImage(this.attributes.getFrame(), this.getAttributes().getX(), this.getAttributes().getY(), container);
+        if(isSleep){
+            sleepAnimation.draw(g);
+        }
     }
 
     private boolean animationRunning(Animations animation, long delayTime) {
@@ -124,6 +132,7 @@ public class Consumer implements ActCharac {
     public void update() {
         if(!isWaking()){
             this.sleeping();
+            sleepAnimation.update();
             return;
         }
         switch (Scenary.listener.getKeyCode()) {
