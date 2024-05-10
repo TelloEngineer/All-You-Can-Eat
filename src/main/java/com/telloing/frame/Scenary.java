@@ -21,6 +21,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 
+/* To have music into the game we need to import */
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
+
+
 /**
  *
  * @author josue
@@ -36,6 +42,8 @@ public class Scenary extends JPanel implements Runnable {
     public static final SushiTable sushisToEat = new SushiTable();
     public static final Random random = new Random();
     public static final MovCharact listener = new MovCharact();
+    private AudioInputStream audioInputStream;
+    private Clip clip;
 
     public static Consumer consumer;
 
@@ -55,9 +63,53 @@ public class Scenary extends JPanel implements Runnable {
 
         this.addKeyListener(listener);
         this.setFocusable(true);
+        
+        
+        
     }
 
     public void startGame() {
+        /* Add the music */
+        
+        // Ruta del archivo MP3
+        String path = "/home/aleck/Documents/projects/all-you-can-eat/src/main/resources/com/telloing/frame/sunshine.wav";
+        try {
+            // Crear un objeto File con la ruta del archivo MP3
+            File file = new File(path);
+
+            // Crear un AudioInputStream a partir del archivo
+            audioInputStream = AudioSystem.getAudioInputStream(file);
+
+            // Obtener un Clip de audio
+            clip = AudioSystem.getClip();
+
+            // Abrir el Clip con el AudioInputStream
+            clip.open(audioInputStream);
+            
+            // Obtener el Control de Volumen del Clip
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+
+            // Aumentar el volumen en 6 decibeles (por ejemplo)
+            gainControl.setValue(2.0f);
+
+            // Reproducir el audio
+            clip.start();
+            
+             // Mostrar un mensaje cuando el audio comienza a reproducirse
+            System.out.println("Reproduciendo audio...");
+
+            // Esperar hasta que el audio termine de reproducirse
+            // while (!clip.isRunning()) Thread.sleep(10);
+            // while (clip.isRunning()) Thread.sleep(10);
+
+            // Cerrar el Clip y el AudioInputStream
+            // clip.close();
+            // audioInputStream.close();
+
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException  e) {
+            e.printStackTrace();
+        }
+        
         
         gameTh = new Thread(this);
         gameTh.start();
@@ -77,7 +129,13 @@ public class Scenary extends JPanel implements Runnable {
     @Override
     public void run() {
         while (gameTh != null) {
-
+            
+            /* restart the music */ 
+            if (!clip.isRunning()) {
+                clip.setFramePosition(0); // Establece la posición al inicio
+                clip.start(); // Inicia la reproducción desde el principio
+            }
+            
             update();
 
             repaint();
