@@ -29,7 +29,6 @@ class Sushi_Ontable {
         return isEating;
     }
 
-
     public Container getContainer() {
         return container;
     }
@@ -92,9 +91,11 @@ public class SushiTable implements ActCharac {
         if (this.sushis.size() >= max_sushis) {
             return false;
         }
+
         action.setContainer(character.getContainer());
         character.getAttributes().setX(positionX[indexSushi]);
         character.getAttributes().setY(positionY);
+
         indexSushi = indexSushi < max_sushis - 1 ? ++indexSushi : 0;
         return this.sushis_toAdd.add(character);
     }
@@ -114,7 +115,7 @@ public class SushiTable implements ActCharac {
     @Override
     public void draw(Graphics2D g) {
         sushis.addAll(sushis_toAdd);
-        if(action.isEating()){
+        if (action.isEating()) {
             eatAnimation.draw(g);
         }
         // System.out.println(this.sushis.size() + " : " + this.sushis_toAdd.size());
@@ -134,28 +135,23 @@ public class SushiTable implements ActCharac {
     }
 
     private void checkListener() {
-        if (Consumer.isSleep) {
-            return;
-        }
-        if (sushis.isEmpty()) {
+        boolean isAte;
+        if (sushis.isEmpty() || Consumer.isSleep) {
             return;
         }
         action.setSushi(sushis.get(elementToDelete));
         switch (Scenary.listener.getKeyCode()) {
             case SushiTable.eatKey:
                 // animacion comer
-                if (action.update()) {
+                isAte = action.update();
+                this.eatAnimation = OrnamentDirector.getInstance().createSleep("NubeComer.png", action.getContainer(),
+                        action.getSushi().getAttributes().getX() - 10,
+                        action.getSushi().getAttributes().getY() - 20);
+                eatAnimation.update();
+                if (isAte) {
                     sushis.remove(elementToDelete);
                 }
                 break;
-        }
-        if(action.isEating()){
-            System.out.println("hola");
-            int animationX = action.getSushi().getAttributes().getX() - 10;
-            int animationY = action.getSushi().getAttributes().getY() - 20;
-            this.eatAnimation = OrnamentDirector.getInstance().createSleep("NubeComer.png", action.getContainer(), animationX,
-                    animationY);
-            eatAnimation.update();
         }
 
     }

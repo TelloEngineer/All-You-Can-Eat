@@ -135,7 +135,6 @@ public class Consumer implements ActCharac {
             sleepAnimation.update();
             return;
         }
-        System.out.println(Scenary.listener.getKeyCode());
         switch (Scenary.listener.getKeyCode()) {
             case SushiLine.upHandKey:
                 //System.out.println("up");
