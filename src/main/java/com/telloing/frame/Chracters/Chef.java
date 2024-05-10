@@ -43,8 +43,8 @@ public class Chef implements ActCharac {
         this.attributes.setFrame(this.attributes.getListAnimations().get("cutting").getActualFrame());
         this.delay = new Delayer(DELAY);
         this.isSleep = false;
-        int animationX = attributes.getX() + 30;
-        int animationY = attributes.getY() - 40;
+        int animationX = attributes.getX() + 55;
+        int animationY = attributes.getY() - 10;
         sleepAnimation = OrnamentDirector.getInstance().createSleep("ParticulaDormir.png", container, animationX, animationY);
     }
     
@@ -126,10 +126,10 @@ public class Chef implements ActCharac {
 
     @Override
     public void draw(Graphics2D g) {
+        g.drawImage(this.attributes.getFrame(), this.getAttributes().getX(), this.getAttributes().getY(), container);
         if(isSleep){
             sleepAnimation.draw(g);
         }
-        g.drawImage(this.attributes.getFrame(), this.getAttributes().getX(), this.getAttributes().getY(), container);
     }
     
     @Override

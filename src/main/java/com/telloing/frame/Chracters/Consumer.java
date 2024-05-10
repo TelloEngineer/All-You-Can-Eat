@@ -39,8 +39,8 @@ public class Consumer implements ActCharac {
         this.attributes.setFrame(this.attributes.getListAnimations().get("take").getFrames().get(0));
         this.delay = new Delayer(DELAY);
         isSleep = false;
-        int animationX = attributes.getX() + 35;
-        int animationY = attributes.getY() - 70;
+        int animationX = attributes.getX() + 80;
+        int animationY = attributes.getY() - 50;
         sleepAnimation = OrnamentDirector.getInstance().createSleep("ParticulaDormir.png", container, animationX, animationY);
     }
 
