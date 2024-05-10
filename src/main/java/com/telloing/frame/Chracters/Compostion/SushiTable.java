@@ -8,12 +8,15 @@ import com.telloing.frame.Scenary;
 import com.telloing.frame.Chracters.Elements.ActCharac;
 import com.telloing.frame.Chracters.Consumer;
 import com.telloing.frame.Chracters.Food;
+import com.telloing.frame.Chracters.Ornament;
+import com.telloing.frame.Chracters.ChracterBuilder.OrnamentDirector;
 import com.telloing.frame.Frames.Animations;
 
 import java.awt.Container;
 
 class Sushi_Ontable {
 
+    private boolean isEating;
     private Food sushi;
     private Container container;
 
@@ -21,6 +24,11 @@ class Sushi_Ontable {
         this.sushi = sushi;
         this.container = container;
     }
+
+    public boolean isEating() {
+        return isEating;
+    }
+
 
     public Container getContainer() {
         return container;
@@ -36,15 +44,11 @@ class Sushi_Ontable {
 
     public void setSushi(Food sushi) {
         this.sushi = sushi;
-
     }
 
     public void draw(Graphics2D g) {
         g.drawImage(sushi.getAttributes().getFrame(), sushi.getAttributes().getX(), sushi.getAttributes().getY(),
                 container);
-        //activar condicion
-            //dibujar particular
-            // use draw method
     }
 
     public boolean update() {
@@ -53,9 +57,10 @@ class Sushi_Ontable {
             sushi.getAttributes().setFrame(animation.getActualFrame());
             sushi.getAttributes().setX(120);
             sushi.getAttributes().setY(160);
-            // bandera
+            isEating = true;
             return false;
         }
+        isEating = false;
         return true;
     }
 
@@ -72,6 +77,7 @@ public class SushiTable implements ActCharac {
     private List<Food> sushis;
     private List<Food> sushis_toAdd;
     private Sushi_Ontable action;
+    private Ornament eatAnimation;
     private int indexSushi;
 
     public SushiTable() {
@@ -108,7 +114,9 @@ public class SushiTable implements ActCharac {
     @Override
     public void draw(Graphics2D g) {
         sushis.addAll(sushis_toAdd);
-
+        if(action.isEating()){
+            eatAnimation.draw(g);
+        }
         // System.out.println(this.sushis.size() + " : " + this.sushis_toAdd.size());
         for (Food sushi : sushis) { // se ocupa actualizar cada vez que se itera
             action.setSushi(sushi);
@@ -126,7 +134,7 @@ public class SushiTable implements ActCharac {
     }
 
     private void checkListener() {
-        if(Consumer.isSleep){
+        if (Consumer.isSleep) {
             return;
         }
         if (sushis.isEmpty()) {
@@ -140,7 +148,15 @@ public class SushiTable implements ActCharac {
                     sushis.remove(elementToDelete);
                 }
                 break;
-            }
+        }
+        if(action.isEating()){
+            System.out.println("hola");
+            int animationX = action.getSushi().getAttributes().getX() - 10;
+            int animationY = action.getSushi().getAttributes().getY() - 20;
+            this.eatAnimation = OrnamentDirector.getInstance().createSleep("NubeComer.png", action.getContainer(), animationX,
+                    animationY);
+            eatAnimation.update();
+        }
 
     }
 
