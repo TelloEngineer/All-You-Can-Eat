@@ -147,13 +147,14 @@ public class SushiTable implements ActCharac {
                 this.eatAnimation = OrnamentDirector.getInstance().createSleep("NubeComer.png", action.getContainer(),
                         action.getSushi().getAttributes().getX() - 10,
                         action.getSushi().getAttributes().getY() - 20);
-                eatAnimation.update();
                 if (isAte) {
                     sushis.remove(elementToDelete);
                 }
                 break;
         }
-
+        if(action.isEating()){
+            eatAnimation.update();
+        }
     }
 
 }
