@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 
 /**
@@ -72,10 +73,10 @@ public class Scenary extends JPanel implements Runnable {
         /* Add the music */
         
         // Ruta del archivo MP3
-        String path = "/home/aleck/Documents/projects/all-you-can-eat/src/main/resources/com/telloing/frame/sunshine.wav";
+        String path = "sunshine.wav";
         try {
             // Crear un objeto File con la ruta del archivo MP3
-            File file = new File(path);
+            File file = new File(this.getClass().getResource(path).toURI());
 
             // Crear un AudioInputStream a partir del archivo
             audioInputStream = AudioSystem.getAudioInputStream(file);
@@ -107,6 +108,9 @@ public class Scenary extends JPanel implements Runnable {
             // audioInputStream.close();
 
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException  e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         
