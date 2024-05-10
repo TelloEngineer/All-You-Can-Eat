@@ -135,16 +135,21 @@ public class Consumer implements ActCharac {
             sleepAnimation.update();
             return;
         }
+        System.out.println(Scenary.listener.getKeyCode());
         switch (Scenary.listener.getKeyCode()) {
             case SushiLine.upHandKey:
+                //System.out.println("up");
                 Consumer.isUpHand = this.upHand();
                 break;
             case SushiTable.eatKey:
+                //System.out.println("eat");
                 this.eating();
+                Scenary.listener.setKeyCode(-1);
                 break;
             default:
+                //System.out.println("no action");
                 this.noAction();
         }
-        Scenary.listener.setKeyCode(-1);
+        
     }
 }
