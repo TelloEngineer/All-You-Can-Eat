@@ -1,6 +1,5 @@
 package com.telloing.frame.Chracters;
 
-import com.telloing.frame.Chracters.Elements.MovCharact;
 import com.telloing.frame.Chracters.Elements.ChracterAttri;
 import com.telloing.frame.Scenary;
 import com.telloing.frame.Chracters.ChracterBuilder.OrnamentDirector;
@@ -12,9 +11,6 @@ import com.telloing.frame.Frames.Delayer;
 import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

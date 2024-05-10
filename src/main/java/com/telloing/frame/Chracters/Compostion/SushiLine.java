@@ -6,10 +6,8 @@ package com.telloing.frame.Chracters.Compostion;
 
 import com.telloing.frame.Scenary;
 import com.telloing.frame.Chracters.Elements.ActCharac;
-import com.telloing.frame.Chracters.ChracterBuilder.FoodDirector;
 import com.telloing.frame.Chracters.Collision.ActivationZone1D;
 import com.telloing.frame.Chracters.Collision.ActivationZoneObj;
-import com.telloing.frame.Frames.Delayer;
 import com.telloing.frame.Chracters.Consumer;
 import com.telloing.frame.Chracters.Food;
 import java.awt.Graphics2D;
@@ -110,13 +108,11 @@ public class SushiLine implements ActCharac {
     
     private List<Food> sushis;
     private OnlineAction action;
-    private Sushis_onLine sushisToShow;
     private ActivationZone1D activation;
 
     public SushiLine() {
         this.sushis = new LinkedList<>();
         this.action = new OnlineAction(null, null);
-        this.sushisToShow = new Sushis_onLine();
         this.activation = new ActivationZone1D(ActivationZone1D.collisionFood);
         
         ActivationZone1D.fillArea(450, 2, ActivationZone1D.collisionFood, 5);

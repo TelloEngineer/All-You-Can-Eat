@@ -8,7 +8,6 @@ import com.telloing.frame.Chracters.ChracterBuilder.ChefDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.ConsumerDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.FoodBeltDirector;
 import com.telloing.frame.Chracters.ChracterBuilder.OrnamentDirector;
-import com.telloing.frame.Chracters.ChracterBuilder.SushisLineDirector;
 import com.telloing.frame.Chracters.Compostion.EscenaryElements;
 import com.telloing.frame.Chracters.Compostion.SushiLine;
 import com.telloing.frame.Chracters.Compostion.SushiTable;
