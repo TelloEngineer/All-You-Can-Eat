@@ -17,6 +17,9 @@ public class MainDrawing extends javax.swing.JFrame {
     public MainDrawing() {
         initComponents();
         scenary1.startGame();
+        this.setTitle("EatAllYouCan Beta");
+        this.setIconImage(Scenary.getIcon("Icon.PNG"));
+        this.setResizable(false);
     }
 
     /**

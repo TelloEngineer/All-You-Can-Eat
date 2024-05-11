@@ -11,16 +11,18 @@ import com.telloing.frame.Chracters.ChracterBuilder.OrnamentDirector;
 import com.telloing.frame.Chracters.Compostion.EscenaryElements;
 import com.telloing.frame.Chracters.Compostion.SushiLine;
 import com.telloing.frame.Chracters.Compostion.SushiTable;
+import com.telloing.frame.Frames.Animations;
 import com.telloing.frame.Frames.BackGroundDirector;
 import com.telloing.frame.Chracters.Consumer;
 import com.telloing.frame.Chracters.Elements.MovCharact;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
-
+import javax.imageio.ImageIO;
 /* To have music into the game we need to import */
 import javax.sound.sampled.*;
 
@@ -142,4 +144,17 @@ public class Scenary extends JPanel implements Runnable {
         Scenary.elements.update(); 
     }
 
+    public static Image getIcon(String nameFile) {
+        Image icon;
+        
+        try {
+            icon = ImageIO.read(Scenary.class.getResourceAsStream(nameFile));
+        } catch (IOException ex) {
+            System.err.println("no finded");
+            return null;
+        }
+        
+        return icon;
+    
+    }
 }

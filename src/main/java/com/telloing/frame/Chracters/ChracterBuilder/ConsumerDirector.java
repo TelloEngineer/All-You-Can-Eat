@@ -49,7 +49,7 @@ class ConsumerBuilder{
         try {
             setFrames = ImageIO.read(getClass().getResourceAsStream(nameFile));
         } catch (IOException ex) {
-            System.err.println("no finded");
+            Logger.getLogger(Scenary.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
         
