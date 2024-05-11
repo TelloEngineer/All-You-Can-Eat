@@ -23,6 +23,8 @@ import javax.swing.JPanel;
 
 /* To have music into the game we need to import */
 import javax.sound.sampled.*;
+
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -75,11 +77,8 @@ public class Scenary extends JPanel implements Runnable {
         // Ruta del archivo MP3
         String path = "sunshine.wav";
         try {
-            // Crear un objeto File con la ruta del archivo MP3
-            File file = new File(this.getClass().getResource(path).toURI());
-
             // Crear un AudioInputStream a partir del archivo
-            audioInputStream = AudioSystem.getAudioInputStream(file);
+            audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(this.getClass().getResourceAsStream(path)));
 
             // Obtener un Clip de audio
             clip = AudioSystem.getClip();
@@ -95,22 +94,8 @@ public class Scenary extends JPanel implements Runnable {
 
             // Reproducir el audio
             clip.start();
-            
-             // Mostrar un mensaje cuando el audio comienza a reproducirse
-            System.out.println("Reproduciendo audio...");
 
-            // Esperar hasta que el audio termine de reproducirse
-            // while (!clip.isRunning()) Thread.sleep(10);
-            // while (clip.isRunning()) Thread.sleep(10);
-
-            // Cerrar el Clip y el AudioInputStream
-            // clip.close();
-            // audioInputStream.close();
-
-        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException  e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException  e ) {
             e.printStackTrace();
         }
         

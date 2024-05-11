@@ -13,13 +13,63 @@
     </properties>
 
 
-
     <dependencies>
         <dependency>
             <groupId>org.imgscalr</groupId>
             <artifactId>imgscalr-lib</artifactId>
             <version>4.2</version>
         </dependency>
-    </dependencies>
-    
+    </dependencies> 
+    <build>
+        <plugins>  
+
+            <plugin>    
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.5.0</version>
+            </plugin> 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.6.1</version>
+                <executions>
+                        <execution>
+                            <id>copy-dependencies</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>copy-dependencies</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>
+                                    ${project.build.directory}/libs
+                                </outputDirectory>
+                            </configuration>
+                        </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId> 
+                <version>3.4.1</version>           
+                <configuration>
+                    <finalName>eatAll_YouCan</finalName> 
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>libs/</classpathPrefix>
+                            <mainClass>com.telloing.frame.MainDrawing</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
 </project>

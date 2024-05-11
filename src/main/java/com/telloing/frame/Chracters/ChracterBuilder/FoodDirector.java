@@ -94,55 +94,55 @@ public class FoodDirector {
     }
 
     public Food createSushi1(Container container) {
-        builder.buildFrames("./Sushi/Sushi 1.png");
+        builder.buildFrames("Sushi/Sushi 1.png");
         builder.buildContainer(container);
         return builder.getFood();
     }
 
     public Food createSushi2(Container container) {
-        builder.buildFrames("./Sushi/Sushi 2.png");
+        builder.buildFrames("Sushi/Sushi 2.png");
         builder.buildContainer(container);
 
         return builder.getFood();
     }
 
     public Food createSushi3(Container container) {
-        builder.buildFrames("./Sushi/Sushi 3.png");
+        builder.buildFrames("Sushi/Sushi 3.png");
         builder.buildContainer(container);
 
         return builder.getFood();
     }
 
     public Food createSushi4(Container container) {
-        builder.buildFrames("./Sushi/Sushi 4.png");
+        builder.buildFrames("Sushi/Sushi 4.png");
         builder.buildContainer(container);
 
         return builder.getFood();
     }
 
     public Food createSushi5(Container container) {
-        builder.buildFrames("./Sushi/Sushi 5.png");
+        builder.buildFrames("Sushi/Sushi 5.png");
         builder.buildContainer(container);
 
         return builder.getFood();
     }
 
     public Food createSushi6(Container container) {
-        builder.buildFrames("./Sushi/Sushi 6.png");
+        builder.buildFrames("Sushi/Sushi 6.png");
         builder.buildContainer(container);
 
         return builder.getFood();
     }
 
     public Food createSushi7(Container container) {
-        builder.buildFrames("./Sushi/Sushi 7.png");
+        builder.buildFrames("Sushi/Sushi 7.png");
         builder.buildContainer(container);
 
         return builder.getFood();
     }
 
     public Food createSushi8(Container container) {
-        builder.buildFrames("./Sushi/Sushi 8.png");
+        builder.buildFrames("Sushi/Sushi 8.png");
         builder.buildContainer(container);
 
         return builder.getFood();

@@ -49,7 +49,7 @@ class ConsumerBuilder{
         try {
             setFrames = ImageIO.read(getClass().getResourceAsStream(nameFile));
         } catch (IOException ex) {
-            Logger.getLogger(Scenary.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("no finded");
             return null;
         }
         
@@ -59,9 +59,9 @@ class ConsumerBuilder{
 
     public void buildAnimations(){
         Map<String, Animations> list = new HashMap<String, Animations>();
-        list.put("take", buildFrames("./Cliente/ClienteManoArriba.png", new CoordenatesCuter(192,147,3,6)));
-        list.put("eat", buildFrames("./Cliente/ClienteComiendo.png", new CoordenatesCuter(192, 146,1,4)));
-        list.put("sleep", buildFrames("./Cliente/ClienteDormido.png", new CoordenatesCuter(192, 147,3,6)));
+        list.put("take", buildFrames("Cliente/ClienteManoArriba.png", new CoordenatesCuter(192,147,3,6)));
+        list.put("eat", buildFrames("Cliente/ClienteComiendo.png", new CoordenatesCuter(192, 146,1,4)));
+        list.put("sleep", buildFrames("Cliente/ClienteDormido.png", new CoordenatesCuter(192, 147,3,6)));
         listAnimations = list;
     }
 

@@ -55,9 +55,9 @@ class ChefBuilder {
 
     public void buildAnimations(){
         Map<String, Animations> list = new HashMap<String, Animations>();
-        list.put("sleep", buildFrames("./Cocinero/CocineroDormir.png", new CoordenatesCuter(192,102,2,6)));
-        list.put("putSushi", buildFrames("./Cocinero/CocineroDejaSushi.png", new CoordenatesCuter(192,102,1,6)));
-        list.put("cutting", buildFrames("./Cocinero/CocineroCorte.png", new CoordenatesCuter(192,102,3,6)));
+        list.put("sleep", buildFrames("Cocinero/CocineroDormir.png", new CoordenatesCuter(192,102,2,6)));
+        list.put("putSushi", buildFrames("Cocinero/CocineroDejaSushi.png", new CoordenatesCuter(192,102,1,6)));
+        list.put("cutting", buildFrames("Cocinero/CocineroCorte.png", new CoordenatesCuter(192,102,3,6)));
         
         listAnimations = list;
     }
